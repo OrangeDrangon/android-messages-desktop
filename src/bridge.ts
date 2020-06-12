@@ -117,6 +117,7 @@ ipcRenderer.once(
     { cache, basePath }: { basePath: string; cache: Record<string, string> }
   ): void => {
     cacheManager = new CacheManager(basePath, new Map(Object.entries(cache)));
+    console.log(cacheManager);
   }
 );
 

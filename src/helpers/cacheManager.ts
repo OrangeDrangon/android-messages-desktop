@@ -99,9 +99,9 @@ export class CacheManager {
     return async () => {
       const rendered = await domtoimg.toPng(nodeToRender);
       const cachePath = path.join(this.basePath, `${cacheKey}.txt`);
-      await jetpack.writeAsync(cachePath, rendered);
-
       this.imgCache.set(cacheKey, rendered);
+      console.log(cachePath);
+      await jetpack.writeAsync(cachePath, rendered);
     };
   }
 
