@@ -121,10 +121,10 @@
   resolved "https://registry.yarnpkg.com/@types/dom-to-image/-/dom-to-image-2.6.2.tgz#f6cc93cd5e84565a3666851fa5472fe8779b49d2"
   integrity sha512-Yxbwmz/glNwRIXfBI8efG2bgIxrFAKV1MdfpqbUDq25ULMot7U7FYXPiso5G8DlBExSP+AakuG0mNus9yw4RZQ==
 
-"@types/electron-settings@^3.1.1":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@types/electron-settings/-/electron-settings-3.1.1.tgz#e3f8246ee1a8fc66b08203792d09589df355c776"
-  integrity sha512-wDVj8YFBuqLXgVQqZ1Yk+Qm27LjjldssnrwzDv9JanOokw24tcuJ76X1Uo5Xg9VVRIAF6HgmiAQQ+CZrRmJgYw==
+"@types/electron-settings@^3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@types/electron-settings/-/electron-settings-3.1.2.tgz#0efe6b85b559b0dd10be06b1a2bd0689423dc52d"
+  integrity sha512-/VhDZDo5Ovz+0IjoBowLelGu2iQDM2VXJpOj06Req/gqY9pOR4hNMRkgNTMmEs/ApblXKtn5HwVXqFHTEeG6wA==
   dependencies:
     "@types/node" "*"
 
