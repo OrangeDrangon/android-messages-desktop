@@ -1,0 +1,10 @@
+{
+  "startInTray": false,
+  "autoHideMenu": false,
+  "enterToSend": true,
+  "notificationSound": true,
+  "hideNotificationContent": false,
+  "useSystemDarkMode": true,
+  "darkMode": false,
+  "trayEnabled": false
+}

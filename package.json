@@ -29,7 +29,8 @@
     "about-window": "1.13.4",
     "electron-settings": "3.2.0",
     "electron-updater": "4.3.5",
-    "fs-jetpack": "^4.1.0"
+    "fs-jetpack": "^4.1.0",
+    "rxjs": "^6.6.3"
   },
   "devDependencies": {
     "@types/electron-settings": "^3.1.1",
