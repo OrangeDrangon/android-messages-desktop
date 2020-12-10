@@ -6,18 +6,12 @@ import {
 } from "electron";
 import path from "path";
 import { CacheManager } from "./helpers/cacheManager";
-import {
-  EVENT_BRIDGE_INIT,
-  EVENT_UPDATE_USER_SETTING,
-  SETTING_HIDE_NOTIFICATION,
-  RESOURCES_PATH,
-  SETTING_NOTIFICATION_SOUND,
-} from "./helpers/constants";
-import { handleEnterPrefToggle } from "./helpers/inputManager";
+import { EVENT_BRIDGE_INIT, RESOURCES_PATH } from "./helpers/constants";
 import { popupContextMenu } from "./menu/contextMenu";
-import settings from "electron-settings";
 
 const { Notification: ElectronNotification, app, nativeImage } = remote;
+
+const { darkMode, hideNotificationContent, notificationSound } = app.settings;
 
 // Electron (or the build of Chromium it uses?) does not seem to have any default right-click menu, this adds our own.
 remote.getCurrentWebContents().addListener("context-menu", popupContextMenu);
@@ -67,18 +61,13 @@ window.addEventListener("load", () => {
   });
 });
 
-ipcRenderer.on(EVENT_UPDATE_USER_SETTING, (_event, settingsList) => {
-  if ("useDarkMode" in settingsList && settingsList.useDarkMode !== null) {
-    if (settingsList.useDarkMode) {
-      // Props to Google for making the web app use dark mode entirely based on this class
-      // and for making the class name semantic!
-      document.body.classList.add("dark-mode");
-    } else {
-      document.body.classList.remove("dark-mode");
-    }
-  }
-  if ("enterToSend" in settingsList) {
-    handleEnterPrefToggle(settingsList.enterToSend);
+darkMode.subscribe((val) => {
+  if (val) {
+    // Props to Google for making the web app use dark mode entirely based on this class
+    // and for making the class name semantic!
+    document.body.classList.add("dark-mode");
+  } else {
+    document.body.classList.remove("dark-mode");
   }
 });
 
@@ -102,7 +91,7 @@ window.Notification = function (title: string, options: NotificationOptions) {
     icon = nativeImage.createFromDataURL(potentialImg);
   }
 
-  const hideContent = settings.get(SETTING_HIDE_NOTIFICATION, false) as boolean;
+  const hideContent = hideNotificationContent.value;
 
   const notificationOpts: NotificationConstructorOptions = hideContent
     ? {
@@ -116,10 +105,7 @@ window.Notification = function (title: string, options: NotificationOptions) {
         body: options.body || "",
       };
 
-  notificationOpts.silent = settings.get(
-    SETTING_NOTIFICATION_SOUND,
-    true
-  ) as boolean;
+  notificationOpts.silent = notificationSound.value;
 
   const notification = new ElectronNotification(notificationOpts);
   notification.addListener("click", () => {

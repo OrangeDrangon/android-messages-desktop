@@ -11,15 +11,21 @@ import path from "path";
 import {
   BASE_APP_PATH,
   EVENT_BRIDGE_INIT,
-  EVENT_UPDATE_USER_SETTING,
   IS_DEV,
   IS_LINUX,
   IS_MAC,
   IS_WINDOWS,
   RESOURCES_PATH,
-  SETTING_TRAY_ENABLED,
 } from "./helpers/constants";
-import { SettingsManager } from "./helpers/settingsManager";
+import {
+  autoHideMenu,
+  darkMode,
+  hideNotificationContent,
+  notificationSound,
+  settings,
+  startInTray,
+  useSystemDarkMode,
+} from "./helpers/settings";
 import { TrayManager } from "./helpers/trayManager";
 import { CustomBrowserWindow } from "./helpers/window";
 import { baseMenuTemplate } from "./menu/baseMenu";
@@ -77,15 +83,9 @@ if (!isFirstInstance) {
   }
 
   let trayManager: TrayManager;
-  let settingsManager: SettingsManager;
 
   app.on("ready", () => {
     trayManager = new TrayManager();
-    settingsManager = new SettingsManager();
-    settingsManager.addWatcher(
-      SETTING_TRAY_ENABLED,
-      trayManager.handleTrayEnabledToggle
-    );
 
     setApplicationMenu();
     const menuInstance = Menu.getApplicationMenu();
@@ -97,11 +97,8 @@ if (!isFirstInstance) {
     }
 
     nativeTheme.on("updated", () => {
-      if (settingsManager.systemDarkMode) {
-        mainWindow.webContents.send(EVENT_UPDATE_USER_SETTING, {
-          useDarkMode: nativeTheme.shouldUseDarkColors,
-        });
-      }
+      // update dark mode if useSystemDarkMode
+      useSystemDarkMode.value && darkMode.next(nativeTheme.shouldUseDarkColors);
     });
 
     if (menuInstance != null) {
@@ -111,9 +108,6 @@ if (!isFirstInstance) {
       );
       const notificationSoundEnabledMenuItem = menuInstance.getMenuItemById(
         "notificationSoundEnabledMenuItem"
-      );
-      const pressEnterToSendMenuItem = menuInstance.getMenuItemById(
-        "pressEnterToSendMenuItem"
       );
       const hideNotificationContentMenuItem = menuInstance.getMenuItemById(
         "hideNotificationContentMenuItem"
@@ -126,22 +120,20 @@ if (!isFirstInstance) {
         // Sets checked status based on user prefs
         (menuInstance.getMenuItemById(
           "autoHideMenuBarMenuItem"
-        ) as Electron.MenuItem).checked = settingsManager.autoHideMenu;
+        ) as Electron.MenuItem).checked = autoHideMenu.value;
         (trayMenuItem as Electron.MenuItem).enabled = trayManager.enabled;
       }
 
-      (trayMenuItem as Electron.MenuItem).checked = settingsManager.startInTray;
+      (trayMenuItem as Electron.MenuItem).checked = startInTray.value;
       (enableTrayIconMenuItem as Electron.MenuItem).checked =
         trayManager.enabled;
 
       (notificationSoundEnabledMenuItem as Electron.MenuItem).checked =
-        settingsManager.notificationSound;
-      (pressEnterToSendMenuItem as Electron.MenuItem).checked =
-        settingsManager.enterToSend;
+        notificationSound.value;
       (hideNotificationContentMenuItem as Electron.MenuItem).checked =
-        settingsManager.hideNotificationContent;
+        hideNotificationContent.value;
       (useSystemDarkModeMenuItem as Electron.MenuItem).checked =
-        settingsManager.systemDarkMode;
+        useSystemDarkMode.value;
     }
 
     autoUpdater.checkForUpdatesAndNotify();
@@ -149,8 +141,8 @@ if (!isFirstInstance) {
     mainWindow = new CustomBrowserWindow("main", {
       width: 1100,
       height: 800,
-      autoHideMenuBar: settingsManager.autoHideMenu,
-      show: !settingsManager.startInTray, //Starts in tray if set
+      autoHideMenuBar: autoHideMenu.value,
+      show: !startInTray.value, //Starts in tray if set
       titleBarStyle: IS_MAC ? "hiddenInset" : "default", //Turn on hidden frame on a Mac
       icon: IS_LINUX
         ? path.resolve(RESOURCES_PATH, "icons", "128x128.png")
@@ -166,6 +158,8 @@ if (!isFirstInstance) {
     // Quick and dirty way for renderer process to access mainWindow for communication
     app.mainWindow = mainWindow;
     app.trayManager = trayManager;
+    // pass the settings object to the bridge because electron is dumb
+    app.settings = settings;
 
     trayManager.startIfEnabled();
 
@@ -175,15 +169,6 @@ if (!isFirstInstance) {
       }
 
       state.bridgeInitDone = true;
-      // We have to send un-solicited events (i.e. an event not the result of an event sent to this process) to the webview bridge
-      // via the renderer process. I'm not sure of a way to get a reference to the androidMessagesWebview inside the renderer from
-      // here. There may be a legit way to do it, or we can do it a dirty way like how we pass this process to the renderer.
-      mainWindow.webContents.send(EVENT_UPDATE_USER_SETTING, {
-        enterToSend: settingsManager.enterToSend,
-        useDarkMode: settingsManager.systemDarkMode
-          ? nativeTheme.shouldUseDarkColors
-          : null,
-      });
     });
 
     let quitViaContext = false;
@@ -206,7 +191,6 @@ if (!isFirstInstance) {
       if (!shouldExitOnMainWindowClosed()) {
         event.preventDefault();
         mainWindow.hide();
-        trayManager?.showMinimizeToTrayWarning();
       } else {
         app.quit(); // If we don't explicitly call this, the webview and mainWindow get destroyed but background process still runs.
       }

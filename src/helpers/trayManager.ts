@@ -1,26 +1,19 @@
 import { app, Menu, Tray } from "electron";
-import settings from "electron-settings";
 import path from "path";
 import { trayMenuTemplate } from "../menu/trayMenu";
-import {
-  IS_LINUX,
-  IS_MAC,
-  IS_WINDOWS,
-  RESOURCES_PATH,
-  SETTING_TRAY_ENABLED,
-} from "./constants";
+import { IS_LINUX, IS_MAC, IS_WINDOWS, RESOURCES_PATH } from "./constants";
+import { startInTray, trayEnabled } from "./settings";
 
 export class TrayManager {
-  public enabled = settings.get(SETTING_TRAY_ENABLED, !IS_LINUX) as boolean;
+  public enabled = trayEnabled.value;
   public iconPath = this.getIconPath();
   public overlayIconPath = this.getOverlayIconPath();
 
   public tray: Tray | null = null;
 
   constructor() {
-    this.handleTrayEnabledToggle = this.handleTrayEnabledToggle.bind(this);
+    trayEnabled.subscribe((val) => this.handleTrayEnabledToggle(val));
   }
-
   private getIconPath(): string {
     if (IS_WINDOWS) {
       // Re-use regular app .ico for the tray icon on Windows.
@@ -77,23 +70,6 @@ export class TrayManager {
     }
   }
 
-  public showMinimizeToTrayWarning(): void {
-    if (IS_WINDOWS && this.enabled) {
-      const seenMinimizeToTrayWarning = settings.get(
-        "seenMinimizeToTrayWarningPref",
-        false
-      ) as boolean;
-      if (!seenMinimizeToTrayWarning && this.tray != null) {
-        this.tray.displayBalloon({
-          title: "Android Messages",
-          content:
-            "Android Messages is still running in the background. To close it, use the File menu or right-click on the tray icon.",
-        });
-        settings.set("seenMinimizeToTrayWarningPref", true);
-      }
-    }
-  }
-
   public handleTrayEnabledToggle(newValue: boolean): void {
     this.enabled = newValue;
     const liveStartInTrayMenuItemRef = Menu.getApplicationMenu()?.getMenuItemById(
@@ -121,7 +97,7 @@ export class TrayManager {
       if (!IS_MAC && liveStartInTrayMenuItemRef != null) {
         // If the app has no tray icon, it can be difficult or impossible to re-gain access to the window, so disallow
         // starting hidden, except on Mac, where the app window can still be un-hidden via the dock.
-        settings.set("startInTrayPref", false);
+        startInTray.next(false);
         liveStartInTrayMenuItemRef.enabled = false;
         liveStartInTrayMenuItemRef.checked = false;
       }
