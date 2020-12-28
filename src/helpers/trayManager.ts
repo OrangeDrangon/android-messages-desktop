@@ -36,9 +36,9 @@ export class TrayManager {
 
   private getOverlayIconPath(): string | null {
     if (IS_WINDOWS) {
-      return path.resolve(RESOURCES_PATH, "tray", "unread_icon.ico");
+      return path.resolve(RESOURCES_PATH, "tray", "unread_icon#.ico");
     } else if (IS_LINUX) {
-      return path.resolve(RESOURCES_PATH, "tray", "unread_icon.png");
+      return path.resolve(RESOURCES_PATH, "tray", "unread_icon#.png");
     }
     return null;
   }
@@ -134,10 +134,11 @@ export class TrayManager {
     }
   }
 
-  public setUnreadIcon(toggle: boolean): void {
+  public setUnreadIcon(num: number): void {
+		app.setBadgeCount(num); //does this work on macOS/Linux?
     if (this.tray && this.overlayIconPath != null) {
-      if (toggle) {
-        this.tray.setImage(this.overlayIconPath);
+      if (num) {
+        this.tray.setImage(this.overlayIconPath.replace("#", "" + (num > 10 ? 10 : num)));
       } else {
         this.tray.setImage(this.iconPath);
       }
