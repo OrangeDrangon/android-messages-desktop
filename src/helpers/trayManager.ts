@@ -42,9 +42,9 @@ export class TrayManager {
 
   private getOverlayIconPath(): string | null {
     if (IS_WINDOWS) {
-      return path.resolve(RESOURCES_PATH, "tray", "unread_icon#.ico");
+      return path.resolve(RESOURCES_PATH, "tray", "unread_icon.ico");
     } else if (IS_LINUX) {
-      return path.resolve(RESOURCES_PATH, "tray", "unread_icon#.png");
+      return path.resolve(RESOURCES_PATH, "tray", "unread_icon.png");
     }
     return null;
   }
