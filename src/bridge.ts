@@ -68,19 +68,19 @@ function generateIcon(opt:any, callback:Function): void
         ctxText:any = canvText.getContext("2d"),
         img:any = new Image(),
         text = opt.text || "",
-        iconSize = opt.size || 32,
+        iconSize = opt.iconSize || 32,
         textSize = opt.textSize || iconSize,
-        textPosition = opt.position !== undefined ? opt.position                  : settings.get("iconBadgePosition", 2) as number,
-        textScale = opt.scale !== undefined ? opt.scale                           : settings.get("iconBadgeScale", 1.0) as number,
-        outlineOut = opt.outlineOut !== undefined ? opt.outlineOut                : Math.round(iconSize/5.333 + (textScale < 1 ? -(textScale * 2) : textScale)),
-        outlineIn = opt.outlineIn !== undefined ? opt.outlineIn                   : textScale * 2,
-        outlineOutColor = opt.outlineOutColor !== undefined ? opt.outlineOutColor : "red",
-        outlineInColor = opt.outlineInColor !== undefined ? opt.outlineInColor    : "black",
+        textScale = opt.textScale !== undefined ? opt.textScale                   : settings.get("iconBadgeScale", 1.0) as number,
+        textPosition = opt.textPosition !== undefined ? opt.textPosition          : settings.get("iconBadgePosition", 2) as number,
         textColor = opt.textColor !== undefined ? opt.textColor                   : "white",
+        outlineOut = opt.outlineOut !== undefined ? opt.outlineOut                : Math.round(iconSize/5.333 + (textScale < 1 ? -(textScale * 2) : textScale)),
+        outlineOutColor = opt.outlineOutColor !== undefined ? opt.outlineOutColor : "red",
+        outlineIn = opt.outlineIn !== undefined ? opt.outlineIn                   : textScale * 2,
+        outlineInColor = opt.outlineInColor !== undefined ? opt.outlineInColor    : "black",
         font = opt.font !== undefined ? opt.font                                  : "Verdana",
         offsetX = opt.offsetX !== undefined ? opt.offsetX                         : 0,
         offsetY = opt.offsetY !== undefined ? opt.offsetY                         : 0,
-        size = (iconSize - outlineOut * 2) * textScale;
+        fontSize = (textSize - outlineOut * 2) * textScale;
 
   canvIcon.width = iconSize;
   canvIcon.height = iconSize;
@@ -90,7 +90,7 @@ function generateIcon(opt:any, callback:Function): void
   let x = canvText.width / 2,
       y = x;
 
-  ctxText.font = size + 'px "' + font + '"';
+  ctxText.font = fontSize + 'px "' + font + '"';
   ctxText.lineJoin = "round";
   ctxText.textAlign = "center";
   ctxText.textBaseline = "middle";
@@ -192,8 +192,6 @@ function generateIcon(opt:any, callback:Function): void
   switch(textPosition)
   {
     case 0:                             // 0: top left
-      x = 0;
-      y = 0;
       break;
     case 1:                             // 1: top right
       x = canvIcon.width - tw;
@@ -296,25 +294,26 @@ function createUnreadListener() {
 
       prevUnread = unread;
     }
+
     const text = unread.list.length,
           // badge position: 0=top-left; 1=top-right; 2=bottom-right; 3=bottom-left; 4=center
           textPosition:number = settings.get("iconBadgePosition", 3) as number,
           textScale = settings.get("iconBadgeScale", 1.0) as number, // badge scale: 0.5 - 1.5
           iconSizes:any = {
-            "":   {scale: textScale, outlineOut: 7, outlineIn: 4}, //32x32 icon to use as 16x16 (tray)
-//    				"16":	{scale: textScale+0.1, outlineOut: 4, outlineIn: 3}, //16x16 //doesn't look good
-//    				"24":	{scale: textScale, outlineIn: 3}, //24x24
-//            "32": {scale: textScale - 0.4, outlineIn: 3}, //32x32 with small badge
-//    				"48":	{scale: textScale - 0.4, outlineIn: 3}, //48x48
-//            "64": {scale: textScale - 0.5, outlineOut: 9, outlineIn: 4}, //64x64 used on Windows taskbar
-//    				"128":	{scale: textScale - 0.5, outlineOut: 16, outlineIn: 6}, //128x128
-//    				"256":	{scale: textScale - 0.5, outlineOut: 26, outlineIn: 8}, //256x256
+            "":   {outlineOut: 7, outlineIn: 4}, //32x32 icon to use as 16x16 (tray)
+//    				"16":	{textScale: (textScale + textScale / 10), outlineOut: 4, outlineIn: 3}, //16x16 //doesn't look good
+//    				"24":	{textScale: textScale, outlineIn: 3}, //24x24
+//            "32": {textScale: (textScale - textScale / 2.4), outlineIn: 3}, //32x32 with small badge
+//    				"48":	{textScale: (textScale - textScale / 2.4), outlineIn: 3}, //48x48
+//            "64": {textScale: (textScale - textScale / 2), outlineOut: 9, outlineIn: 4}, //64x64 used on Windows taskbar
+//    				"128":	{textScale: (textScale - textScale / 2), outlineOut: 16, outlineIn: 6}, //128x128
+//    				"256":	{textScale: (textScale - textScale / 2), outlineOut: 26, outlineIn: 8}, //256x256
           },
           unreadID = text + "_" + textPosition + "_" + textScale;
 
     if (IS_WINDOWS)
     {
-      iconSizes["64"] = {scale: textScale - 0.5, outlineOut: 9, outlineIn: 4}; //64x64 used on Windows taskbar
+      iconSizes["64"] = {textScale: (textScale - textScale / 2), outlineOut: 9, outlineIn: 4}; //64x64 used on Windows taskbar
     }
 
     for (let i in iconSizes)
@@ -347,7 +346,7 @@ function createUnreadListener() {
 
       for(let i in iconSizes)
       {
-        iconSizes[i].size = i;
+        iconSizes[i].iconSize = i;
         iconSizes[i].text = text;
         generateIcon(iconSizes[i], callback);
       }

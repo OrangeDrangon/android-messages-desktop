@@ -157,6 +157,7 @@ if (!isFirstInstance) {
       (useSystemDarkModeMenuItem as Electron.MenuItem).checked =
         settingsManager.systemDarkMode;
       (menuInstance.getMenuItemById("iconBadgePosition"+settingsManager.iconBadgePosition) as Electron.MenuItem).checked = true;
+      (menuInstance.getMenuItemById("iconBadgeScale"+settingsManager.iconBadgeScale) as Electron.MenuItem).checked = true;
       if (IS_WINDOWS)
       {
         (menuInstance.getMenuItemById("taskbarBadge") as Electron.MenuItem).checked = settingsManager.taskbarBadge;

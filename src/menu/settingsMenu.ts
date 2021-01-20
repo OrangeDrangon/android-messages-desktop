@@ -157,8 +157,25 @@ if (settingsMenu.submenu != null && !(settingsMenu.submenu instanceof Menu)) {
         },
       ]
     },
-
   );
+	let submenu:any = [];
+	for(let i = 0.25; i <= 2; i += 0.25)
+	{
+		submenu[submenu.length] = {
+      id: "iconBadgeScale" + i,
+      label: i * 100 + "%",
+      value: i,
+      type: "radio",
+      click: (item:any) => {
+        settings.set("iconBadgeScale", item.value);
+      },
+		};
+	}
+  settingsMenu.submenu.push({
+  	id: "iconBadgeScale",
+  	label: "Unread icon badge size",
+  	submenu: submenu
+  });
   if (IS_WINDOWS)
   {
     settingsMenu.submenu.push({
