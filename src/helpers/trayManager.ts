@@ -1,4 +1,4 @@
-import { app, Menu, Tray } from "electron";
+import { app, Menu, Tray, nativeImage, NativeImage} from "electron";
 import settings from "electron-settings";
 import path from "path";
 import { trayMenuTemplate } from "../menu/trayMenu";
@@ -10,12 +10,18 @@ import {
   SETTING_TRAY_ENABLED,
 } from "./constants";
 
+type Unread = any;
+
 export class TrayManager {
   public enabled = settings.get(SETTING_TRAY_ENABLED, !IS_LINUX) as boolean;
   public iconPath = this.getIconPath();
   public overlayIconPath = this.getOverlayIconPath();
+  public iconImage:NativeImage = nativeImage.createFromPath(this.iconPath);
 
   public tray: Tray | null = null;
+  private iconCache: Map<string, NativeImage> = new Map();
+  private unreadIconCacheName:string = "unreadIcon";
+  private unreadPrev:Unread = {list: []};
 
   constructor() {
     this.handleTrayEnabledToggle = this.handleTrayEnabledToggle.bind(this);
@@ -49,6 +55,7 @@ export class TrayManager {
       const trayContextMenu = Menu.buildFromTemplate(trayMenuTemplate);
       this.tray.setContextMenu(trayContextMenu);
       this.setupEventListeners();
+      this.setUnreadIcon(this.unreadPrev);
     }
   }
 
@@ -134,14 +141,77 @@ export class TrayManager {
     }
   }
 
-  public setUnreadIcon(num: number): void {
-		app.setBadgeCount(num); //does this work on macOS/Linux?
-    if (this.tray && this.overlayIconPath != null) {
-      if (num) {
-        this.tray.setImage(this.overlayIconPath.replace("#", "" + (num > 10 ? 10 : num)));
-      } else {
-        this.tray.setImage(this.iconPath);
+  public setUnreadIcon(unread:Unread): void {
+console.log(unread);
+    if (IS_WINDOWS)
+    {
+ 			app.mainWindow?.setIcon((settings.get("taskbarBadge", true)
+ 																? unread.icon64
+ 																	|| unread.icon128
+ 																	|| unread.icon256
+ 																	|| unread.icon32
+ 																	|| unread.icon24
+ 																	|| unread.icon16
+ 																	|| unread.icon
+ 																: "") || this.iconPath);
+    }
+    else
+      app.setBadgeCount(unread.list.length); //does this work on macOS/Linux?
+
+    if (!this.tray)
+      return;
+
+    this.unreadPrev = unread;
+    const tooltip: string = "Android Messages v" + app.getVersion(),
+          textMaxLength = 22; // trancate text
+
+    this.tray.setToolTip(tooltip);
+    if (unread.list.length) {
+      this.tray.setImage(unread.icon
+      										|| unread.icon16
+      										|| unread.icon24
+      										|| unread.icon32
+      										|| unread.icon64
+      										|| unread.icon128
+      										|| unread.icon256
+      										|| this.iconPath);
+      let data:string = "";
+      for(let i = 0, info:any, text:string; i < unread.list.length; i++)
+      {
+        info = unread.list[i];
+        text = info.text.replace(/(\r\n|\n+)+/g, " ");
+        if (text.length > textMaxLength)
+          text = text.slice(0, textMaxLength) + "...";
+        if (text)
+          text = ":\n " + text;
+
+        data += (data ? "\n" : "") + info.name + text;
       }
+      if (data)
+        this.tray.setToolTip(tooltip + "\n\n" + data);
+    } else {
+      this.tray.setImage(this.iconPath);
     }
   }
+
+  public getIcon(size:number): string
+  {
+    if (IS_MAC)
+      return path.resolve(RESOURCES_PATH, "tray", "icon_macTemplate.png")
+
+    return path.resolve(RESOURCES_PATH, "icons", size + "x" + size + ".png");
+  }
+
+  public unreadIconImage(text:string, icon?:NativeImage): NativeImage | undefined
+  {
+    const iconCacheName = this.unreadIconCacheName + text;
+    if (icon !== undefined)
+      return this.iconCache.set(iconCacheName, icon), undefined;
+  
+    if (this.iconCache.has(iconCacheName))
+      return this.iconCache.get(iconCacheName);
+
+    return undefined;
+  }
+
 }

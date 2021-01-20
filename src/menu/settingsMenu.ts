@@ -6,7 +6,7 @@ import {
   MenuItemConstructorOptions,
 } from "electron";
 import settings from "electron-settings";
-import { IS_LINUX, IS_MAC, SETTING_TRAY_ENABLED } from "../helpers/constants";
+import { IS_LINUX, IS_MAC, IS_WINDOWS, SETTING_TRAY_ENABLED } from "../helpers/constants";
 import { separator } from "./items/separator";
 
 export const settingsMenu: MenuItemConstructorOptions = {
@@ -108,6 +108,66 @@ if (settingsMenu.submenu != null && !(settingsMenu.submenu instanceof Menu)) {
       click: (item) => {
         settings.set("useSystemDarkModePref", item.checked);
       },
-    }
+    },
+    separator,
+    {
+      id: "iconBadgePosition",
+      label: "Unread icon badge position",
+      submenu:
+      [
+		    {
+		      id: "iconBadgePosition0",
+		      label: "Top Left",
+		      type: "radio",
+		      click: (item) => {
+		        settings.set("iconBadgePosition", ~~item.id.substr(-1,1));
+		      },
+		    },
+		    {
+		      id: "iconBadgePosition1",
+		      label: "Top Right",
+		      type: "radio",
+		      click: (item) => {
+		        settings.set("iconBadgePosition", ~~item.id.substr(-1,1));
+		      },
+		    },
+		    {
+		      id: "iconBadgePosition2",
+		      label: "Bottom Right",
+		      type: "radio",
+		      click: (item) => {
+		        settings.set("iconBadgePosition", ~~item.id.substr(-1,1));
+		      },
+		    },
+		    {
+		      id: "iconBadgePosition3",
+		      label: "Bottom Left",
+		      type: "radio",
+		      click: (item) => {
+		        settings.set("iconBadgePosition", ~~item.id.substr(-1,1));
+		      },
+		    },
+		    {
+		      id: "iconBadgePosition4",
+		      label: "Center",
+		      type: "radio",
+		      click: (item) => {
+		        settings.set("iconBadgePosition", ~~item.id.substr(-1,1));
+		      },
+		    },
+		  ]
+		},
+
   );
+  if (IS_WINDOWS)
+  {
+		settingsMenu.submenu.push({
+      id: "taskbarBadge",
+      label: "Unread icon badge on taskbar",
+      type: "checkbox",
+      click: (item) => {
+        settings.set(item.id, item.checked);
+      },
+    });
+  }
 }
