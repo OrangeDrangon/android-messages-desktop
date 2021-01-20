@@ -56,7 +56,7 @@ function isParent(node:any, filter:any):any
           return node;
     }
   }
-  
+
   return isParent(node.parentNode, filter);
 }
 
@@ -187,7 +187,7 @@ function generateIcon(opt:any, callback:Function): void
 				ty = y1,
 				tw = x2 - x1 + 1,
 				th = y2 - y1 + 1;
- 
+
  	x = y = 0;
   switch(textPosition)
   {

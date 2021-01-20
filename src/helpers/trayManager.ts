@@ -206,7 +206,7 @@ export class TrayManager {
     const iconCacheName = this.unreadIconCacheName + text;
     if (icon !== undefined)
       return this.iconCache.set(iconCacheName, icon), undefined;
-  
+
     if (this.iconCache.has(iconCacheName))
       return this.iconCache.get(iconCacheName);
 
