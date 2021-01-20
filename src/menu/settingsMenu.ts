@@ -133,7 +133,7 @@ if (settingsMenu.submenu != null && !(settingsMenu.submenu instanceof Menu)) {
         },
         {
           id: "iconBadgePosition2",
-          label: "Bottom Right",
+          label: "𝗕𝗼𝘁𝘁𝗼𝗺 𝗥𝗶𝗴𝗵𝘁", //a trick to use bold unicode characters to display "default" menu item
           type: "radio",
           click: (item) => {
             settings.set("iconBadgePosition", ~~item.id.substr(-1,1));
@@ -163,7 +163,7 @@ if (settingsMenu.submenu != null && !(settingsMenu.submenu instanceof Menu)) {
 	{
 		submenu[submenu.length] = {
       id: "iconBadgeScale" + i,
-      label: i * 100 + "%",
+      label: i == 1 ? "𝟭𝟬𝟬%" : i * 100 + "%",
       value: i,
       type: "radio",
       click: (item:any) => {
