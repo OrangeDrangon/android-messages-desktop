@@ -142,7 +142,6 @@ export class TrayManager {
   }
 
   public setUnreadIcon(unread:Unread): void {
-console.log(unread);
     if (IS_WINDOWS)
     {
  			app.mainWindow?.setIcon((settings.get("taskbarBadge", true)
