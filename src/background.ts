@@ -87,7 +87,7 @@ if (!isFirstInstance) {
       trayManager.handleTrayEnabledToggle
     );
 
-    const settingsWatcherList = ["iconBadgePosition", "iconBadgeScale", "taskbarBadge"];
+    const settingsWatcherList = ["iconBadgePosition", "iconBadgeScale", "iconBadgeTaskbar"];
     for(let i = 0; i < settingsWatcherList.length; i++)
     {
       let name = settingsWatcherList[i];
@@ -160,7 +160,7 @@ if (!isFirstInstance) {
       (menuInstance.getMenuItemById("iconBadgeScale"+settingsManager.iconBadgeScale) as Electron.MenuItem).checked = true;
       if (IS_WINDOWS)
       {
-        (menuInstance.getMenuItemById("taskbarBadge") as Electron.MenuItem).checked = settingsManager.taskbarBadge;
+        (menuInstance.getMenuItemById("iconBadgeTaskbar") as Electron.MenuItem).checked = settingsManager.iconBadgeTaskbar;
       }
     }
 

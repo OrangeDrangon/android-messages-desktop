@@ -8,6 +8,7 @@ import {
   IS_WINDOWS,
   RESOURCES_PATH,
   SETTING_TRAY_ENABLED,
+  DEFAULT_BADGE_TASKBAR
 } from "./constants";
 
 type Unread = any;
@@ -144,7 +145,7 @@ export class TrayManager {
   public setUnreadIcon(unread:Unread): void {
     if (IS_WINDOWS)
     {
-      app.mainWindow?.setIcon((settings.get("taskbarBadge", true)
+      app.mainWindow?.setIcon((settings.get("iconBadgeTaskbar", DEFAULT_BADGE_TASKBAR)
                                 ? unread.icon64
                                   || unread.icon128
                                   || unread.icon256

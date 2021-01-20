@@ -13,6 +13,8 @@ import {
   RESOURCES_PATH,
   SETTING_NOTIFICATION_SOUND,
   IS_WINDOWS,
+  DEFAULT_BADGE_POSITION,
+  DEFAULT_BADGE_SCALE
 } from "./helpers/constants";
 import { handleEnterPrefToggle } from "./helpers/inputManager";
 import { popupContextMenu } from "./menu/contextMenu";
@@ -70,8 +72,8 @@ function generateIcon(opt:any, callback:Function): void
         text = opt.text || "",
         iconSize = opt.iconSize || 32,
         textSize = opt.textSize || iconSize,
-        textScale = opt.textScale !== undefined ? opt.textScale                   : settings.get("iconBadgeScale", 1.0) as number,
-        textPosition = opt.textPosition !== undefined ? opt.textPosition          : settings.get("iconBadgePosition", 2) as number,
+        textScale = opt.textScale !== undefined ? opt.textScale                   : settings.get("iconBadgeScale", DEFAULT_BADGE_SCALE) as number,
+        textPosition = opt.textPosition !== undefined ? opt.textPosition          : settings.get("iconBadgePosition", DEFAULT_BADGE_POSITION) as number,
         textColor = opt.textColor !== undefined ? opt.textColor                   : "white",
         outlineOut = opt.outlineOut !== undefined ? opt.outlineOut                : Math.round(iconSize/5.333 + (textScale < 1 ? -(textScale * 2) : textScale)),
         outlineOutColor = opt.outlineOutColor !== undefined ? opt.outlineOutColor : "red",
@@ -194,10 +196,10 @@ function generateIcon(opt:any, callback:Function): void
     case 0:                             // 0: top left
       break;
     case 1:                             // 1: top right
+    default:
       x = canvIcon.width - tw;
       break;
     case 2:                             // 2: bottom right
-    default:
       x = canvIcon.width - tw;
       y = canvIcon.height - th;
       break;
@@ -297,8 +299,8 @@ function createUnreadListener() {
 
     const text = unread.list.length,
           // badge position: 0=top-left; 1=top-right; 2=bottom-right; 3=bottom-left; 4=center
-          textPosition:number = settings.get("iconBadgePosition", 3) as number,
-          textScale = settings.get("iconBadgeScale", 1.0) as number, // badge scale: 0.5 - 1.5
+          textPosition:number = settings.get("iconBadgePosition", DEFAULT_BADGE_POSITION) as number,
+          textScale = settings.get("iconBadgeScale", DEFAULT_BADGE_SCALE) as number, // badge scale: 0.5 - 1.5
           iconSizes:any = {
             "":   {outlineOut: 7, outlineIn: 4}, //32x32 icon to use as 16x16 (tray)
 //    				"16":	{textScale: (textScale + textScale / 10), outlineOut: 4, outlineIn: 3}, //16x16 //doesn't look good
@@ -416,7 +418,7 @@ ipcRenderer.on(EVENT_UPDATE_USER_SETTING, (_event, settingsList) => {
         break;
       case "iconBadgePosition":
       case "iconBadgeScale":
-      case "taskbarBadge":
+      case "iconBadgeTaskbar":
         document.body.setAttribute("changeicon", "");
         break;
     }

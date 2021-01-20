@@ -6,7 +6,7 @@ import {
   MenuItemConstructorOptions,
 } from "electron";
 import settings from "electron-settings";
-import { IS_LINUX, IS_MAC, IS_WINDOWS, SETTING_TRAY_ENABLED } from "../helpers/constants";
+import { IS_LINUX, IS_MAC, IS_WINDOWS, SETTING_TRAY_ENABLED, DEFAULT_BADGE_POSITION, DEFAULT_BADGE_SCALE} from "../helpers/constants";
 import { separator } from "./items/separator";
 
 export const settingsMenu: MenuItemConstructorOptions = {
@@ -109,61 +109,37 @@ if (settingsMenu.submenu != null && !(settingsMenu.submenu instanceof Menu)) {
         settings.set("useSystemDarkModePref", item.checked);
       },
     },
-    separator,
-    {
-      id: "iconBadgePosition",
-      label: "Unread icon badge position",
-      submenu:
-      [
-        {
-          id: "iconBadgePosition0",
-          label: "Top Left",
-          type: "radio",
-          click: (item) => {
-            settings.set("iconBadgePosition", ~~item.id.substr(-1,1));
-          },
-        },
-        {
-          id: "iconBadgePosition1",
-          label: "Top Right",
-          type: "radio",
-          click: (item) => {
-            settings.set("iconBadgePosition", ~~item.id.substr(-1,1));
-          },
-        },
-        {
-          id: "iconBadgePosition2",
-          label: "𝗕𝗼𝘁𝘁𝗼𝗺 𝗥𝗶𝗴𝗵𝘁", //a trick to use bold unicode characters to display "default" menu item
-          type: "radio",
-          click: (item) => {
-            settings.set("iconBadgePosition", ~~item.id.substr(-1,1));
-          },
-        },
-        {
-          id: "iconBadgePosition3",
-          label: "Bottom Left",
-          type: "radio",
-          click: (item) => {
-            settings.set("iconBadgePosition", ~~item.id.substr(-1,1));
-          },
-        },
-        {
-          id: "iconBadgePosition4",
-          label: "Center",
-          type: "radio",
-          click: (item) => {
-            settings.set("iconBadgePosition", ~~item.id.substr(-1,1));
-          },
-        },
-      ]
-    },
+    separator
   );
 	let submenu:any = [];
-	for(let i = 0.25; i <= 2; i += 0.25)
+	for(let i = 0, l = ["Top Left", "Top Right", "Bottom Right", "Bottom Left", "Center"]; i < l.length; i++)
 	{
 		submenu[submenu.length] = {
+      id: "iconBadgePosition" + i,
+// since Electron doesn't provide any means highlight default item, use UNICODE bold/italic characters instead
+//120315 : 120406 = italic
+//120211 : 120205 = bold
+      label: i == DEFAULT_BADGE_POSITION ? l[i].replace(/[a-zA-Z]/g, (a) => String.fromCodePoint((a.codePointAt(0) || 0) + (/[A-Z]/.test(a) ? 120315 : 120309))) : l[i],
+      value: i,
+      type: "radio",
+      click: (item:any) => {
+        settings.set("iconBadgePosition", item.value);
+      },
+		};
+	}
+  settingsMenu.submenu.push({
+    id: "iconBadgePosition",
+    label: "Unread icon badge position",
+  	submenu: submenu
+  });
+
+	submenu = [];
+	for(let i = 0.25, n, c = ["𝟬","𝟭","𝟮","𝟯","𝟰","𝟱","𝟲","𝟳","𝟴","𝟵"]; i <= 2; i += 0.25)
+	{
+		n = i * 100 + "%";
+		submenu[submenu.length] = {
       id: "iconBadgeScale" + i,
-      label: i == 1 ? "𝟭𝟬𝟬%" : i * 100 + "%",
+      label: i == DEFAULT_BADGE_SCALE ? n.replace(/[0-9]/g, (a) => c[~~a]) : n,
       value: i,
       type: "radio",
       click: (item:any) => {
@@ -179,7 +155,7 @@ if (settingsMenu.submenu != null && !(settingsMenu.submenu instanceof Menu)) {
   if (IS_WINDOWS)
   {
     settingsMenu.submenu.push({
-      id: "taskbarBadge",
+      id: "iconBadgeTaskbar",
       label: "Unread icon badge on taskbar",
       type: "checkbox",
       click: (item) => {

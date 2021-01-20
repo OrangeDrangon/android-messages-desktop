@@ -35,6 +35,9 @@ export const SETTING_HIDE_NOTIFICATION = "hideNotificationContentPref";
 export const SETTING_SYSTEM_DARK_MODE = "useSystemDarkModePref";
 export const SETTING_START_IN_TRAY = "startInTrayPref";
 export const SETTING_AUTOHIDE_MENU = "autoHideMenuPref";
+export const DEFAULT_BADGE_POSITION = 1;
+export const DEFAULT_BADGE_SCALE = 1;
+export const DEFAULT_BADGE_TASKBAR = true;
 
 // Events
 export const EVENT_BRIDGE_INIT = "messages-bridge-init";
