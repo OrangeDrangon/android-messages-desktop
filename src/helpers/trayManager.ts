@@ -144,15 +144,15 @@ export class TrayManager {
   public setUnreadIcon(unread:Unread): void {
     if (IS_WINDOWS)
     {
- 			app.mainWindow?.setIcon((settings.get("taskbarBadge", true)
- 																? unread.icon64
- 																	|| unread.icon128
- 																	|| unread.icon256
- 																	|| unread.icon32
- 																	|| unread.icon24
- 																	|| unread.icon16
- 																	|| unread.icon
- 																: "") || this.iconPath);
+      app.mainWindow?.setIcon((settings.get("taskbarBadge", true)
+                                ? unread.icon64
+                                  || unread.icon128
+                                  || unread.icon256
+                                  || unread.icon32
+                                  || unread.icon24
+                                  || unread.icon16
+                                  || unread.icon
+                                : "") || this.iconPath);
     }
     else
       app.setBadgeCount(unread.list.length); //does this work on macOS/Linux?
@@ -167,13 +167,13 @@ export class TrayManager {
     this.tray.setToolTip(tooltip);
     if (unread.list.length) {
       this.tray.setImage(unread.icon
-      										|| unread.icon16
-      										|| unread.icon24
-      										|| unread.icon32
-      										|| unread.icon64
-      										|| unread.icon128
-      										|| unread.icon256
-      										|| this.iconPath);
+                          || unread.icon16
+                          || unread.icon24
+                          || unread.icon32
+                          || unread.icon64
+                          || unread.icon128
+                          || unread.icon256
+                          || this.iconPath);
       let data:string = "";
       for(let i = 0, info:any, text:string; i < unread.list.length; i++)
       {
@@ -206,7 +206,7 @@ export class TrayManager {
     const iconCacheName = this.unreadIconCacheName + text;
     if (icon !== undefined)
       return this.iconCache.set(iconCacheName, icon), undefined;
-  
+
     if (this.iconCache.has(iconCacheName))
       return this.iconCache.get(iconCacheName);
 

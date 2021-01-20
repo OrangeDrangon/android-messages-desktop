@@ -25,9 +25,9 @@ export class SettingsManager {
     SETTING_SYSTEM_DARK_MODE,
     true
   ) as boolean;
-	public taskbarBadge = settings.get("taskbarBadge", true) as boolean;
-	public iconBadgePosition = settings.get("iconBadgePosition", 2) as number;
-	public iconBadgeScale = settings.get("iconBadgeScale", 1) as number;
+  public taskbarBadge = settings.get("taskbarBadge", true) as boolean;
+  public iconBadgePosition = settings.get("iconBadgePosition", 2) as number;
+  public iconBadgeScale = settings.get("iconBadgeScale", 1) as number;
   private watchers: Set<string> = new Set();
 
   constructor() {

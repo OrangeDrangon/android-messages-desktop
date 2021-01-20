@@ -56,7 +56,7 @@ function isParent(node:any, filter:any):any
           return node;
     }
   }
-  
+
   return isParent(node.parentNode, filter);
 }
 
@@ -72,8 +72,8 @@ function generateIcon(opt:any, callback:Function): void
         textSize = opt.textSize || iconSize,
         textPosition = opt.position !== undefined ? opt.position                  : settings.get("iconBadgePosition", 2) as number,
         textScale = opt.scale !== undefined ? opt.scale                           : settings.get("iconBadgeScale", 1.0) as number,
-			  outlineOut = opt.outlineOut !== undefined ? opt.outlineOut 								: Math.round(iconSize/5.333 + (textScale < 1 ? -(textScale * 2) : textScale)),
-			  outlineIn = opt.outlineIn !== undefined ? opt.outlineIn 									: textScale * 2,
+        outlineOut = opt.outlineOut !== undefined ? opt.outlineOut                : Math.round(iconSize/5.333 + (textScale < 1 ? -(textScale * 2) : textScale)),
+        outlineIn = opt.outlineIn !== undefined ? opt.outlineIn                   : textScale * 2,
         outlineOutColor = opt.outlineOutColor !== undefined ? opt.outlineOutColor : "red",
         outlineInColor = opt.outlineInColor !== undefined ? opt.outlineInColor    : "black",
         textColor = opt.textColor !== undefined ? opt.textColor                   : "white",
@@ -105,25 +105,25 @@ function generateIcon(opt:any, callback:Function): void
   ctxText.lineWidth = outlineIn;
   ctxText.strokeText(text, x, y);
 
-  ctxText.fillStyle = textColor;						// text
+  ctxText.fillStyle = textColor;            // text
   for(let i = 0; i < 5; i++)
   {
-  	if (!i)
-  	{
-  		ctxText.save();
-  		ctxText.globalAlpha = 0.3;
-	    ctxText.fillText(text, x, y+1);
-	    ctxText.fillText(text, x, y-1);
-  		ctxText.globalAlpha = 1;
-  		ctxText.restore();
-  	}
+    if (!i)
+    {
+      ctxText.save();
+      ctxText.globalAlpha = 0.3;
+      ctxText.fillText(text, x, y+1);
+      ctxText.fillText(text, x, y-1);
+      ctxText.globalAlpha = 1;
+      ctxText.restore();
+    }
     ctxText.fillText(text, x, y);
   }
 
 // find boundaries of the text
   let w = canvText.width,
-  		h = canvText.height,
-			data = new Uint32Array(ctxText.getImageData(0, 0, w, h).data.buffer),
+      h = canvText.height,
+      data = new Uint32Array(ctxText.getImageData(0, 0, w, h).data.buffer),
       len = data.length,
       y1 = 0, y2 = 0, x1 = w, x2 = 0;
 
@@ -183,12 +183,12 @@ function generateIcon(opt:any, callback:Function): void
     }
   }
 
-	const tx = x1,
-				ty = y1,
-				tw = x2 - x1 + 1,
-				th = y2 - y1 + 1;
- 
- 	x = y = 0;
+  const tx = x1,
+        ty = y1,
+        tw = x2 - x1 + 1,
+        th = y2 - y1 + 1;
+
+  x = y = 0;
   switch(textPosition)
   {
     case 0:                             // 0: top left
@@ -251,7 +251,7 @@ function createUnreadListener() {
       if (!found)
         return;
 
-			// for performance improvement wait for the rest of mutation events
+      // for performance improvement wait for the rest of mutation events
       clearTimeout(_unreadObserverTimer);
       _unreadObserverTimer = setTimeout(unreadObserver, 100);
       return;
@@ -270,7 +270,7 @@ function createUnreadListener() {
     else
     {
       let isNew:boolean = false;
-			// collect some info about new messages, this could be used to display custom formatted tooltip
+      // collect some info about new messages, this could be used to display custom formatted tooltip
       for(let i = 0, node, data:any, name, avatar:HTMLCanvasElement|null, text, nodes = document.querySelectorAll("[data-e2e-is-unread=true]"); i < nodes.length; i++)
       {
         node = nodes[i];
@@ -278,7 +278,7 @@ function createUnreadListener() {
         if (name = node.querySelector("[data-e2e-conversation-name]"))
           data.name = name.textContent;
 
-				// not using cache, because this might fire very early at startup when avatar is not loaded yet which might cache a placeholder instead.
+        // not using cache, because this might fire very early at startup when avatar is not loaded yet which might cache a placeholder instead.
         if (avatar = node.querySelector("canvas.canvas-avatar"))
           data.avatar = avatar.toDataURL();
 
@@ -297,7 +297,7 @@ function createUnreadListener() {
       prevUnread = unread;
     }
     const text = unread.list.length,
-					// badge position: 0=top-left; 1=top-right; 2=bottom-right; 3=bottom-left; 4=center
+          // badge position: 0=top-left; 1=top-right; 2=bottom-right; 3=bottom-left; 4=center
           textPosition:number = settings.get("iconBadgePosition", 3) as number,
           textScale = settings.get("iconBadgeScale", 1.0) as number, // badge scale: 0.5 - 1.5
           iconSizes:any = {
@@ -314,23 +314,23 @@ function createUnreadListener() {
 
     if (IS_WINDOWS)
     {
-    	iconSizes["64"] = {scale: textScale - 0.5, outlineOut: 9, outlineIn: 4}; //64x64 used on Windows taskbar
+      iconSizes["64"] = {scale: textScale - 0.5, outlineOut: 9, outlineIn: 4}; //64x64 used on Windows taskbar
     }
 
     for (let i in iconSizes)
     {
-			// load cached icons
+      // load cached icons
       unread["icon" + i] = app.trayManager?.unreadIconImage(unreadID + "_" + i);
     }
 
     if (unread.icon)
     {
-			// re-use cached icons
+      // re-use cached icons
       app.trayManager?.setUnreadIcon(unread);
     }
     else
     {
-			// generate new icons
+      // generate new icons
       let count = Object.keys(iconSizes).length;
       const callback = function(opt:any):void
       {

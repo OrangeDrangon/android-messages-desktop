@@ -115,53 +115,53 @@ if (settingsMenu.submenu != null && !(settingsMenu.submenu instanceof Menu)) {
       label: "Unread icon badge position",
       submenu:
       [
-		    {
-		      id: "iconBadgePosition0",
-		      label: "Top Left",
-		      type: "radio",
-		      click: (item) => {
-		        settings.set("iconBadgePosition", ~~item.id.substr(-1,1));
-		      },
-		    },
-		    {
-		      id: "iconBadgePosition1",
-		      label: "Top Right",
-		      type: "radio",
-		      click: (item) => {
-		        settings.set("iconBadgePosition", ~~item.id.substr(-1,1));
-		      },
-		    },
-		    {
-		      id: "iconBadgePosition2",
-		      label: "Bottom Right",
-		      type: "radio",
-		      click: (item) => {
-		        settings.set("iconBadgePosition", ~~item.id.substr(-1,1));
-		      },
-		    },
-		    {
-		      id: "iconBadgePosition3",
-		      label: "Bottom Left",
-		      type: "radio",
-		      click: (item) => {
-		        settings.set("iconBadgePosition", ~~item.id.substr(-1,1));
-		      },
-		    },
-		    {
-		      id: "iconBadgePosition4",
-		      label: "Center",
-		      type: "radio",
-		      click: (item) => {
-		        settings.set("iconBadgePosition", ~~item.id.substr(-1,1));
-		      },
-		    },
-		  ]
-		},
+        {
+          id: "iconBadgePosition0",
+          label: "Top Left",
+          type: "radio",
+          click: (item) => {
+            settings.set("iconBadgePosition", ~~item.id.substr(-1,1));
+          },
+        },
+        {
+          id: "iconBadgePosition1",
+          label: "Top Right",
+          type: "radio",
+          click: (item) => {
+            settings.set("iconBadgePosition", ~~item.id.substr(-1,1));
+          },
+        },
+        {
+          id: "iconBadgePosition2",
+          label: "Bottom Right",
+          type: "radio",
+          click: (item) => {
+            settings.set("iconBadgePosition", ~~item.id.substr(-1,1));
+          },
+        },
+        {
+          id: "iconBadgePosition3",
+          label: "Bottom Left",
+          type: "radio",
+          click: (item) => {
+            settings.set("iconBadgePosition", ~~item.id.substr(-1,1));
+          },
+        },
+        {
+          id: "iconBadgePosition4",
+          label: "Center",
+          type: "radio",
+          click: (item) => {
+            settings.set("iconBadgePosition", ~~item.id.substr(-1,1));
+          },
+        },
+      ]
+    },
 
   );
   if (IS_WINDOWS)
   {
-		settingsMenu.submenu.push({
+    settingsMenu.submenu.push({
       id: "taskbarBadge",
       label: "Unread icon badge on taskbar",
       type: "checkbox",
