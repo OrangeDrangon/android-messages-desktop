@@ -119,7 +119,7 @@ if (settingsMenu.submenu != null && !(settingsMenu.submenu instanceof Menu)) {
 // since Electron doesn't provide any means highlight default item, use UNICODE bold/italic characters instead
 //120315 : 120406 = italic
 //120211 : 120205 = bold
-      label: i == DEFAULT_BADGE_POSITION ? l[i].replace(/[a-zA-Z]/g, (a) => String.fromCodePoint((a.codePointAt(0) || 0) + (/[A-Z]/.test(a) ? 120315 : 120309))) : l[i],
+      label: i == DEFAULT_BADGE_POSITION ? l[i].replace(/[a-zA-Z]/g, (a) => String.fromCodePoint((a.codePointAt(0) || 0) + (/[A-Z]/.test(a) ? 120211 : 120205))) : l[i],
       value: i,
       type: "radio",
       click: (item:any) => {

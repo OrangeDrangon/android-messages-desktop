@@ -291,7 +291,7 @@ function createUnreadListener() {
 
       }
 
-      if (!changeIcon && !isNew)
+      if (!changeIcon && !isNew && !prevUnread.list)
         return;
 
       prevUnread = unread;
