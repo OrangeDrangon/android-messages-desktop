@@ -32,6 +32,18 @@ const cacheManager = new CacheManager();
 var _unreadObserverTimer:number = 0;
 var prevUnread:any = {list:[]};
 
+//app.mainWindow?.isFocused() is unreliable
+function isFocused(f?:boolean):boolean
+{
+	if (f !== undefined)
+	{
+		document?.body?.setAttribute("focus", f ? "true" : "");
+	  document?.body?.setAttribute("changeicon", "");
+	}
+
+	return document?.body?.getAttribute("focus") == "true" && app.mainWindow?.isFocused() as boolean;
+}
+
 // check if a node or it's parent matches filter
 function isParent(node:any, filter:any):any
 {
@@ -265,6 +277,7 @@ function createUnreadListener() {
     if (changeIcon)
     {
       unread = prevUnread;
+      unread.changeIcon = true;
       document.body.removeAttribute("changeicon");
     }
     else
@@ -323,7 +336,7 @@ function createUnreadListener() {
       // load cached icons
       unread["icon" + i] = app.trayManager?.unreadIconImage(unreadID + "_" + i);
     }
-
+		unread.focus = isFocused();
     if (unread.icon)
     {
       // re-use cached icons
@@ -376,6 +389,21 @@ window.addEventListener("load", () => {
     _mutationsList: MutationRecord[],
     observer: MutationObserver
   ) => {
+		//work around for bug https://github.com/electron/electron/issues/27321
+		if (IS_WINDOWS)
+		{
+			setTimeout(function()
+			{
+				app.mainWindow?.on("focus", function()
+				{
+					isFocused(true);
+				});
+				app.mainWindow?.on("blur", function()
+				{
+					isFocused(false);
+				});
+			}, 100);
+		}
     if (document.querySelector("mw-main-nav")) {
       // we're definitely logged-in if this is in the DOM
       ipcRenderer.send(EVENT_BRIDGE_INIT);
@@ -473,7 +501,8 @@ window.Notification = function (title: string, options: NotificationOptions) {
   //@ts-ignore
   notification.addEventListener = notification.addListener;
   notification.show();
-  if (!app.mainWindow?.isFocused()) {
+ // if (!app.mainWindow?.isFocused()) { //always returns true on Windows when notification popup shown?
+  if (!isFocused()) {
     app.mainWindow?.flashFrame(true);
   }
   return notification;

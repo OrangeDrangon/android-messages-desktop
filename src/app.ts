@@ -19,6 +19,9 @@ androidMessagesWebview.addEventListener("dom-ready", () => {
     // Dispatches a focus event for QOL allowing the webview to put our cursor where it belongs
     androidMessagesWebview.dispatchEvent(new Event("focus"));
   });
+  app.mainWindow?.on("blur", () => {
+    androidMessagesWebview.dispatchEvent(new Event("blur"));
+  });
   if (IS_MAC) {
     androidMessagesWebview.insertCSS(
       ".main-nav-header .logo {text-align:center; transform: translateX(10px)}"

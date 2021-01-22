@@ -111,46 +111,57 @@ if (settingsMenu.submenu != null && !(settingsMenu.submenu instanceof Menu)) {
     },
     separator
   );
-	let submenu:any = [];
-	for(let i = 0, l = ["Top Left", "Top Right", "Bottom Right", "Bottom Left", "Center"]; i < l.length; i++)
-	{
-		submenu[submenu.length] = {
+  let submenu:any = [],
+			// since Electron doesn't provide any means highlight default menu item, we can use UNICODE bold/italic characters instead
+      defaultHighlight = (():Function =>
+      {
+        let type = [
+                     /*bold*/        [120211 /*A-Z*/, 120205 /*a-z*/, 120764 /*0-9*/],
+                     /*bold-italic*/ [120315 /*A-Z*/, 120309 /*a-z*/, 120764 /*0-9 (no italic available)*/]
+                  ];
+        return (text:string|number, t:any):string =>
+        {
+        		t = type[t] || t && t.length == 3 ? t : type[0];
+          return (text + "").replace(/[a-zA-Z0-9]/g, (a) => String.fromCodePoint((a.codePointAt(0) || 0) + t[/[0-9]/.test(a) ? 2 : /[a-z]/.test(a) ? 1 : 0]));
+        }
+      })();
+
+  for(let i = 0, l = ["Top Left", "Top Right", "Bottom Right", "Bottom Left", "Center"]; i < l.length; i++)
+  {
+    submenu[submenu.length] = {
       id: "iconBadgePosition" + i,
-// since Electron doesn't provide any means highlight default item, use UNICODE bold/italic characters instead
-//120315 : 120406 = italic
-//120211 : 120205 = bold
-      label: i == DEFAULT_BADGE_POSITION ? l[i].replace(/[a-zA-Z]/g, (a) => String.fromCodePoint((a.codePointAt(0) || 0) + (/[A-Z]/.test(a) ? 120211 : 120205))) : l[i],
+      label: i == DEFAULT_BADGE_POSITION ? defaultHighlight(l[i]) : l[i],
       value: i,
       type: "radio",
       click: (item:any) => {
         settings.set("iconBadgePosition", item.value);
       },
-		};
-	}
+    };
+  }
   settingsMenu.submenu.push({
     id: "iconBadgePosition",
     label: "Unread icon badge position",
-  	submenu: submenu
+    submenu: submenu
   });
 
-	submenu = [];
-	for(let i = 0.25, n, c = ["𝟬","𝟭","𝟮","𝟯","𝟰","𝟱","𝟲","𝟳","𝟴","𝟵"]; i <= 2; i += 0.25)
-	{
-		n = i * 100 + "%";
-		submenu[submenu.length] = {
+  submenu = [];
+  for(let i = 0.25, n; i <= 2; i += 0.25)
+  {
+    n = i * 100 + "%";
+    submenu[submenu.length] = {
       id: "iconBadgeScale" + i,
-      label: i == DEFAULT_BADGE_SCALE ? n.replace(/[0-9]/g, (a) => c[~~a]) : n,
+      label: i == DEFAULT_BADGE_SCALE ? defaultHighlight(n) : n,
       value: i,
       type: "radio",
       click: (item:any) => {
         settings.set("iconBadgeScale", item.value);
       },
-		};
-	}
+    };
+  }
   settingsMenu.submenu.push({
-  	id: "iconBadgeScale",
-  	label: "Unread icon badge size",
-  	submenu: submenu
+    id: "iconBadgeScale",
+    label: "Unread icon badge size",
+    submenu: submenu
   });
   if (IS_WINDOWS)
   {
