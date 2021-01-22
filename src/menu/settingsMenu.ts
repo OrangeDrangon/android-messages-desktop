@@ -112,7 +112,7 @@ if (settingsMenu.submenu != null && !(settingsMenu.submenu instanceof Menu)) {
     separator
   );
   let submenu:any = [],
-			// since Electron doesn't provide any means highlight default menu item, we can use UNICODE bold/italic characters instead
+      // since Electron doesn't provide any means highlight default menu item, we can use UNICODE bold/italic characters instead
       defaultHighlight = (():Function =>
       {
         let type = [
@@ -121,7 +121,7 @@ if (settingsMenu.submenu != null && !(settingsMenu.submenu instanceof Menu)) {
                   ];
         return (text:string|number, t:any):string =>
         {
-        		t = type[t] || t && t.length == 3 ? t : type[0];
+            t = type[t] || t && t.length == 3 ? t : type[0];
           return (text + "").replace(/[a-zA-Z0-9]/g, (a) => String.fromCodePoint((a.codePointAt(0) || 0) + t[/[0-9]/.test(a) ? 2 : /[a-z]/.test(a) ? 1 : 0]));
         }
       })();

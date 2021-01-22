@@ -146,11 +146,11 @@ export class TrayManager {
   public setUnreadIcon(unread:Unread): void {
     if (IS_WINDOWS)
     {
-    	let that = this;
-    	let changeIcon = function()
-    	{
-				app.mainWindow?.setIcon(
-					(settings.get("iconBadgeTaskbar", DEFAULT_BADGE_TASKBAR)
+      let that = this;
+      let changeIcon = function()
+      {
+        app.mainWindow?.setIcon(
+          (settings.get("iconBadgeTaskbar", DEFAULT_BADGE_TASKBAR)
             ? unread.icon64
               || unread.icon128
               || unread.icon256
@@ -160,17 +160,17 @@ export class TrayManager {
               || unread.icon
             : ""
           ) || that.iconPath);
-    	}
-    	changeIcon();
-    	if (!unread.focus && !unread.changeIcon)
-    	{
+      }
+      changeIcon();
+      if (!unread.focus && !unread.changeIcon)
+      {
 //	    	app.mainWindow?.flashFrame(true);
-    		clearTimeout(timer);
-	    	timer = setTimeout(function()
-	    	{
-	      	changeIcon();
-				}, 1000);
-			}
+        clearTimeout(timer);
+        timer = setTimeout(function()
+        {
+          changeIcon();
+        }, 1000);
+      }
     }
     else
       app.setBadgeCount(unread.list.length); //does this work on macOS/Linux?
