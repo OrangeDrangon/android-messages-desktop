@@ -1,0 +1,1226 @@
+body.dark-theme mws-avatar {
+    --blocked-avatar-color: #9aa0a6;
+    --spam-avatar-color: #f28b82;
+    --spam-avatar-background-color: #3c4043;
+    --avatar-blue-bg-color-v1: #1a73e8;
+    --avatar-blue-fill-color-v1: #202124;
+    --avatar-cyan-bg-color-v1: #4ecde6;
+    --avatar-cyan-fill-color-v1: #202124;
+    --avatar-green-bg-color-v1: #5bb974;
+    --avatar-green-fill-color-v1: #202124;
+    --avatar-orange-bg-color-v1: #fa903e;
+    --avatar-orange-fill-color-v1: #202124;
+    --avatar-pink-bg-color-v1: #ff63b8;
+    --avatar-pink-fill-color-v1: #202124;
+    --avatar-purple-bg-color-v1: #af5cf7;
+    --avatar-purple-fill-color-v1: #202124;
+    --avatar-red-bg-color-v1: #ee675c;
+    --avatar-red-fill-color-v1: #202124;
+    --avatar-yellow-bg-color-v1: #fcc934;
+    --avatar-yellow-fill-color-v1: #202124;
+    --contact-cyan-fg-color: #4ecde6;
+    --contact-green-fg-color: #5bb974;
+    --contact-orange-fg-color: #fa903e;
+    --contact-pink-fg-color: #ff63b8;
+    --contact-purple-fg-color: #af5cf7;
+    --contact-red-fg-color-v1: #ee675c;
+    --contact-yellow-fg-color: #fcc934;
+    --avatar-blue-bg-color: #1a73e8;
+    --avatar-blue-fill-color: #202124;
+    --avatar-cyan-bg-color: #4ecde6;
+    --avatar-cyan-fill-color: #202124;
+    --avatar-green-bg-color: #5bb974;
+    --avatar-green-fill-color: #202124;
+    --avatar-orange-bg-color: #fa903e;
+    --avatar-orange-fill-color: #202124;
+    --avatar-pink-bg-color: #ff63b8;
+    --avatar-pink-fill-color: #202124;
+    --avatar-purple-bg-color: #af5cf7;
+    --avatar-purple-fill-color: #202124;
+    --avatar-red-bg-color: #ee675c;
+    --avatar-red-fill-color: #202124;
+    --avatar-yellow-bg-color: #fcc934;
+    --avatar-yellow-fill-color: #202124
+}
+
+body.dark-theme mws-conversation-start {
+    --brand-description-color: #fff;
+    --brand-name-color: #fff
+}
+
+body.dark-theme mws-conversation-list-item {
+    --conv-name-color: #e8eaed;
+    --conv-snippet-color: #9aa0a6;
+    --list-grey-hover-bg-color: rgba(248, 249, 250, 0.09);
+    --list-grey-selected-bg-color: rgba(248, 249, 250, 0.06);
+    --conv-notification-icon-fill: #dadce0
+}
+
+body.dark-theme mws-conversation-list-item-menu {
+    --conv-list-item-menu-icon-color: #dadce0
+}
+
+body.dark-theme mws-conversations-list {
+    --conversations-load-more-bg-color: #202124;
+    --conversations-load-more-color: #e8eaed
+}
+
+body.dark-theme mws-dialog {
+    --dialog-cancel-color: #e8eaed;
+    --dialog-confirm-bg-color: #185abc;
+    --dialog-confirm-color: #8ab4f8;
+    --dialog-content-color: #9aa0a6;
+    --dialog-content-link-color: #8ab4f8;
+    --dialog-title-color: #e8eaed
+}
+
+body.dark-theme mws-external-settings-link {
+    --external-setting-link-launch-icon-color: #dadce0;
+    --external-setting-link-border-color: #3c4043;
+    --external-setting-link-subtitle-color: #9aa0a6;
+    --external-setting-link-title-color: #e8eaed
+}
+
+body.dark-theme mws-file-download {
+    --file-disabled-download-icon-color: #8ab4f8;
+    --file-download-icon-color: #dadce0;
+    --file-download-icon-bg-color: #185abc;
+    --file-download-size-color: #9aa0a6;
+    --file-download-title-color: #e8eaed
+}
+
+body.dark-theme mws-header {
+    --header-bg-color: rgba(32, 33, 36, 0.96);
+    --header-color: #e8eaed;
+    --header-back-button-color: #e8eaed;
+    --header-back-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.45)
+}
+
+body.dark-theme mws-horizontal-carousel {
+    --nav-button-background: #5f6368;
+    --nav-icon-color: #dadce0;
+    --nav-icon-hover-color: #fff;
+    --nav-grad-start-color: rgba(60, 64, 67, 0);
+    --nav-grad-end-color: #3c4043
+}
+
+body.dark-theme mws-animated-dots-icon {
+    --fill-color: #f1f3f4
+}
+
+body.dark-theme mws-message-actions {
+    --msg-actions-menu-fill-color: #dadce0
+}
+
+body.dark-theme mws-link-preview-decorator {
+    --link-preview-border-color: #3c4043;
+    --link-preview-title-color: #e8eaed;
+    --link-preview-content-color: #9aa0a6;
+    --link-preview-background-color: #202124
+}
+
+body.dark-theme mws-message-part-content {
+    --empty-bg-color: #202124;
+    --incoming-bg-color: #3c4043;
+    --incoming-color: #e8eaed;
+    --message-border-color: #3c4043;
+    --xms-outgoing-bg-color: #8ab4f8;
+    --xms-outgoing-color: #202124;
+    --xms-outgoing-selection-color: #fff;
+    --rcs-outgoing-bg-color: #185abc;
+    --rcs-outgoing-color: #fff
+}
+
+body.dark-theme mws-awaiting-download-part {
+    --download-icon-color: #dadce0
+}
+
+body.dark-theme mws-message-status {
+    --msg-info-color: #9aa0a6;
+    --msg-info-failed-color: #ee675c
+}
+
+body.dark-theme mws-message-wrapper {
+    --avatar-blue-bg-color-v1: #1a73e8;
+    --avatar-blue-fill-color-v1: #202124;
+    --avatar-cyan-bg-color-v1: #4ecde6;
+    --avatar-cyan-fill-color-v1: #202124;
+    --avatar-green-bg-color-v1: #5bb974;
+    --avatar-green-fill-color-v1: #202124;
+    --avatar-orange-bg-color-v1: #fa903e;
+    --avatar-orange-fill-color-v1: #202124;
+    --avatar-pink-bg-color-v1: #ff63b8;
+    --avatar-pink-fill-color-v1: #202124;
+    --avatar-purple-bg-color-v1: #af5cf7;
+    --avatar-purple-fill-color-v1: #202124;
+    --avatar-red-bg-color-v1: #ee675c;
+    --avatar-red-fill-color-v1: #202124;
+    --avatar-yellow-bg-color-v1: #fcc934;
+    --avatar-yellow-fill-color-v1: #202124;
+    --contact-cyan-fg-color: #4ecde6;
+    --contact-green-fg-color: #5bb974;
+    --contact-orange-fg-color: #fa903e;
+    --contact-pink-fg-color: #ff63b8;
+    --contact-purple-fg-color: #af5cf7;
+    --contact-red-fg-color-v1: #ee675c;
+    --contact-yellow-fg-color: #fcc934;
+    --avatar-blue-bg-color: #1a73e8;
+    --avatar-blue-fill-color: #202124;
+    --avatar-cyan-bg-color: #4ecde6;
+    --avatar-cyan-fill-color: #202124;
+    --avatar-green-bg-color: #5bb974;
+    --avatar-green-fill-color: #202124;
+    --avatar-orange-bg-color: #fa903e;
+    --avatar-orange-fill-color: #202124;
+    --avatar-pink-bg-color: #ff63b8;
+    --avatar-pink-fill-color: #202124;
+    --avatar-purple-bg-color: #af5cf7;
+    --avatar-purple-fill-color: #202124;
+    --avatar-red-bg-color: #ee675c;
+    --avatar-red-fill-color: #202124;
+    --avatar-yellow-bg-color: #fcc934;
+    --avatar-yellow-fill-color: #202124
+}
+
+body.dark-theme mws-tombstone-message-wrapper {
+    --tombstone-msg-color: #9aa0a6;
+    --tombstone-msg-background-color: rgba(248, 249, 250, 0.06);
+    --link-color: #8ab4f8
+}
+
+body.dark-theme mws-tombstone-message-wrapper .tombstone-message-part:focus {
+    --tombstone-msg-background-color: #252d34;
+    --tombstone-msg-color: #fff
+}
+
+body.dark-theme mws-typing-indicators {
+    --stack-avatar-background-color: #1a73e8;
+    --stack-avatar-content-color: #202124
+}
+
+body.dark-theme mws-attachment-item {
+    --background-color: #202124;
+    --close-icon-color: #dadce0;
+    --compose-background-color: #3c4043;
+    --file-icon-color: #dadce0
+}
+
+body.dark-theme mws-message-compose-picker-buttons {
+    --picker-button-fill-color: #dadce0;
+    --picker-button-selected-fill-color: #fff
+}
+
+body.dark-theme mws-message-send-button {
+    --button-inactive-color: rgba(232, 234, 237, 0.38);
+    --button-active-color: #fff
+}
+
+body.dark-theme mws-sim-info-picker {
+    --sim-drop-down-arrow-color: #dadce0
+}
+
+body.dark-theme mws-message-compose {
+    --input-bg-color: #3c4043;
+    --input-color: #e8eaed;
+    --input-bg-fade-color: #202124;
+    --input-bg-transparent-fade-color: rgba(32, 33, 36, 0);
+    --input-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.15), 0 4px 4px 0 rgba(0, 0, 0, 0.1), 0 -0.1px 3px 0 rgba(0, 0, 0, 0.08)
+}
+
+body.dark-theme mws-messages-list {
+    --messages-load-more-bg-color: #3c4043;
+    --messages-load-more-color: #e8eaed;
+    --typing-indicator-row-color: #9aa0a6
+}
+
+body.dark-theme mws-emoji-picker-diversity-selector {
+    --emoji-diversity-picker-bg-color: #3c4043;
+    --emoji-diversity-picker-elevation: 0 0 2px rgba(0, 0, 0, 0.3), 0 2px 16px rgba(0, 0, 0, 0.6)
+}
+
+body.dark-theme mws-emoji-picker-page {
+    --picker-font-color: #9aa0a6;
+    --emoji-picker-diversity-indicator-color: #80868b;
+    --emoji-picker-header-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.45)
+}
+
+body.dark-theme mws-gif-picker {
+    --gif-picker-chevron-color: #9aa0a6;
+    --gif-picker-disabled-chevron-color: rgba(232, 234, 237, 0.38);
+    --empty-state-header-color: #fff;
+    --empty-state-body-color: hsla(0, 0%, 100%, 0.87)
+}
+
+body.dark-theme mws-picker-search-bar {
+    --search-bar-border-color: #5f6368;
+    --search-bar-input-color: #e8eaed;
+    --search-bar-icon-fill: #dadce0;
+    --search-bar-placeholder-color: #9aa0a6
+}
+
+body.dark-theme mws-picker-wrapper {
+    --box-bg-color: #3c4043;
+    --picker-elevation: 0 0 2px rgba(0, 0, 0, 0.3), 0 2px 16px rgba(0, 0, 0, 0.6);
+    --picker-tab-focus-bg-color: rgba(248, 249, 250, 0.09);
+    --picker-tab-label-color: #9aa0a6;
+    --picker-tab-label-active-color: #8ab4f8;
+    --tab-header-border-color: #5f6368
+}
+
+body.dark-theme mws-sticker-button {
+    --sticker-bg-cover: #5f6368
+}
+
+body.dark-theme mws-sticker-favorites-tab {
+    --sticker-empty-text-color: #e8eaed
+}
+
+body.dark-theme mws-sticker-pack-display {
+    --sticker-pack-artist-color: #9aa0a6;
+    --sticker-pack-header-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.45);
+    --sticker-pack-title-color: #e8eaed;
+    --sticker-icon-button-color: #dadce0;
+    --sticker-favorited-color: #ee675c
+}
+
+body.dark-theme mws-sticker-packs-display {
+    --sticker-empty-search-text-color: #e8eaed;
+    --sticker-pack-cover-bg-cover: #5f6368;
+    --sticker-pack-artist-color: #9aa0a6;
+    --sticker-pack-title-color: #e8eaed
+}
+
+body.dark-theme mws-sticker-recent-tab {
+    --recent-sticker-empty-text-color: #e8eaed
+}
+
+body.dark-theme mws-setting {
+    --setting-border-color: #3c4043;
+    --setting-subtitle-color: #9aa0a6;
+    --setting-title-color: #e8eaed
+}
+
+body.dark-theme mws-spinner .mat-progress-spinner circle,
+body.dark-theme mws-spinner .mat-spinner circle {
+    stroke: var(--spinner-color, #8ab4f8)
+}
+
+body.dark-theme mw-duo-notice-banner {
+    --duo-banner-background-color: #3c4043;
+    --duo-banner-box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.09), 0 4px 8px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.15);
+    --duo-banner-title-color: #e8eaed;
+    --duo-banner-content-color: #bdc1c6;
+    --learn-more-color: #8ab4f8;
+    --confirm-color: #e8eaed;
+    --learn-more-background-color: #185abc
+}
+
+body.dark-theme mw-error-banner {
+    --error-banner-box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.09), 0 4px 8px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.15)
+}
+
+body.dark-theme mw-information-banner {
+    --spinner-color: #8ab4f8;
+    --information-banner-background-color: #3c4043;
+    --information-banner-box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.09), 0 4px 8px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.15);
+    --information-banner-title-color: #e8eaed;
+    --information-banner-content-color: #bdc1c6
+}
+
+body.dark-theme mw-remember-this-computer-banner {
+    --remember-banner-background-color: #3c4043;
+    --remember-banner-box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.09), 0 4px 8px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.15);
+    --information-banner-content-color: #bdc1c6;
+    --remember-banner-title-color: #e8eaed;
+    --cancel-color: #e8eaed;
+    --remember-banner-checkbox-background-color: #8ab4f8;
+    --remember-banner-checkbox-checkmark-color: #202124;
+    --cancel-background-color: #185abc;
+    --confirm-color: #e8eaed
+}
+
+body.dark-theme mw-spam-intro-banner {
+    --spam-banner-background-color: #3c4043;
+    --spam-banner-box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.09), 0 4px 8px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.15);
+    --spam-banner-title-color: #e8eaed;
+    --spam-banner-content-color: #bdc1c6;
+    --spam-banner-icon-color: #8ab4f8;
+    --learn-more-color: #8ab4f8;
+    --confirm-color: #e8eaed;
+    --learn-more-background-color: #185abc
+}
+
+body.dark-theme mw-unverified-conversation-banner {
+    --banner-background-color: #3c4043;
+    --banner-border-color: #5f6368;
+    --banner-content-color: #e8eaed;
+    --banner-learn-more-link-color: #e8eaed
+}
+
+body.dark-theme mw-unverified-conversation-banner .learn-more-link {
+    text-decoration: underline
+}
+
+body.dark-theme mw-archived-conversations {
+    --archived-conv-border-bottom-color: #3c4043;
+    --archived-conv-name-color: #e8eaed;
+    --archived-conv-snippet-color: #9aa0a6;
+    --archived-conv-timestamp-color: #9aa0a6;
+    --no-archived-conv-illustration-opacity: 0.38;
+    --no-archived-conv-text-color: #9aa0a6;
+    --unarchive-button-color: #6ba5ed
+}
+
+body.dark-theme mw-assistant-card-message-part {
+    --card-border-color: #3c4043;
+    --card-text-color: #e8eaed;
+    --card-subtitle-color: #9aa0a6
+}
+
+body.dark-theme mw-block-and-report-spam-dialog {
+    --report-spam-checkbox-title-color: #e8eaed;
+    --report-spam-checkbox-background-color: #8ab4f8;
+    --report-spam-checkbox-checkmark-color: #202124
+}
+
+body.dark-theme mw-contact-chips-input {
+    --contact-chip-outline-color: #3c4043;
+    --contact-chip-color: #e8eaed;
+    --contact-chips-input-bg-color: #202124;
+    --new-conv-sub-header-input-color: #e8eaed;
+    --new-conv-sub-header-placeholder-color: #9aa0a6;
+    --contact-chips-next-button-bg-color: #185abc
+}
+
+body.dark-theme mw-contact-chips-input .group-name-field .mat-hint {
+    color: #9aa0a6
+}
+
+body.dark-theme mw-contact-row {
+    --contact-row-checked-bg-color: #185abc;
+    --contact-row-hover-bg-color: rgba(248, 249, 250, 0.09);
+    --contact-row-info-name-color: #e8eaed;
+    --contact-row-info-number-color: #9aa0a6;
+    --contact-row-international-warning-color: #f9ab00
+}
+
+body.dark-theme mw-contact-selector-button {
+    --new-conversation-send-to-button-color: #e8eaed;
+    --new-conversation-anon-name-color: #e8eaed;
+    --avatar-blue-bg-color-v1: #1a73e8;
+    --avatar-blue-fill-color-v1: #202124;
+    --avatar-cyan-bg-color-v1: #4ecde6;
+    --avatar-cyan-fill-color-v1: #202124;
+    --avatar-green-bg-color-v1: #5bb974;
+    --avatar-green-fill-color-v1: #202124;
+    --avatar-orange-bg-color-v1: #fa903e;
+    --avatar-orange-fill-color-v1: #202124;
+    --avatar-pink-bg-color-v1: #ff63b8;
+    --avatar-pink-fill-color-v1: #202124;
+    --avatar-purple-bg-color-v1: #af5cf7;
+    --avatar-purple-fill-color-v1: #202124;
+    --avatar-red-bg-color-v1: #ee675c;
+    --avatar-red-fill-color-v1: #202124;
+    --avatar-yellow-bg-color-v1: #fcc934;
+    --avatar-yellow-fill-color-v1: #202124;
+    --contact-cyan-fg-color: #4ecde6;
+    --contact-green-fg-color: #5bb974;
+    --contact-orange-fg-color: #fa903e;
+    --contact-pink-fg-color: #ff63b8;
+    --contact-purple-fg-color: #af5cf7;
+    --contact-red-fg-color-v1: #ee675c;
+    --contact-yellow-fg-color: #fcc934;
+    --avatar-blue-bg-color: #1a73e8;
+    --avatar-blue-fill-color: #202124;
+    --avatar-cyan-bg-color: #4ecde6;
+    --avatar-cyan-fill-color: #202124;
+    --avatar-green-bg-color: #5bb974;
+    --avatar-green-fill-color: #202124;
+    --avatar-orange-bg-color: #fa903e;
+    --avatar-orange-fill-color: #202124;
+    --avatar-pink-bg-color: #ff63b8;
+    --avatar-pink-fill-color: #202124;
+    --avatar-purple-bg-color: #af5cf7;
+    --avatar-purple-fill-color: #202124;
+    --avatar-red-bg-color: #ee675c;
+    --avatar-red-fill-color: #202124;
+    --avatar-yellow-bg-color: #fcc934;
+    --avatar-yellow-fill-color: #202124
+}
+
+body.dark-theme mw-contacts-list {
+    --contacts-list-info-color: #9aa0a6;
+    --contacts-list-label-color: #e8eaed;
+    --contacts-list-launch-color: #8ab4f8;
+    --contacts-list-launch-icon-color: #8ab4f8;
+    --contacts-list-missing-contacst-color: #e8eaed
+}
+
+body.dark-theme mw-expanded-contact-chip {
+    --expanded-contact-chip-bg-color: #3c4043;
+    --expanded-contact-chip-name-color: #e8eaed;
+    --expanded-contact-chip-number-color: #9aa0a6;
+    --expanded-contact-chip-remove-bg-color: #202124
+}
+
+body.dark-theme mw-conversation-details {
+    --details-participant-name-color: #e8eaed;
+    --details-participant-info-color: #9aa0a6;
+    --details-section-title-color: #9aa0a6;
+    --details-section-add-people-button-color: #8ab4f8;
+    --details-section-button-color: #e8eaed
+}
+
+body.dark-theme mw-conversation-header {
+    --conv-cont-conv-header-icon-fill: #dadce0
+}
+
+body.dark-theme mw-conversation-loading {
+    --conversation-loading-bg-color: #202124
+}
+
+body.dark-theme mw-fab-link {
+    --fab-icon-container-bg-color: #185abc;
+    --fab-icon-container-disabled-bg-color: rgba(232, 234, 237, 0.12);
+    --fab-label-color: #fff;
+    --fab-label-disabled-color: #e8eaed
+}
+
+body.dark-theme mw-keyboard-shortcut {
+    --key-color: #e8eaed;
+    --key-icon-fill: #333
+}
+
+body.dark-theme mw-landing-page-footer {
+    --landing-page-footer-font-color: #9aa0a6;
+    --landing-page-footer-font-color-hover: #e8eaed
+}
+
+body.dark-theme mw-landing-page-header {
+    --landing-page-header-bg-color: #3c4043;
+    --landing-page-header-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.45);
+    --landing-page-logo-text-color: #fff
+}
+
+body.dark-theme mw-main-landing {
+    --main-landing-host-bg-color: #202124;
+    --main-landing-title-color: #e8eaed;
+    --main-landing-sub-title-color: #9aa0a6;
+    --main-landing-image: url(https://www.gstatic.com/android-messages-web/images/splash_dark.svg)
+}
+
+body.dark-theme mw-main-nav {
+    --main-nav-host-bg-color: #2a2b2e;
+    --main-nav-host-border-color: #202124;
+    --main-nav-header-color: #e8eaed;
+    --main-nav-header-menu-color: #dadce0;
+    --main-nav-header-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.45)
+}
+
+@media (min-width:560px) {
+    body.dark-theme .fi-content-container mw-main-nav {
+        --main-nav-header-box-shadow: 6px 2px 6px 0 rgba(0, 0, 0, 0.45)
+    }
+}
+
+body.dark-theme mw-message-failure-status {
+    --msg-failure-status-color: #9aa0a6;
+    --msg-failure-status-failed-color: #ee675c
+}
+
+body.dark-theme mw-message-reactions-display {
+    --reaction-bg-color: #636363;
+    --reaction-badge-count-text-color: #e8eaed
+}
+
+body.dark-theme mw-message-reactions-menu {
+    --picker-button-fill-color: #dadce0
+}
+
+body.dark-theme mw-message-reactions-selector {
+    --selector-container-bg-color: #404243;
+    --selector-bg-color: #000
+}
+
+body.dark-theme mw-new-conversation-start-group-button {
+    --new-conversation-button-color: #e8eaed;
+    --new-conversation-group-icon-color: #8ab4f8
+}
+
+body.dark-theme mw-new-conversation-sub-header {
+    --new-conv-sub-header-add-more-people-color: #8ab4f8;
+    --new-conv-sub-header-bg-color: #202124;
+    --new-conv-sub-header-label-color: #e8eaed;
+    --new-conv-sub-header-border-color: #3c4043
+}
+
+body.dark-theme mw-bold-matching-text {
+    --bold-matching-text-color: #8ab4f8
+}
+
+body.dark-theme mw-spam-and-blocked-conversations {
+    --spam-and-blocked-conv-border-bottom-color: #3c4043;
+    --spam-and-blocked-conv-name-color: #e8eaed;
+    --spam-and-blocked-conv-snippet-color: #9aa0a6;
+    --spam-and-blocked-conv-timestamp-color: #9aa0a6;
+    --no-spam-and-blocked-conv-illustration-opacity: 0.38;
+    --no-spam-and-blocked-conv-text-color: #9aa0a6;
+    --unblock-unspam-button-color: #6ba5ed
+}
+
+body.dark-theme mw-suspected-spam-banner {
+    --cancel-color: #6ba5ed;
+    --spam-banner-bg-color: #3c4043;
+    --spam-banner-title-color: #e8eaed;
+    --spam-banner-body-color: #bdc1c6;
+    --spam-banner-box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.09), 0 4px 8px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.15);
+    --spam-icon-color: #f28b82;
+    --spam-banner-body-width: 0
+}
+
+body.dark-theme mw-text-emergency-banner {
+    --cancel-color: #fad2cf;
+    --cancel-button-background-color: rgba(242, 139, 130, 0.24);
+    --emergency-banner-bg-color: rgba(242, 139, 130, 0.24);
+    --emergency-banner-title-color: #f6aea9;
+    --emergency-banner-body-color: #f6aea9;
+    --emergency-button-text-color: #202124;
+    --emergency-button-background-color: #f28b82;
+    --emergency-banner-box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.09), 0 4px 8px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.15);
+    --emergency-icon-color: #f6aea9;
+    --emergency-banner-body-width: 0px
+}
+
+body.dark-theme mw-verified-sms-dialog {
+    --dialog-button-color: #8ab4f8;
+    --dialog-content-color: #fff;
+    --dialog-title-color: #fff
+}
+
+body.dark-theme mw-vsms-link-warning-dialog {
+    --dialog-confirm-bg-color: #185abc;
+    --dialog-confirm-color: #8ab4f8;
+    --dialog-content-color: #9aa0a6;
+    --dialog-link-color: #8ab4f8;
+    --dialog-title-color: #e8eaed
+}
+
+body.dark-theme mw-conversation-container {
+    --conv-container-host-bg-color: #202124;
+    --compose-readonly-bg-color: #3c4043;
+    --file-overlay-bg-color: rgba(0, 0, 0, 0.54);
+    --conversation-readonly-color: #9aa0a6
+}
+
+body.dark-theme mw-messages-settings-container {
+    --messages-settings-heading-color: #8ab4f8
+}
+
+body.dark-theme mw-new-conversation-container {
+    --new-conversation-bg-color: #202124;
+    --contacts-load-more-bg-color: #3c4043;
+    --contacts-load-more-color: #e8eaed
+}
+
+body.dark-theme mw-settings-container {
+    --settings-bg-color: #202124
+}
+
+body.dark-theme mw-unable-to-connect-container {
+    --unable-to-connect-bg-color: #202124;
+    --unable-to-connect-button-color: #185abc;
+    --unable-to-connect-font-color: #e8eaed;
+    --unable-to-connect-link-color: #8ab4f8;
+    --unable-to-connect-subtitle-color: #9aa0a6
+}
+
+body.dark-theme mw-cms-sync-tombstone {
+    --tombstone-msg-color: #9aa0a6;
+    --tombstone-msg-background-color: rgba(248, 249, 250, 0.06);
+    --link-color: #8ab4f8
+}
+
+body.dark-theme mw-cms-sync-tombstone .tombstone-message-part:focus {
+    --tombstone-msg-background-color: #252d34;
+    --tombstone-msg-color: #fff
+}
+
+body.dark-theme mw-fi-banner {
+    --fi-banner-bg-color: #2a2b2e;
+    --fi-banner-border-color: #3c4043;
+    --fi-banner-link-color: #8ab4f8;
+    --fi-banner-text-color: #fff;
+    --fi-banner-warning-bg-color: rgba(227, 116, 0, 0.12);
+    --fi-banner-warning-color: #f9ab00
+}
+
+body.dark-theme mw-fi-branded-header {
+    --fi-header-bg-color: #202124;
+    --fi-header-border-color: #3c4043;
+    --fi-header-icon-color: #dadce0;
+    --fi-header-icon-disabled-color: rgba(232, 234, 237, 0.38)
+}
+
+body.dark-theme mw-fi-header-logo {
+    --fi-header-icon-color: #dadce0;
+    --fi-header-logo-color: #9aa0a6;
+    --fi-header-logo-img-url: url(https://www.gstatic.com/android-messages-web/images/fi/google_fi_logo_dark_168x40.png)
+}
+
+body.dark-theme mw-fi-messages-landing {
+    --fi-messages-landing-host-bg-color: #202124;
+    --fi-messages-landing-image: url(https://www.gstatic.com/android-messages-web/images/fi/illo-messages-empty-state-dark-mode.svg);
+    --fi-messages-landing-title-color: #e8eaed;
+    --fi-messages-landing-sub-title-color: #9aa0a6
+}
+
+body.dark-theme mw-fi-nav-drawer {
+    --fi-nav-drawer-bg-color: #202124;
+    --fi-nav-drawer-border-color: #3c4043;
+    --fi-nav-drawer-box-shadow: 0 0 2px rgba(0, 0, 0, 0.3), 0 2px 16px rgba(0, 0, 0, 0.6);
+    --fi-nav-drawer-color: #e8eaed;
+    --fi-nav-drawer-hover-color: #8ab4f8;
+    --fi-nav-drawer-icon-color: #dadce0;
+    --fi-nav-drawer-item-hover-color: rgba(248, 249, 250, 0.09);
+    --fi-nav-drawer-logo-img-url: url(https://www.gstatic.com/android-messages-web/images/fi/google_fi_logo_dm_136x32.png);
+    --fi-nav-drawer-selected-bg-color: rgba(248, 249, 250, 0.06);
+    --fi-nav-drawer-selected-color: #8ab4f8;
+    --fi-nav-drawer-selected-hover-bg-color: rgba(248, 249, 250, 0.09);
+    --fi-nav-drawer-selected-hover-color: #8ab4f8;
+    --fi-nav-drawer-selected-hover-icon-color: #8ab4f8;
+    --fi-nav-drawer-selected-icon-color: #8ab4f8;
+    --fi-nav-drawer-unread-count-bg-color: #f28b82;
+    --fi-nav-drawer-unread-count-color: #3c4043
+}
+
+body.dark-theme mw-fi-side-nav {
+    --fi-side-nav-active-color: #8ab4f8;
+    --fi-side-nav-bg-color: #2a2b2e;
+    --fi-side-nav-border-color: #3c4043;
+    --fi-side-nav-color: #9aa0a6;
+    --fi-side-nav-hover-bg-color: rgba(248, 249, 250, 0.09);
+    --fi-side-nav-icon-color: #dadce0;
+    --fi-side-nav-new-indicator-color: #f28b82
+}
+
+body.dark-theme mw-fi-error-page {
+    --fi-error-page-bg-color: #202124;
+    --fi-error-page-button-color: #185abc;
+    --fi-error-page-header-text-color: #9aa0a6;
+    --fi-error-page-header-bg-color: #333;
+    --fi-error-page-header-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.45);
+    --fi-error-page-link-color: #8ab4f8;
+    --fi-error-page-header-title-color: #e8eaed
+}
+
+body.dark-theme mw-voicemail-audio-player {
+    --voicemail-audio-player-border-color: #3c4043;
+    --voicemail-audio-player-slider-color: #aecbfa;
+    --voicemail-audio-player-track-color: #3c4043;
+    --voicemail-audio-player-duration-color: #9aa0a6;
+    --voicemail-audio-player-loading-color: #9aa0a6;
+    --voicemail-audio-player-btn-bg-color: #8ab4f8;
+    --voicemail-audio-player-btn-disabled-bg-color: rgba(232, 234, 237, 0.38)
+}
+
+body.dark-theme mw-voicemail-header {
+    --voicemail-header-icon-disabled-fill: rgba(232, 234, 237, 0.38);
+    --voicemail-header-icon-fill: #dadce0
+}
+
+body.dark-theme mw-voicemail-landing {
+    --voicemail-landing-bg-color: #202124;
+    --voicemail-landing-secondary-color: #e8eaed;
+    --voicemail-landing-splash-url: url(https://www.gstatic.com/android-messages-web/images/fi/illo-voicemail-empty-dark-mode.svg)
+}
+
+body.dark-theme mw-voicemail-nav {
+    --voicemail-breakpoint-color: #9aa0a6;
+    --voicemail-empty-state-color: #9aa0a6;
+    --voicemail-load-more-bg-color: #202124;
+    --voicemail-load-more-color: #e8eaed;
+    --voicemail-nav-bg-color: #2a2b2e;
+    --voicemail-nav-border-color: #3c4043;
+    --voicemail-nav-header-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.45)
+}
+
+body.dark-theme mw-voicemail-nav-item {
+    --voicemail-nav-item-name-color: #e8eaed;
+    --voicemail-nav-item-snippet-color: #9aa0a6;
+    --voicemail-nav-item-hover-bg-color: rgba(248, 249, 250, 0.09);
+    --voicemail-nav-item-selected-bg-color: rgba(248, 249, 250, 0.06)
+}
+
+body.dark-theme mw-voicemail-container {
+    --voicemail-container-bg-color: #202124;
+    --voicemail-container-no-transcript-color: #9aa0a6;
+    --voicemail-container-transcript-color: #e8eaed;
+    --voicemail-container-empty-state-img-url: url(https://www.gstatic.com/android-messages-web/images/fi/illo-no-transcript-dark-mode.svg)
+}
+
+body.dark-theme mw-voicemail-main-container {
+    --voicemail-main-container-host-bg-color: #202124
+}
+
+body.dark-theme mw-voip-action-button {
+    --voip-action-btn-active-bg-color: #bdc1c6;
+    --voip-action-btn-active-fill-color: #202124;
+    --voip-action-btn-border-color: #3c4043;
+    --voip-action-btn-color: #9aa0a6;
+    --voip-action-btn-fill-color: #dadce0;
+    --voip-action-btn-fill-disabled-color: rgba(232, 234, 237, 0.38)
+}
+
+body.dark-theme mw-voip-action-button .option-button[disabled=true] {
+    border: 1px solid rgba(232, 234, 237, .12)
+}
+
+body.dark-theme {
+    --voip-audio-controls-dropdown-error-color: #f28b82;
+    --voip-audio-controls-dropdown-accent-color: #8ab4f8;
+    --voip-audio-controls-dropdown-bg-color: #3c4043;
+    --voip-audio-controls-dropdown-color: #e8eaed;
+    --voip-audio-controls-dropdown-bg-color-2: #5f6368;
+    --voip-audio-controls-dropdown-outline-color: #3c4043;
+    --voip-audio-controls-dd-outline-error-color: #f28b82;
+    --voip-audio-controls-dropdown-selected-bg-color: rgba(0, 0, 0, 0.12)
+}
+
+body.dark-theme mw-voip-audio-controls-popup {
+    --voip-audio-controls-accent-color: #8ab4f8;
+    --voip-audio-controls-bg-color: #2a2b2e;
+    --voip-audio-controls-border-color: #3c4043;
+    --voip-audio-controls-color: #e8eaed;
+    --voip-audio-controls-hover-bg-color: rgba(248, 249, 250, 0.09)
+}
+
+body.dark-theme mw-voip-call-control-panel {
+    --voip-call-control-panel-bg-color: #393a3d;
+    --voip-call-control-panel-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.15), 0 4px 4px 0 rgba(0, 0, 0, 0.1), 0 -0.1px 3px 0 rgba(0, 0, 0, 0.08);
+    --voip-call-control-panel-connected-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.15), 0 4px 4px 0 rgba(0, 0, 0, 0.1), 0 -0.1px 3px 0 rgba(0, 0, 0, 0.08)
+}
+
+body.dark-theme mw-voip-call-control-panel .connected-call:after,
+body.dark-theme mw-voip-call-control-panel .connected-call:before {
+    display: none
+}
+
+body.dark-theme mw-voip-in-call-panel {
+    --voip-in-call-panel-action-btn-color: #202124;
+    --voip-in-call-panel-active-btn-bg-color: #bdc1c6;
+    --voip-in-call-panel-call-ended-color: #f28b82;
+    --voip-in-call-panel-name-color: #e8eaed;
+    --voip-in-call-panel-duration-color: #9aa0a6;
+    --voip-in-call-panel-end-bg-color: #f28b82;
+    --voip-in-call-panel-mute-fill-color: #dadce0
+}
+
+@keyframes incomingRing {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    1% {
+        transform: rotate(12deg)
+    }
+
+    2% {
+        transform: rotate(-8deg)
+    }
+
+    3% {
+        transform: rotate(9deg)
+    }
+
+    4% {
+        transform: rotate(-11deg)
+    }
+
+    5% {
+        transform: rotate(5deg)
+    }
+
+    6% {
+        transform: rotate(-7deg)
+    }
+
+    7% {
+        transform: rotate(10deg)
+    }
+
+    8% {
+        transform: rotate(-4deg)
+    }
+
+    9% {
+        transform: rotate(13deg)
+    }
+
+    10% {
+        transform: rotate(-6deg)
+    }
+
+    11% {
+        transform: rotate(9deg)
+    }
+
+    12% {
+        transform: rotate(-2deg)
+    }
+
+    13% {
+        transform: rotate(12deg)
+    }
+
+    14% {
+        transform: rotate(-8deg)
+    }
+
+    15% {
+        transform: rotate(9deg)
+    }
+
+    16% {
+        transform: rotate(-11deg)
+    }
+
+    17% {
+        transform: rotate(3deg)
+    }
+
+    18% {
+        transform: rotate(12deg)
+    }
+
+    19% {
+        transform: rotate(-8deg)
+    }
+
+    20% {
+        transform: rotate(9deg)
+    }
+
+    21% {
+        transform: rotate(-11deg)
+    }
+
+    22% {
+        transform: rotate(5deg)
+    }
+
+    23% {
+        transform: rotate(-7deg)
+    }
+
+    24% {
+        transform: rotate(10deg)
+    }
+
+    25% {
+        transform: rotate(-4deg)
+    }
+
+    26% {
+        transform: rotate(13deg)
+    }
+
+    27% {
+        transform: rotate(-6deg)
+    }
+
+    28% {
+        transform: rotate(9deg)
+    }
+
+    29% {
+        transform: rotate(-2deg)
+    }
+
+    30% {
+        transform: rotate(12deg)
+    }
+
+    31% {
+        transform: rotate(-8deg)
+    }
+
+    32% {
+        transform: rotate(9deg)
+    }
+
+    33% {
+        transform: rotate(-3deg)
+    }
+
+    34% {
+        transform: rotate(0deg)
+    }
+
+    to {
+        transform: rotate(0deg)
+    }
+}
+
+body.dark-theme mw-voip-incoming-call-panel {
+    --incoming-call-panel-accept-bg-color: #81c995;
+    --incoming-call-panel-color: #202124;
+    --incoming-call-panel-status-color: #9aa0a6;
+    --incoming-call-panel-contact-name-color: #e8eaed;
+    --incoming-call-panel-decline-bg-color: #f28b82
+}
+
+body.dark-theme mw-voip-call-info {
+    --call-info-contact-status-color: #9aa0a6;
+    --call-info-display-name-color: #e8eaed;
+    --call-info-duration-color: #9aa0a6
+}
+
+body.dark-theme mw-voip-call-info-menu {
+    --voip-call-info-menu-icon-fill: #dadce0
+}
+
+@keyframes incomingRing {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    1% {
+        transform: rotate(12deg)
+    }
+
+    2% {
+        transform: rotate(-8deg)
+    }
+
+    3% {
+        transform: rotate(9deg)
+    }
+
+    4% {
+        transform: rotate(-11deg)
+    }
+
+    5% {
+        transform: rotate(5deg)
+    }
+
+    6% {
+        transform: rotate(-7deg)
+    }
+
+    7% {
+        transform: rotate(10deg)
+    }
+
+    8% {
+        transform: rotate(-4deg)
+    }
+
+    9% {
+        transform: rotate(13deg)
+    }
+
+    10% {
+        transform: rotate(-6deg)
+    }
+
+    11% {
+        transform: rotate(9deg)
+    }
+
+    12% {
+        transform: rotate(-2deg)
+    }
+
+    13% {
+        transform: rotate(12deg)
+    }
+
+    14% {
+        transform: rotate(-8deg)
+    }
+
+    15% {
+        transform: rotate(9deg)
+    }
+
+    16% {
+        transform: rotate(-11deg)
+    }
+
+    17% {
+        transform: rotate(3deg)
+    }
+
+    18% {
+        transform: rotate(12deg)
+    }
+
+    19% {
+        transform: rotate(-8deg)
+    }
+
+    20% {
+        transform: rotate(9deg)
+    }
+
+    21% {
+        transform: rotate(-11deg)
+    }
+
+    22% {
+        transform: rotate(5deg)
+    }
+
+    23% {
+        transform: rotate(-7deg)
+    }
+
+    24% {
+        transform: rotate(10deg)
+    }
+
+    25% {
+        transform: rotate(-4deg)
+    }
+
+    26% {
+        transform: rotate(13deg)
+    }
+
+    27% {
+        transform: rotate(-6deg)
+    }
+
+    28% {
+        transform: rotate(9deg)
+    }
+
+    29% {
+        transform: rotate(-2deg)
+    }
+
+    30% {
+        transform: rotate(12deg)
+    }
+
+    31% {
+        transform: rotate(-8deg)
+    }
+
+    32% {
+        transform: rotate(9deg)
+    }
+
+    33% {
+        transform: rotate(-3deg)
+    }
+
+    34% {
+        transform: rotate(0deg)
+    }
+
+    to {
+        transform: rotate(0deg)
+    }
+}
+
+body.dark-theme mw-voip-call-screen {
+    --call-screen-accept-btn-bg-color: #81c995;
+    --call-screen-action-btn-color-fill: #202124;
+    --call-screen-bg-color: #202124;
+    --call-screen-disabled-btn-bg-color: rgba(232, 234, 237, 0.12);
+    --call-screen-disabled-btn-color: rgba(232, 234, 237, 0.38);
+    --call-screen-end-btn-bg-color: #f28b82;
+    --call-screen-illo-url: url(https://www.gstatic.com/android-messages-web/images/fi/illo-ongoing-call-header-dark-mode.svg)
+}
+
+body.dark-theme mw-voip-calls-landing {
+    --voip-calls-landing-bg-color: #202124;
+    --voip-calls-landing-color: #e8eaed;
+    --voip-calls-landing-country-blocked-splash-url: url(https://www.gstatic.com/android-messages-web/images/fi/illo-blocked-account-dark-mode.svg);
+    --voip-calls-landing-link-color: #8ab4f8;
+    --voip-calls-landing-secondary-color: #9aa0a6;
+    --voip-calls-landing-splash-url: url(https://www.gstatic.com/android-messages-web/images/fi/illo-calling-empty-state-dark-mode.svg)
+}
+
+body.dark-theme mw-voip-calls-nav {
+    --voip-call-nav-bg-color: #2a2b2e;
+    --voip-call-nav-border-color: #3c4043;
+    --voip-call-nav-empty-state-color: #9aa0a6;
+    --voip-call-nav-header-box-shadow: 6px 2px 6px 0 rgba(0, 0, 0, 0.45);
+    --voip-call-nav-load-more-bg-color: #202124;
+    --voip-call-nav-load-more-color: #e8eaed;
+    --voip-call-nav-temp-text-color: #e8eaed
+}
+
+@media (max-width:560px) {
+    body.dark-theme mw-voip-calls-nav {
+        --voip-call-nav-header-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.45)
+    }
+}
+
+body.dark-theme mw-voip-calls-nav-item {
+    --calls-nav-item-hover-bg-color: rgba(248, 249, 250, 0.09);
+    --calls-nav-item-icon-color: #dadce0;
+    --calls-nav-item-missed-icon-color: #f28b82;
+    --calls-nav-item-name-color: #e8eaed;
+    --calls-nav-item-selected-bg-color: rgba(248, 249, 250, 0.06);
+    --calls-nav-item-snippet-color: #9aa0a6
+}
+
+body.dark-theme mw-voip-keypad-button {
+    --keypad-button-key-color: #e8eaed;
+    --keypad-button-subtitle-color: #e8eaed
+}
+
+body.dark-theme mw-voip-keypad {
+    --voip-keypad-bg-color: #3c4043;
+    --voip-keypad-border-color: #5f6368;
+    --voip-keypad-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.15), 0 4px 4px 0 rgba(0, 0, 0, 0.1), 0 -0.1px 3px 0 rgba(0, 0, 0, 0.08);
+    --voip-keypad-close-btn-icon-color: #dadce0;
+    --voip-keypad-dtmf-highlighted-color: #8ab4f8;
+    --voip-keypad-dtmf-input-color: #9aa0a6
+}
+
+body.dark-theme mw-voip-new-call-contacts-list {
+    --new-call-bg-color: #202124;
+    --new-call-contacts-load-more-bg-color: #3c4043;
+    --new-call-contacts-load-more-color: #e8eaed
+}
+
+body.dark-theme mw-voip-new-call-sub-header {
+    --new-call-sub-header-bg-color: #202124;
+    --new-call-sub-header-label-color: #e8eaed;
+    --new-call-sub-header-input-color: #e8eaed;
+    --new-call-sub-header-border-color: #3c4043;
+    --new-call-sub-header-keypad-btn-icon-color: #dadce0
+}
+
+body.dark-theme mw-voip-calls-container {
+    --voip-calls-container-host-bg-color: #202124
+}
+
+[data-is-emoji] {
+    font-family: NotoColorEmoji, apple color emoji, windows emoji, windows symbol;
+    vertical-align: middle
+}
+
+body.dark-theme {
+    --button-hover-bg-color: rgba(248, 249, 250, 0.09);
+    --cdk-overlay-backdrop-bg-color: rgba(0, 0, 0, 0.87);
+    --dialog-bg-color: #202124;
+    --mat-chip-bg-color: #3c4043;
+    --mat-chip-color: #e8eaed;
+    --mat-menu-bg-color-hover: #5f6368;
+    --mat-menu-bg-color: #404243;
+    --mat-menu-color: #e8eaed;
+    --mat-slide-toggle-bar-bg-color: rgba(81, 149, 234, 0.54);
+    --mat-slide-toggle-disabled-bg-color: hsla(0, 0%, 100%, 0.2);
+    --mat-slide-toggle-thumb-bg-color: #6ba5ed;
+    --mat-snackbar-bg-color: #202124;
+    --mat-snackbar-border-color: #3c4043;
+    --mat-snackbar-btn-hover-focus-bg-color: rgba(248, 249, 250, 0.09);
+    --mat-snackbar-color: #fff;
+    --scroll-bar-bg-color: hsla(0, 0%, 100%, 0.2)
+}

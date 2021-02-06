@@ -18,6 +18,7 @@ import {
   IS_WINDOWS,
   RESOURCES_PATH,
   SETTING_TRAY_ENABLED,
+  SETTING_SYSTEM_DARK_MODE,
 } from "./helpers/constants";
 import { SettingsManager } from "./helpers/settingsManager";
 import { TrayManager } from "./helpers/trayManager";
@@ -25,7 +26,6 @@ import { CustomBrowserWindow } from "./helpers/window";
 import { baseMenuTemplate } from "./menu/baseMenu";
 import { devMenuTemplate } from "./menu/devMenu";
 import { helpMenuTemplate } from "./menu/helpMenu";
-import settings from "electron-settings";
 
 const state = {
   bridgeInitDone: false,
@@ -104,6 +104,10 @@ if (!isFirstInstance) {
         });
       }
     });
+    settingsManager.addWatcher(
+      SETTING_SYSTEM_DARK_MODE,
+      (newValue:boolean) => mainWindow.webContents.send(EVENT_UPDATE_USER_SETTING, {useDarkMode: newValue ? nativeTheme.shouldUseDarkColors : null})
+    );
 
     if (menuInstance != null) {
       const trayMenuItem = menuInstance.getMenuItemById("startInTrayMenuItem");

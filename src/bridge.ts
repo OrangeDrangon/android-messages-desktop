@@ -6,13 +6,15 @@ import {
   SETTING_HIDE_NOTIFICATION,
   RESOURCES_PATH,
   SETTING_NOTIFICATION_SOUND,
+  SETTING_SYSTEM_DARK_MODE,
+  BASE_APP_PATH,
 } from "./helpers/constants";
 import { handleEnterPrefToggle } from "./helpers/inputManager";
 import { popupContextMenu } from "./menu/contextMenu";
 import settings from "electron-settings";
 import { getProfileImg } from "./helpers/profileImage";
 
-const { Notification: ElectronNotification, app } = remote;
+const { Notification: ElectronNotification, app, nativeTheme } = remote;
 
 // Electron (or the build of Chromium it uses?) does not seem to have any default right-click menu, this adds our own.
 remote.getCurrentWebContents().addListener("context-menu", popupContextMenu);
@@ -60,16 +62,63 @@ window.addEventListener("load", () => {
   });
 });
 
+// dark mode work around issue #258 (https://github.com/OrangeDrangon/android-messages-desktop/issues/258)
+window.addEventListener("DOMContentLoaded", function(e)
+{
+  const fs = require("fs");
+  fs.readFile(path.resolve(BASE_APP_PATH, "src", "stylesheets", "dark.css"), "utf-8", function(error:any, data:any)
+  {
+    if(error)
+      return;
+
+    const style = document.createElement("style");
+    style.innerHTML = data;
+    style.id = "dark-theme";
+    let s = document.head.querySelector("style");
+    s?.parentNode?.insertBefore(style, s); //insert as first style, allowing native style overwrite it.
+  });
+
+  //theme selection is saved in google account and restored on initial load
+  //I don't know if there are any events available that we could use to identify when it finished loading
+  //for now we are relaying on div#cdk-describedby-message-1 that being inserted into DOM after theme is applied by google
+  //at which time we are forcing light/dark theme to match system.
+  const obs = new MutationObserver((m: MutationRecord[], o: MutationObserver) =>
+  {
+    for(let i = 0; i < m.length; i++)
+    {
+      for(let n = 0; n < m[i].addedNodes.length; n++)
+      {
+        if ((m[i].addedNodes[n] as HTMLElement).id == "cdk-describedby-message-1") //this is one of the last items inserted 
+        {
+          if (settings.get(SETTING_SYSTEM_DARK_MODE))
+            darkMode(nativeTheme.shouldUseDarkColors);
+
+          o.disconnect();
+        }
+      }
+    }
+  });
+  obs.observe(document.body, {
+    subtree: true,
+    childList: true,
+    attributes: true
+  });
+});
+
+function darkMode(mode:boolean)
+{
+  localStorage.setItem("dark_mode_enabled", "" + mode);
+  if (mode)
+    document.body?.classList.add("dark-theme");
+  else
+    document.body?.classList.remove("dark-theme");
+}
+
 ipcRenderer.on(EVENT_UPDATE_USER_SETTING, (_event, settingsList) => {
   if ("useDarkMode" in settingsList && settingsList.useDarkMode !== null) {
-    if (settingsList.useDarkMode) {
-      // Props to Google for making the web app use dark mode entirely based on this class
-      // and for making the class name semantic!
-      document.body.classList.add("dark-mode");
-    } else {
-      document.body.classList.remove("dark-mode");
-    }
+    darkMode(settingsList.useDarkMode);
   }
+
   if ("enterToSend" in settingsList) {
     handleEnterPrefToggle(settingsList.enterToSend);
   }
