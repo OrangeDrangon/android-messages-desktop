@@ -88,7 +88,7 @@ window.addEventListener("DOMContentLoaded", function(e)
     {
       for(let n = 0; n < m[i].addedNodes.length; n++)
       {
-        if ((m[i].addedNodes[n] as HTMLElement).id == "cdk-describedby-message-1") //this is one of the last items inserted 
+        if ((m[i].addedNodes[n] as HTMLElement).id == "cdk-describedby-message-1") //this is one of the last items inserted
         {
           if (settings.get(SETTING_SYSTEM_DARK_MODE))
             darkMode(nativeTheme.shouldUseDarkColors);
