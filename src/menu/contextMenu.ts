@@ -286,7 +286,7 @@ export const popupContextMenu = async (event: Electron.Event, params: ContextMen
 
       const win = remote.getCurrentWindow();
       let overlay = {} as HTMLElement;
-      
+
       for (let i = 0; i < 100; i++)
       {
         if (overlay = document.querySelector("body > div.cdk-overlay-container") as HTMLElement)
@@ -338,4 +338,3 @@ const findMsg = function (node:Element|Element|null):HTMLElement|null
 
   return findMsg(node.parentNode as Element );
 }
-
