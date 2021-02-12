@@ -7,6 +7,9 @@ import { settings } from "./settings";
 // bring the settings into scoped
 const { trayEnabled, startInTrayEnabled, seenMinimizeToTrayWarning } = settings;
 
+const { name } = require('../../package.json');
+const uuid = require('uuid');
+
 export class TrayManager {
   public enabled = trayEnabled.value;
   public iconPath = this.getIconPath();
@@ -42,7 +45,7 @@ export class TrayManager {
   public startIfEnabled(): void {
     if (!this.tray) {
       if (this.enabled) {
-        this.tray = new Tray(this.iconPath);
+        this.tray = new Tray(this.iconPath, uuid.v5(name + app.getAppPath(), "127d083c-9721-323f-9403-a0b520fbc475"));
         const trayContextMenu = Menu.buildFromTemplate(trayMenuTemplate);
         this.tray.setContextMenu(trayContextMenu);
         this.tray.setToolTip("Android Messages");
