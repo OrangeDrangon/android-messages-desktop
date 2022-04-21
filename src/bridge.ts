@@ -13,17 +13,17 @@ window.addEventListener("load", () => {
   if (true) {
     const titlebarStyle = `#amd-titlebar {
       -webkit-app-region: drag;
-      position: fixed; 
-      width: 100%; 
-      height: 64px; 
-      top: 0; 
-      left: 0; 
+      position: fixed;
+      width: 100%;
+      height: 64px;
+      top: 0;
+      left: 0;
       background: none;
       pointer-events: none;
     }`;
 
     document.body.appendChild(Object.assign(document.createElement("style"), {textContent: titlebarStyle}))
-    
+
     const titlebar = document.createElement('div');
     titlebar.id = "amd-titlebar";
     document.querySelector("mw-app")?.parentNode?.prepend(titlebar);
