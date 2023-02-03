@@ -5,7 +5,25 @@
 
 version: 2
 updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: '08:00'
+      timezone: America/Los_Angeles
+    open-pull-requests-limit: 99
+    reviewers:
+    - LanikSJ
+    assignees:
+    - LanikSJ
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
+      time: '08:00'
+      timezone: America/Los_Angeles
+    open-pull-requests-limit: 99
+    reviewers:
+    - LanikSJ
+    assignees:
+    - LanikSJ
