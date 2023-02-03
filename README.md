@@ -1,4 +1,4 @@
-# Android Messages™ Desktop ![master status](https://github.com/OrangeDrangon/android-messages-desktop/actions/workflows/master.yml/badge.svg)
+# Android Messages™ Desktop ![master status](https://github.com/LanikSJ/android-messages-desktop/actions/workflows/master.yml/badge.svg)
 
 Run Android Messages as a desktop app, a la iMessage. For those of us that prefer not to have a browser tab always open for this sort of thing.
 
@@ -15,7 +15,7 @@ Inspired by:
 
 # Install Anywhere
 
-Download your build from the [releases](https://github.com/OrangeDrangon/android-messages-desktop/releases/latest) page.
+Download your build from the [releases](https://github.com/LanikSJ/android-messages-desktop/releases/latest) page.
 
 # Install on Archlinux via AUR
 
