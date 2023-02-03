@@ -39,7 +39,7 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: Upload Build
-        uses: actions/upload-artifact@v2.2.2
+        uses: actions/upload-artifact@v3.1.2
         with:
           name: ${{ matrix.os }}-${{ matrix.node-version }}
           path: ./dist
