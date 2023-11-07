@@ -23,7 +23,7 @@ Download your build from the [releases](https://github.com/LanikSJ/android-messa
 
 # Install on MacOS via Homebrew
 
-`brew install --cask orangedrangon-android-messages`
+`brew install laniksj/tap/android-messages-plus`
 
 # Install on Windows via Scoop
 
