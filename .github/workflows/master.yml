@@ -14,8 +14,10 @@ jobs:
       matrix:
         os:
           - macos-latest
+          - windows-latest
+          - ubuntu-latest
         node-version:
-          - 17
+          - 20
 
     steps:
       - uses: actions/checkout@v4
@@ -32,6 +34,10 @@ jobs:
         env:
           cache-name: node-modules
 
+      - run: sudo apt-get update -y && sudo apt-get install --no-install-recommends -y libopenjp2-tools rpm libarchive-tools
+        name: Install Linux Dependencies
+        if: (startsWith(matrix.os, 'ubuntu'))
+
       - run: yarn install --frozen-lockfile
 
       - run: yarn dist --publish onTagOrDraft
@@ -39,7 +45,7 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: Upload Build
-        uses: actions/upload-artifact@v3.1.3
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.os }}-${{ matrix.node-version }}
           path: ./dist
