@@ -14,6 +14,7 @@ import {
 import { getProfileImg } from "./helpers/profileImage";
 
 window.addEventListener("load", () => {
+  window.exports = {};
   if (IS_MAC) {
     const titlebarStyle = `#amd-titlebar {
       -webkit-app-region: drag;
@@ -109,8 +110,6 @@ window.Notification = function (title: string, options: NotificationOptions) {
 //@ts-ignore
 window.Notification.permission = "granted";
 window.Notification.requestPermission = async () => "granted";
-
-window.module.exports = null;
 
 ipcRenderer.on("focus-conversation", (event, i) => {
   focusFunctions[i]();

@@ -62,6 +62,7 @@ if (gotTheLock) {
     const { width, height } = savedWindowSize.value;
     const { x, y } = savedWindowPosition.value ?? {};
 
+    console.log("app.getAppPath()", app.getAppPath())
     mainWindow = new BrowserWindow({
       width,
       height,
@@ -75,8 +76,6 @@ if (gotTheLock) {
         : undefined,
       titleBarStyle: IS_MAC ? "hiddenInset" : "default",
       webPreferences: {
-        nodeIntegration: true,
-        contextIsolation: false,
         preload: IS_DEV
           ? path.resolve(app.getAppPath(), "bridge.js")
           : path.resolve(app.getAppPath(), "app", "bridge.js"),
@@ -102,7 +101,6 @@ if (gotTheLock) {
           requestHeaders: { ...requestHeaders, "User-Agent": userAgent },
         })
     );
-
     mainWindow.loadURL("https://messages.google.com/web/");
 
     trayManager.startIfEnabled();
@@ -134,17 +132,16 @@ if (gotTheLock) {
         event.preventDefault();
         mainWindow.hide();
         trayManager?.showMinimizeToTrayWarning();
-        if (process.platform === "darwin") {
-          app.dock.hide();
-        }
       } else {
         app.quit(); // If we don't explicitly call this, the webview and mainWindow get destroyed but background process still runs.
       }
     });
 
-    mainWindow.webContents.on("new-window", (e, url) => {
-      e.preventDefault();
-      shell.openExternal(url);
+    mainWindow.webContents.setWindowOpenHandler((details) => {
+      if (details.url.indexOf('http') === 0) {
+        shell.openExternal(details.url);
+      }
+      return { action: 'deny' }
     });
 
     mainWindow.webContents.on("context-menu", popupContextMenu);
@@ -160,6 +157,28 @@ if (gotTheLock) {
       },
       (details, callback) => {
         callback({ cancel: true });
+      }
+    );
+    mainWindow.webContents.session.webRequest.onBeforeRequest(
+      {
+        urls: [
+          "file://www.google.com/js/bg*",
+        ],
+      },
+      (details, callback) => {
+        let path = details.url.replace("file://www.google.com/js/bg", "")
+        callback({ redirectURL: "https://www.google.com/js/bg" + path });
+      }
+    );
+    mainWindow.webContents.session.webRequest.onBeforeRequest(
+      {
+        urls: [
+          "file:///web/",
+        ],
+      },
+      (details, callback) => {
+        let path = details.url.replace("file:///web/", "")
+        callback({ redirectURL: "https://www.google.com/js/bg" + path });
       }
     );
   }); //onready
