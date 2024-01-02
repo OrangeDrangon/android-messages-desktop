@@ -17,35 +17,47 @@ jobs:
           - windows-latest
           - ubuntu-latest
         node-version:
-          - 17
+          - 20
 
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+
+      - name: setup node
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Cache node_modules
-        uses: actions/cache@v2
+      - name: install Rust stable
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: install dependencies (ubuntu only)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev patchelf
+
+      - name: install pnpm
+        uses: pnpm/action-setup@v2
         with:
-          path: ./node_modules
-          key: ${{ matrix.os }}-${{ matrix.node-version }}-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
-        env:
-          cache-name: node-modules
+          version: latest
+          run_install: false
 
-      - run: sudo apt-get update -y && sudo apt-get install --no-install-recommends -y libopenjp2-tools rpm libarchive-tools
-        name: Install Linux Dependencies
-        if: (startsWith(matrix.os, 'ubuntu'))
+      - name: get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
 
-      - run: yarn install --frozen-lockfile
-
-      - run: yarn dist --publish onTagOrDraft
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-      - name: Upload Build
-        uses: actions/upload-artifact@v2.2.2
+      - name: setup pnpm cache
+        uses: actions/cache@v3
         with:
-          name: ${{ matrix.os }}-${{ matrix.node-version }}
-          path: ./dist
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: install node dependencies
+        run: pnpm install --frozen-lockfile
+
+      - uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
