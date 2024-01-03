@@ -6,6 +6,13 @@ name: pull request
 on:
   pull_request:
     types: [opened, synchronize, reopened, edited]
+    paths:
+      - src/*
+      - electron-builder.js
+      - package.json
+      - tsconfig.json
+      - webpack.config.ts
+      - yarn.lock
 
 jobs:
   build:
