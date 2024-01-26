@@ -31,11 +31,11 @@
     "electron-updater": "6.1.7",
     "fs-jetpack": "^5.1.0",
     "rxjs": "^7.8.1",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/node": "20.11.7",
-    "@types/uuid": "^9.0.0",
+    "@types/uuid": "^9.0.8",
     "@types/webpack": "^5.28.0",
     "@types/webpack-node-externals": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
