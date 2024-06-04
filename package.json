@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "about-window": "1.15.2",
-    "electron-updater": "6.1.8",
+    "electron-updater": "6.2.1",
     "fs-jetpack": "^5.1.0",
     "rxjs": "^7.8.1",
     "uuid": "^9.0.1"
