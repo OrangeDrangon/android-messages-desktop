@@ -109,7 +109,7 @@ if (gotTheLock) {
         })
     );
 
-    mainWindow.webContents.loadURL("https://messages.google.com/web/");
+    mainWindow.loadURL("https://messages.google.com/web/");
 
     trayManager.startIfEnabled();
     settings.showIconsInRecentConversationTrayEnabled.subscribe(() =>
@@ -148,10 +148,11 @@ if (gotTheLock) {
       }
     });
 
-    mainWindow.webContents.on("new-window", (e, url) => {
-      e.preventDefault();
-      shell.openExternal(url);
+    mainWindow.webContents.setWindowOpenHandler((details) => {
+      shell.openExternal(details.url)
+      return {action: "deny"}
     });
+
 
     mainWindow.webContents.on("context-menu", popupContextMenu);
 
