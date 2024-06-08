@@ -34,7 +34,7 @@ export function recentThreadObserver() {
 
   const data: Conversation[] = conversations.map((conversation, i) => {
     const name = conversation.querySelector(
-      "a div.text-content h3.name span"
+      "a div.text-content h2.name span"
     )?.textContent;
     const canvas = conversation.querySelector(
       "a div.avatar-container canvas"
