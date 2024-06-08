@@ -1,4 +1,9 @@
-import { BrowserWindow, MenuItem, MenuItemConstructorOptions } from "electron";
+import {
+  BrowserWindow,
+  Menu,
+  MenuItem,
+  MenuItemConstructorOptions,
+} from "electron";
 import { IS_MAC } from "../helpers/constants";
 import { settings } from "../helpers/settings";
 import { separator } from "./items/separator";
@@ -14,6 +19,8 @@ const {
   showIconsInRecentConversationTrayEnabled,
   trayIconRedDotEnabled,
   taskbarFlashEnabled,
+  copyVerificationCodeToClipboard,
+  showWindowOnNotificationClickWhenCopyingCode,
 } = settings;
 
 export const settingsMenu: MenuItemConstructorOptions = {
@@ -92,6 +99,30 @@ export const settingsMenu: MenuItemConstructorOptions = {
       type: "checkbox",
       checked: taskbarFlashEnabled.value,
       click: (item) => taskbarFlashEnabled.next(item.checked),
+    },
+    {
+      id: "copyVerificationCodeToClipboard",
+      label: "Copy Code on Notification Click",
+      type: "checkbox",
+      checked: copyVerificationCodeToClipboard.value,
+      click: (item) => {
+        copyVerificationCodeToClipboard.next(item.checked);
+        const related = Menu.getApplicationMenu()?.getMenuItemById(
+          "showWindowOnNotificationClickWhenCopyingCode"
+        );
+        if (related != null) {
+          related.enabled = item.checked;
+        }
+      },
+    },
+    {
+      id: "showWindowOnNotificationClickWhenCopyingCode",
+      label: "Show Window on Code Copy",
+      type: "checkbox",
+      checked: showWindowOnNotificationClickWhenCopyingCode.value,
+      enabled: copyVerificationCodeToClipboard.value,
+      click: (item) =>
+        showWindowOnNotificationClickWhenCopyingCode.next(item.checked),
     },
     separator,
     {

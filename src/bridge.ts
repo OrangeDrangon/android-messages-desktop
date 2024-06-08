@@ -1,4 +1,4 @@
-import { ipcRenderer } from "electron";
+import { clipboard, ipcRenderer } from "electron";
 import path from "path";
 import {
   INITIAL_ICON_IMAGE,
@@ -12,6 +12,10 @@ import {
   recentThreadObserver,
 } from "./helpers/observers";
 import { getProfileImg } from "./helpers/profileImage";
+import { NotificationSettings } from "./helpers/settings";
+
+const OTP_REGEX =
+  /\d+(?=\sis)|(?:(?<=is\s)|(?<=is:\s)|(?<=code\s)|(?<=code:\s)|(?<=passcodes:\s)|(?<=use\s)|(?<=password:\s))\d+/gm;
 
 window.addEventListener("load", () => {
   if (IS_MAC) {
@@ -81,26 +85,39 @@ const OldNotification = window.Notification;
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 window.Notification = function (title: string, options: NotificationOptions) {
+  const appIcon = path.resolve(RESOURCES_PATH, "icons", "64x64.png");
   const icon = getProfileImg(title);
 
-  const hideContent = ipcRenderer.sendSync("should-hide-notification-content");
+  const settings: NotificationSettings = ipcRenderer.sendSync(
+    "get-notification-settings"
+  );
 
-  const notificationOpts: NotificationOptions = hideContent
-    ? {
-        body: "Click to open",
-        icon: path.resolve(RESOURCES_PATH, "icons", "64x64.png"),
-      }
-    : {
-        icon: icon?.toDataURL(),
-        body: options.body || "",
-      };
+  const otpMatches = options.body?.toLowerCase().match(OTP_REGEX) ?? [];
 
-  const newTitle = hideContent ? "New Message" : title;
+  const notificationOpts: NotificationOptions = {
+    body: settings.hideContent ? "Click to open" : options.body,
+    icon: settings.hideContent ? appIcon : icon?.toDataURL(),
+  };
+
+  const newTitle = settings.hideContent ? "New Message" : title;
   const notification = new OldNotification(newTitle, notificationOpts);
+
   notification.addEventListener("click", () => {
-    ipcRenderer.send("show-main-window");
+    if (settings.copyCode && otpMatches.length > 0) {
+      clipboard.writeText(otpMatches[0], "clipboard");
+      new Notification("Copied Code to Clipboard", {
+        body: `Copied ${otpMatches[0]} to clipboard.`,
+        icon: appIcon,
+      });
+    }
+
+    if (!settings.copyCode || settings.showOnCopy) {
+      ipcRenderer.send("show-main-window");
+    }
+
     document.dispatchEvent(new Event("focus"));
   });
+
   ipcRenderer.send("flash-main-window-if-not-focused");
   return notification;
 };
