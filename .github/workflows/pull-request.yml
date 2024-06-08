@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -43,7 +43,7 @@ jobs:
       - run: yarn dist --publish never
 
       - name: Upload Build
-        uses: actions/upload-artifact@v2.2.2
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.os }}-${{ matrix.node-version }}
           path: ./dist
