@@ -38,6 +38,10 @@ export const settingsMenu: MenuItemConstructorOptions = {
       visible: !IS_MAC,
     },
     {
+      label: "Refresh",
+      role: "forceReload",
+    },
+    {
       id: "enableTrayIconMenuItem",
       label: IS_MAC ? "Enable Menu Bar Icon" : "Enable Tray Icon",
       type: "checkbox",
