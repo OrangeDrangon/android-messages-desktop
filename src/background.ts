@@ -62,7 +62,7 @@ if (gotTheLock) {
     const { width, height } = savedWindowSize.value;
     const { x, y } = savedWindowPosition.value ?? {};
 
-    console.log("app.getAppPath()", app.getAppPath())
+    console.log("app.getAppPath()", app.getAppPath());
     mainWindow = new BrowserWindow({
       width,
       height,
@@ -88,17 +88,23 @@ if (gotTheLock) {
       mainWindow.show();
     }
 
-    // set user agent to potentially make google fi work
-    const userAgent =
-      "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/120.0";
-
+    // Fix the user agent -- Google sends auth requests to YouTube as well, for some reason
     mainWindow.webContents.session.webRequest.onBeforeSendHeaders(
       {
-        urls: ["https://accounts.google.com/*"],
+        urls: ["https://*.google.com/*", "https://*.youtube.com/*"],
       },
       ({ requestHeaders }, callback) =>
         callback({
-          requestHeaders: { ...requestHeaders, "User-Agent": userAgent },
+          requestHeaders: {
+            ...requestHeaders,
+            // Specifically, we are ONLY removing the Electron portion of the agent
+            // Found via https://old.reddit.com/r/electronjs/comments/eiy2sf/google_blocking_log_in_from_electron_apps/fcvuwd9/
+            // Referenced at this link https://github.com/firebase/firebase-js-sdk/issues/2478#issuecomment-571773318
+            "User-Agent": mainWindow.webContents.userAgent.replace(
+              "Electron/" + process.versions.electron,
+              ""
+            ),
+          },
         })
     );
     mainWindow.loadURL("https://messages.google.com/web/");
@@ -138,11 +144,10 @@ if (gotTheLock) {
     });
 
     mainWindow.webContents.setWindowOpenHandler((details) => {
-      if (details.url.indexOf('http') === 0) {
-        shell.openExternal(details.url);
-      }
-      return { action: 'deny' }
+      shell.openExternal(details.url)
+      return {action: "deny"}
     });
+
 
     mainWindow.webContents.on("context-menu", popupContextMenu);
 
@@ -166,7 +171,7 @@ if (gotTheLock) {
         ],
       },
       (details, callback) => {
-        let path = details.url.replace("file://www.google.com/js/bg", "")
+        let path = details.url.replace("file://www.google.com/js/bg", "");
         callback({ redirectURL: "https://www.google.com/js/bg" + path });
       }
     );
