@@ -149,7 +149,15 @@ export class TrayManager {
 
   private handleTrayClick() {
     const mainWindow = getMainWindow();
-    mainWindow?.show();
+    if (!mainWindow)
+      return;
+
+    if (mainWindow.isVisible()) {
+      mainWindow.hide();
+    }
+    else {
+      mainWindow.show();
+    }
   }
 
   private destroy(): void {
