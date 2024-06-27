@@ -154,8 +154,7 @@ export class TrayManager {
 
     if (mainWindow.isVisible()) {
       mainWindow.hide();
-    }
-    else {
+    } else {
       mainWindow.show();
     }
   }
