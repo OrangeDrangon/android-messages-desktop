@@ -1,21 +1,31 @@
-name: update-copyright-year
+name: Update License
 
 on:
   schedule:
-    - cron: '0 1 1 1 *' # 01:00 AM on January 1
+    - cron: '0 10 1 1 *' # 10:00 AM on January 1
+
+permissions:
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: update-license
+  cancel-in-progress: ${{ github.event_name != 'issue_comment' }}
 
 jobs:
   update-license-year:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: FantasticFiasco/action-update-license-year@v3
+      - name: Update License Year
+        uses: FantasticFiasco/action-update-license-year@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commitAuthorEmail: noreply@github.com
-      - name: Merge pull request
+      - name: Merge Pull Request
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
