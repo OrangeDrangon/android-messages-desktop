@@ -1258,10 +1258,10 @@ electron-to-chromium@^1.4.820:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.3.tgz#032bbb8661c0449656fd896e805c8f7150229a0f"
   integrity sha512-QNdYSS5i8D9axWp/6XIezRObRHqaav/ur9z1VzCDUCH1XIFOr9WQk5xmgunhsTpjjgDy3oLxO/WMOVZlpUQrlA==
 
-electron-updater@6.3.1:
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/electron-updater/-/electron-updater-6.3.1.tgz#f233dfa2a3d8bf5b91c9224749faefcff01a9500"
-  integrity sha512-Et9t9LcH42q/A73yu398YGHR7cbdTnHbIyFN/p0FNZIJi10XxGshZBVVE6FsClMuoggw7FVhn1+kMUVMCqS7MA==
+electron-updater@6.3.2:
+  version "6.3.2"
+  resolved "https://registry.yarnpkg.com/electron-updater/-/electron-updater-6.3.2.tgz#d6d4104928a11397b6028b8cdedc90a63615066f"
+  integrity sha512-bEpuZ1IRnMtvZZaWeYi9ocX90Cnk+/impZ/08r6GQkfOMqECtKC2IjvxHcDk2VpWO8QZzK0+MUNaBiO81CGvQQ==
   dependencies:
     builder-util-runtime "9.2.5"
     fs-extra "^10.1.0"
