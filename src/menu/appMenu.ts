@@ -17,6 +17,9 @@ export const appMenuTemplate: MenuItemConstructorOptions = {
     separator,
     settingsMenu,
     separator,
+    { 
+      role: 'close',
+    },
     {
       label: "Hide Android Messages Desktop",
       accelerator: "Command+H",
