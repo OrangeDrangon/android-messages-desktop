@@ -47,6 +47,8 @@ export interface JsonSettings {
   isUpdate: boolean;
   taskbarFlashEnabled: boolean;
   trayIconRedDotEnabled: boolean;
+  copyVerificationCodeToClipboard: boolean;
+  showWindowOnNotificationClickWhenCopyingCode: boolean;
 }
 
 // wraps json settings in the setting type for export
@@ -79,6 +81,8 @@ const defaultSettings: JsonSettings = {
   isUpdate: false,
   taskbarFlashEnabled: true,
   trayIconRedDotEnabled: true,
+  copyVerificationCodeToClipboard: false,
+  showWindowOnNotificationClickWhenCopyingCode: false,
 };
 
 // create default settings file if it doesnt exist
@@ -107,6 +111,12 @@ let settingsFlushEnabled = true;
 export const setSettingsFlushEnabled = (val: boolean) => {
   settingsFlushEnabled = val;
 };
+
+export interface NotificationSettings {
+  hideContent: boolean;
+  copyCode: boolean;
+  showOnCopy: boolean;
+}
 
 // loop through and add all the event listeners
 // has to be done in this step because settings needs to exist

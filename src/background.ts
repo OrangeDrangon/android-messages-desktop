@@ -5,7 +5,11 @@ import process from "process";
 import { checkForUpdate } from "./helpers/autoUpdate";
 import { IS_DEV, IS_LINUX, IS_MAC, RESOURCES_PATH } from "./helpers/constants";
 import { MenuManager } from "./helpers/menuManager";
-import { setSettingsFlushEnabled, settings } from "./helpers/settings";
+import {
+  NotificationSettings,
+  setSettingsFlushEnabled,
+  settings,
+} from "./helpers/settings";
 import { Conversation, TrayManager } from "./helpers/trayManager";
 import { popupContextMenu } from "./menu/contextMenu";
 
@@ -170,8 +174,13 @@ if (gotTheLock) {
     );
   }); //onready
 
-  ipcMain.on("should-hide-notification-content", (event) => {
-    event.returnValue = settings.hideNotificationContentEnabled.value;
+  ipcMain.on("get-notification-settings", (event) => {
+    const notificationSettings: NotificationSettings = {
+      hideContent: settings.hideNotificationContentEnabled.value,
+      copyCode: settings.copyVerificationCodeToClipboard.value,
+      showOnCopy: settings.showWindowOnNotificationClickWhenCopyingCode.value,
+    };
+    event.returnValue = notificationSettings;
   });
 
   ipcMain.on("show-main-window", () => {
