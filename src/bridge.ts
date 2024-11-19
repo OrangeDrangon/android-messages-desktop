@@ -30,23 +30,23 @@ const preload_init = () => {
         background: none;
         pointer-events: none;
       }`;
-  
+
       document.body.appendChild(
         Object.assign(document.createElement("style"), {
           textContent: titlebarStyle,
         })
       );
-  
+
       const titlebar = document.createElement("div");
       titlebar.id = "amd-titlebar";
       document.querySelector("mw-app")?.parentNode?.prepend(titlebar);
     }
-  
+
     const conversationListObserver = new MutationObserver(() => {
       if (document.querySelector("mws-conversations-list") != null) {
         createUnreadObserver();
         createRecentThreadObserver();
-  
+
         // keep trying to get an image that isnt blank until they load
         const interval = setInterval(() => {
           const conversation = document.body.querySelector(
@@ -56,7 +56,7 @@ const preload_init = () => {
             const canvas = conversation.querySelector(
               "a div.avatar-container canvas"
             ) as HTMLCanvasElement | null;
-  
+
             if (canvas != null && canvas.toDataURL() != INITIAL_ICON_IMAGE) {
               recentThreadObserver();
               // refresh for profile image loads after letter loads.
@@ -67,13 +67,13 @@ const preload_init = () => {
         }, 250);
         conversationListObserver.disconnect();
       }
-  
+
       const title = document.head.querySelector("title");
       if (title != null) {
         title.innerText = "Android Messages";
       }
     });
-  
+
     conversationListObserver.observe(document.body, {
       attributes: false,
       subtree: true,
@@ -107,7 +107,7 @@ webFrame.executeJavaScript(`
     window.icon_data_uri = await window.interop.get_icon();
   });
 `);
-webFrame.executeJavaScript(`window.OldNotification = window.Notification; 
+webFrame.executeJavaScript(`window.OldNotification = window.Notification;
 window.Notification = function (title, options) {
   try {
     const hideContent = window.interop.should_hide();
