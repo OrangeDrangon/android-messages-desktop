@@ -1,4 +1,4 @@
-import { BrowserWindow, MenuItem, MenuItemConstructorOptions } from "electron";
+import { BaseWindow, MenuItem, MenuItemConstructorOptions } from "electron";
 import { IS_MAC } from "../helpers/constants";
 import { settings } from "../helpers/settings";
 import { separator } from "./items/separator";
@@ -27,7 +27,7 @@ export const settingsMenu: MenuItemConstructorOptions = {
       label: "Auto Hide Menu Bar",
       type: "checkbox",
       checked: autoHideMenuEnabled.value,
-      click: (item: MenuItem, window?: BrowserWindow): void => {
+      click: (item: MenuItem, window?: BaseWindow, event?: Electron.KeyboardEvent): void => {
         autoHideMenuEnabled.next(item.checked);
         window?.setMenuBarVisibility(!autoHideMenuEnabled.value);
         window?.setAutoHideMenuBar(autoHideMenuEnabled.value);
