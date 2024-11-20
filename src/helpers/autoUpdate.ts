@@ -35,6 +35,14 @@ export async function checkForUpdate(
         icon: path.resolve(RESOURCES_PATH, "icons", "64x64.png"),
       });
       notification.show();
+    } else if (!isUpdate && showNotification) {
+      const notification = new Notification({
+        title: "No update found",
+        icon: path.resolve(RESOURCES_PATH, "icons", "64x64.png"),
+        silent: true,
+        urgency: "low",
+      });
+      notification.show();
     }
   }
   const installUpdateMenuItem = Menu.getApplicationMenu()?.getMenuItemById(
