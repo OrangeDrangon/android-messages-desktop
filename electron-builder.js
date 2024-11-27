@@ -17,6 +17,12 @@ export default {
       "--gtk-version=3",
     ],
     category: "Internet",
+    desktop: {
+      entry: {
+        Name: "Android Messages Desktop",
+        StartupWMClass: "android-messages-desktop",
+      },
+    },
   },
   win: {
     target: ["nsis", "portable"],
