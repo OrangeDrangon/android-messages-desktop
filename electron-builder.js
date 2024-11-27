@@ -18,6 +18,7 @@ module.exports = {
     category: "Internet",
     desktop: {
       Name: "Android Messages Desktop",
+      "StartupWMClass": "android-messages-desktop"
     },
   },
   win: {
