@@ -1,8 +1,8 @@
-module.exports = {
+export default {
   appId: "pw.kmr.amd",
   artifactName: "${productName}-v${version}-${os}-${arch}.${ext}",
   productName: "Android Messages",
-  copyright: "Copyright 2020 Kyle Rosenberg",
+  copyright: "Copyright 2025 Kyle Rosenberg",
   files: ["app/**/*", "resources/**/*"],
   directories: {
     buildResources: "resources",
@@ -16,9 +16,6 @@ module.exports = {
       "--enable-features=WaylandWindowDecorations",
     ],
     category: "Internet",
-    desktop: {
-      Name: "Android Messages Desktop",
-    },
   },
   win: {
     target: ["nsis", "portable"],
