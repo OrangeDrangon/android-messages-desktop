@@ -1,4 +1,10 @@
-import { app, Event as ElectronEvent, ipcMain, ipcRenderer, shell } from "electron";
+import {
+  app,
+  Event as ElectronEvent,
+  ipcMain,
+  ipcRenderer,
+  shell,
+} from "electron";
 import { BrowserWindow } from "electron/main";
 import path from "path";
 import process from "process";
@@ -100,10 +106,12 @@ if (gotTheLock) {
             // Specifically, we are ONLY removing the Electron portion of the agent
             // Found via https://old.reddit.com/r/electronjs/comments/eiy2sf/google_blocking_log_in_from_electron_apps/fcvuwd9/
             // Referenced at this link https://github.com/firebase/firebase-js-sdk/issues/2478#issuecomment-571773318
-            "User-Agent": mainWindow.webContents.userAgent.replace(
-              "Electron/" + process.versions.electron,
-              ""
-            ),
+            // "User-Agent": mainWindow.webContents.userAgent.replace(
+            //   "Electron/" + process.versions.electron,
+            //   ""
+            // ),
+            "User-Agent":
+              "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/2000.36 (KHTML, like Gecko) Chrome/2000.0.0.0 Safari/2000.36",
           },
         })
     );
@@ -198,7 +206,9 @@ if (gotTheLock) {
   });
 
   ipcMain.handle("get-icon", () => {
-    var bitmap = fs.readFileSync(path.resolve(RESOURCES_PATH, "icons", "64x64.png"));
-    return Buffer.from(bitmap).toString('base64');
-  })
+    var bitmap = fs.readFileSync(
+      path.resolve(RESOURCES_PATH, "icons", "64x64.png")
+    );
+    return Buffer.from(bitmap).toString("base64");
+  });
 }
