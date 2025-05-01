@@ -46,7 +46,7 @@ if (IS_MAC) {
   app.on("activate", () => {
     if (mainWindow) {
       mainWindow.show();
-      app.dock.setBadge("");
+      app.dock?.setBadge("");
     }
   });
 }
@@ -147,8 +147,8 @@ if (gotTheLock) {
         event.preventDefault();
         mainWindow.hide();
         trayManager?.showMinimizeToTrayWarning();
-        if (process.platform === "darwin") {
-          app.dock.hide();
+        if (IS_MAC) {
+          app.dock?.hide();
         }
       } else {
         app.quit(); // If we don't explicitly call this, the webview and mainWindow get destroyed but background process still runs.
@@ -184,7 +184,7 @@ if (gotTheLock) {
   ipcMain.on("show-main-window", () => {
     mainWindow.show();
     if (IS_MAC) {
-      app.dock.setBadge("");
+      app.dock?.setBadge("");
     }
   });
 
@@ -192,7 +192,7 @@ if (gotTheLock) {
     if (!mainWindow.isFocused() && taskbarFlashEnabled.value) {
       mainWindow.flashFrame(true);
       if (IS_MAC) {
-        app.dock.setBadge("•");
+        app.dock?.setBadge("•");
       }
     }
   });
@@ -206,9 +206,17 @@ if (gotTheLock) {
   });
 
   ipcMain.handle("get-icon", () => {
+<<<<<<< Updated upstream
     var bitmap = fs.readFileSync(
+=======
+    const bitmap = fs.readFileSync(
+>>>>>>> Stashed changes
       path.resolve(RESOURCES_PATH, "icons", "64x64.png")
     );
     return Buffer.from(bitmap).toString("base64");
   });
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 }
