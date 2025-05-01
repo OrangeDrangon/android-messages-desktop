@@ -69,6 +69,7 @@ if (gotTheLock) {
     const { width, height } = savedWindowSize.value;
     const { x, y } = savedWindowPosition.value ?? {};
 
+    console.log("app.getAppPath()", app.getAppPath());
     mainWindow = new BrowserWindow({
       width,
       height,
@@ -115,7 +116,6 @@ if (gotTheLock) {
           },
         })
     );
-
     mainWindow.loadURL("https://messages.google.com/web/");
 
     trayManager.startIfEnabled();
@@ -173,6 +173,28 @@ if (gotTheLock) {
       },
       (details, callback) => {
         callback({ cancel: true });
+      }
+    );
+    mainWindow.webContents.session.webRequest.onBeforeRequest(
+      {
+        urls: [
+          "file://www.google.com/js/bg*",
+        ],
+      },
+      (details, callback) => {
+        const path = details.url.replace("file://www.google.com/js/bg", "");
+        callback({ redirectURL: "https://www.google.com/js/bg" + path });
+      }
+    );
+    mainWindow.webContents.session.webRequest.onBeforeRequest(
+      {
+        urls: [
+          "file:///web/",
+        ],
+      },
+      (details, callback) => {
+        let path = details.url.replace("file:///web/", "");
+        callback({ redirectURL: "https://www.google.com/js/bg" + path });
       }
     );
   }); //onready

@@ -6,6 +6,14 @@ name: pull request
 on:
   pull_request:
     types: [opened, synchronize, reopened, edited]
+    paths:
+      - .github/workflows/pull-request.yml
+      - src/*
+      - electron-builder.js
+      - package.json
+      - tsconfig.json
+      - webpack.config.ts
+      - yarn.lock
 
 jobs:
   build:
@@ -17,7 +25,7 @@ jobs:
           - windows-latest
           - ubuntu-latest
         node-version:
-          - 20
+          - 22
 
     steps:
       - uses: actions/checkout@v4

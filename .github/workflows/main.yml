@@ -1,11 +1,19 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: master
+name: main
 
 on:
   push:
-    branches: [master]
+    branches: [main]
+    paths:
+      - .github/workflows/main.yml
+      - src/*
+      - electron-builder.js
+      - package.json
+      - tsconfig.json
+      - webpack.config.ts
+      - yarn.lock
 
 jobs:
   build:
@@ -17,7 +25,7 @@ jobs:
           - windows-latest
           - ubuntu-latest
         node-version:
-          - 20
+          - 22
 
     steps:
       - uses: actions/checkout@v4
