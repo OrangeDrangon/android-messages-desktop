@@ -13,7 +13,8 @@ function setUpdaterSettings(): void {
  * Returns true if there is an update.
  */
 export async function checkForUpdate(
-  showNotification: boolean
+  showUpdateNotification: boolean,
+  showNoUpdateNotification: boolean
 ): Promise<boolean> {
   setUpdaterSettings();
   const results = await autoUpdater.checkForUpdates().catch(() => null);
@@ -26,7 +27,7 @@ export async function checkForUpdate(
     );
 
     isUpdate = results.updateInfo.version > app.getVersion();
-    if (isUpdate && showNotification) {
+    if (isUpdate && showUpdateNotification) {
       const notification = new Notification({
         title: "Update Available",
         body:
@@ -35,7 +36,7 @@ export async function checkForUpdate(
         icon: path.resolve(RESOURCES_PATH, "icons", "64x64.png"),
       });
       notification.show();
-    } else if (!isUpdate && showNotification) {
+    } else if (!isUpdate && showNoUpdateNotification) {
       const notification = new Notification({
         title: "No update found",
         icon: path.resolve(RESOURCES_PATH, "icons", "64x64.png"),
@@ -61,7 +62,7 @@ export async function checkForUpdate(
 export async function installUpdate(): Promise<void> {
   if (!IS_DEV) {
     setUpdaterSettings();
-    if (await checkForUpdate(false)) {
+    if (await checkForUpdate(false, false)) {
       await autoUpdater.downloadUpdate();
       settings.isUpdate.next(false);
       autoUpdater.quitAndInstall();
