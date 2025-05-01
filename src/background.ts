@@ -206,17 +206,9 @@ if (gotTheLock) {
   });
 
   ipcMain.handle("get-icon", () => {
-<<<<<<< Updated upstream
-    var bitmap = fs.readFileSync(
-=======
     const bitmap = fs.readFileSync(
->>>>>>> Stashed changes
       path.resolve(RESOURCES_PATH, "icons", "64x64.png")
     );
     return Buffer.from(bitmap).toString("base64");
   });
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 }
