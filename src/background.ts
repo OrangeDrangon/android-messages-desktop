@@ -57,7 +57,7 @@ if (gotTheLock) {
     new MenuManager();
 
     if (checkForUpdateOnLaunchEnabled.value && !IS_DEV) {
-      checkForUpdate(true);
+      checkForUpdate(true, false);
     }
 
     const { width, height } = savedWindowSize.value;
