@@ -23,7 +23,7 @@ export const aboutMenuItem: MenuItemConstructorOptions = {
   click: () => {
     openAboutWindow({
       icon_path: path.resolve(RESOURCES_PATH, "icons", "512x512.png"),
-      copyright: `<div style="text-align: center">Copyright (c) 2020 Kyle Rosenberg${disclaimerText}${licenseText}</div>`,
+      copyright: `<div style="text-align: center">Copyright (c) 2025 Kyle Rosenberg${disclaimerText}${licenseText}</div>`,
       product_name: productName,
       description: descriptionWithLocale,
       open_devtools: false,
