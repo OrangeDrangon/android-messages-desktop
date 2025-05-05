@@ -14,6 +14,7 @@ export default {
     executableArgs: [
       "--ozone-platform-hint=auto",
       "--enable-features=WaylandWindowDecorations",
+      "--gtk-version=3",
     ],
     category: "Internet",
   },
