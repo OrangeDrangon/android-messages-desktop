@@ -1,10 +1,10 @@
 {
   "name": "android-messages-desktop",
   "description": "Messages for web, as a desktop app",
-  "version": "5.7.0",
+  "version": "5.7.1",
   "author": {
     "name": "Kyle Rosenberg",
-    "email": "kyle@ekrosenberg.com"
+    "email": "25403517+OrangeDrangon@users.noreply.github.com"
   },
   "license": "MIT",
   "copyright": "Copyright 2020 Kyle Rosenberg",
