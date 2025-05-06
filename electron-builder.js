@@ -14,8 +14,15 @@ export default {
     executableArgs: [
       "--ozone-platform-hint=auto",
       "--enable-features=WaylandWindowDecorations",
+      "--gtk-version=3",
     ],
     category: "Internet",
+    desktop: {
+      entry: {
+        Name: "Android Messages Desktop",
+        StartupWMClass: "android-messages-desktop",
+      },
+    },
   },
   win: {
     target: ["nsis", "portable"],
