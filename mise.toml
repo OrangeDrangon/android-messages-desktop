@@ -1,2 +1,3 @@
 [tools]
+github-cli = "latest"
 node = "lts"
