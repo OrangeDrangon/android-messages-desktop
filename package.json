@@ -44,7 +44,7 @@
     "cross-env": "^7.0.2",
     "electron": "^36.2.1",
     "electron-builder": "^26.0.12",
-    "eslint": "^9.26.0",
+    "eslint": "^9.27.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-prettier": "^5.4.0",
     "png2icons": "^2.0.1",
