@@ -20,6 +20,7 @@ Inspired by:
 - [🍏 Install on MacOS via Homebrew](#-install-on-macos-via-homebrew)
 - [🪟 Install on Windows via Scoop](#-install-on-windows-via-scoop)
 - [🤝 Contributions](#-contributions)
+- [📄 License](#-license)
 
 ## 📥 Install Anywhere
 
@@ -49,3 +50,7 @@ Steps to contribute:
 4. `yarn install` for dependencies
 5. `yarn start` to build and run assuming you have electron installed.
 6. Open a pull request when you think it is ready or for feedback during the dev process
+
+## 📄 License
+
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
