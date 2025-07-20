@@ -19,7 +19,7 @@ Download your build from the [releases](https://github.com/OrangeDrangon/android
 
 # Install on Archlinux via AUR
 
-`yay -S android-messages-desktop-bin` or the relevant command in your aur helper.
+`paru -S android-messages-desktop-bin` or the relevant command in your aur helper.
 
 # Install on MacOS via Homebrew
 
@@ -41,3 +41,6 @@ Steps to contribute:
 4. `yarn install` for dependencies
 5. `yarn start` to build and run assuming you have electron installed.
 6. Open a pull request when you think it is ready or for feedback during the dev process
+
+The easiest way to get a developer environment up and running is using [devenv](https://devenv.sh). It is just node and
+yarn though so any install of those should work at the end of the day.
