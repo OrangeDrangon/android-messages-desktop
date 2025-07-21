@@ -45,7 +45,7 @@
     "electron": "^37.2.3",
     "electron-builder": "^26.0.12",
     "eslint": "^9.31.0",
-    "eslint-config-prettier": "^10.1.5",
+    "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.3",
     "png2icons": "^2.0.1",
     "prettier": "^3.6.2",
