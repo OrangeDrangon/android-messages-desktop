@@ -20,6 +20,7 @@ Inspired by:
 - [🍏 Install on MacOS via Homebrew](#-install-on-macos-via-homebrew)
 - [🪟 Install on Windows via Scoop](#-install-on-windows-via-scoop)
 - [🤝 Contributions](#-contributions)
+- [💻 Developer Environment](#-developer-environment)
 - [📄 License](#-license)
 
 ## 📥 Install Anywhere
@@ -28,7 +29,8 @@ Download your build from the [releases](https://github.com/LanikSJ/android-messa
 
 ## 🐧 Install on Archlinux via AUR
 
-`yay -S android-messages-desktop-bin` or the relevant command in your aur helper.
+`paru -S android-messages-desktop-bin` or the relevant command in your aur helper.
+`paru -S android-messages-desktop-bin` or the relevant command in your aur helper.
 
 ## 🍏 Install on MacOS via Homebrew
 
@@ -50,6 +52,11 @@ Steps to contribute:
 4. `yarn install` for dependencies
 5. `yarn start` to build and run assuming you have electron installed.
 6. Open a pull request when you think it is ready or for feedback during the dev process
+
+## 💻 Developer Environment
+
+The easiest way to get a developer environment up and running is using [devenv](https://devenv.sh).
+It is just node and yarn though so any install of those should work at the end
 
 ## 📄 License
 

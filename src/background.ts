@@ -1,10 +1,4 @@
-import {
-  app,
-  Event as ElectronEvent,
-  ipcMain,
-  ipcRenderer,
-  shell,
-} from "electron";
+import { app, Event as ElectronEvent, ipcMain, shell } from "electron";
 import { BrowserWindow } from "electron/main";
 import path from "path";
 import process from "process";
