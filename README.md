@@ -26,6 +26,7 @@ Inspired by:
 ## 📥 Install Anywhere
 
 Download your build from the [releases](https://github.com/LanikSJ/android-messages-desktop/releases/latest) page.
+`paru -S android-messages-desktop-bin` or the relevant command in your aur helper.
 
 ## 🐧 Install on Archlinux via AUR
 
