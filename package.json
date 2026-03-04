@@ -44,7 +44,7 @@
     "@typescript-eslint/eslint-plugin": "^8.56.1",
     "@typescript-eslint/parser": "^8.56.1",
     "cross-env": "^10.1.0",
-    "electron": "^40.6.1",
+    "electron": "^40.7.0",
     "electron-builder": "^26.8.1",
     "eslint": "^10.0.2",
     "eslint-config-prettier": "^10.1.8",
