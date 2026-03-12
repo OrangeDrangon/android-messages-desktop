@@ -419,10 +419,10 @@
   resolved "https://registry.yarnpkg.com/@types/ms/-/ms-2.1.0.tgz#052aa67a48eccc4309d7f0191b7e41434b90bb78"
   integrity sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==
 
-"@types/node@*", "@types/node@25.4.0":
-  version "25.4.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-25.4.0.tgz#f25d8467984d6667cc4c1be1e2f79593834aaedb"
-  integrity sha512-9wLpoeWuBlcbBpOY3XmzSTG3oscB6xjBEEtn+pYXTfhyXhIxC5FsBer2KTopBlvKEiW9l13po9fq+SJY/5lkhw==
+"@types/node@*", "@types/node@25.5.0":
+  version "25.5.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-25.5.0.tgz#5c99f37c443d9ccc4985866913f1ed364217da31"
+  integrity sha512-jp2P3tQMSxWugkCUKLRPVUpGaL5MVFwF8RDuSRztfwgN1wmqJeMSbKlnEtQqU8UrhTmzEmZdu2I6v2dpp7XIxw==
   dependencies:
     undici-types "~7.18.0"
 
@@ -1409,10 +1409,10 @@ electron-updater@6.8.3:
     semver "~7.7.3"
     tiny-typed-emitter "^2.1.0"
 
-electron@^41.0.0:
-  version "41.0.0"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-41.0.0.tgz#5c5dcc8f38f7a53700ccd24c2abda962fa9a1d2b"
-  integrity sha512-U7QueSj1cFj9QM0Qamgh/MK08662FVK555iMfapqU7mcAmIm4A8bZuZptpjMXrT4JNAMGjgWu9sOeO1+RPCJNw==
+electron@^41.0.1:
+  version "41.0.1"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-41.0.1.tgz#8c374e873adbd3591abfca0bcc872f18d58bba84"
+  integrity sha512-VElEzqqlqQJla59NF7TPf9u7yGX1NEpVz94ZNp/dMRUMPJHcc9kuP7C4ODbNzzevjhChw9gB4NT6osNpN5qjJA==
   dependencies:
     "@electron/get" "^2.0.0"
     "@types/node" "^24.9.0"
