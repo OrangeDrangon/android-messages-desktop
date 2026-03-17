@@ -1389,10 +1389,10 @@ electron-updater@6.8.3:
     semver "~7.7.3"
     tiny-typed-emitter "^2.1.0"
 
-electron@^41.0.2:
-  version "41.0.2"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-41.0.2.tgz#bfe2b9fa1782afe5566df9947fa822ad81b3b450"
-  integrity sha512-raotm/aO8kOs1jD8SI8ssJ7EKciQOY295AOOprl1TxW7B0At8m5Ae7qNU1xdMxofiHMR8cNEGi9PKD3U+yT/mA==
+electron@^41.0.3:
+  version "41.0.3"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-41.0.3.tgz#fa8864adacf903b986cd1d532db130f070e320f1"
+  integrity sha512-IDjx8liW1q+r7+MOip5W1Eo1eMwJzVObmYrd9yz2dPCkS7XlgLq3qPVMR80TpiROFp73iY30kTzMdpA6fEVs3A==
   dependencies:
     "@electron/get" "^2.0.0"
     "@types/node" "^24.9.0"
@@ -3389,10 +3389,10 @@ wcwidth@^1.0.1:
   dependencies:
     defaults "^1.0.3"
 
-webpack-cli@^7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-7.0.1.tgz#fb3775866c49a642e17d4f0793c5f16365d423cc"
-  integrity sha512-QeNvbQ3q67tiY7UqjbsfhK2026YTVhtW8XsfdrrGfGUtBe6EQpxBB1w9SbB2eLTZzx4m8tRvm8dqKo8rBNfeFg==
+webpack-cli@^7.0.2:
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-7.0.2.tgz#c916e324acc7c14f895226ed351020924900db12"
+  integrity sha512-dB0R4T+C/8YuvM+fabdvil6QE44/ChDXikV5lOOkrUeCkW5hTJv2pGLE3keh+D5hjYw8icBaJkZzpFoaHV4T+g==
   dependencies:
     "@discoveryjs/json-ext" "^1.0.0"
     commander "^14.0.3"
