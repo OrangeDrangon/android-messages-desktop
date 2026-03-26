@@ -60,13 +60,13 @@ export class TrayManager {
       if (this.enabled) {
         // if the os is windows generate guid otherwise it is undefined
         const guid = uuidv5(
-              `${app.getName()}${
-                // if is dev add an identifier
-                IS_DEV ? "-development" : ""
-                // append the app path incase that changes for some reason
-              }-${app.getAppPath()}`,
-              UUID_NAMESPACE
-            );
+          `${app.getName()}${
+            // if is dev add an identifier
+            IS_DEV ? "-development" : ""
+            // append the app path incase that changes for some reason
+          }-${app.getAppPath()}`,
+          UUID_NAMESPACE
+        );
         this.tray = new Tray(this.getIconPath(), ...(IS_WINDOWS ? [guid] : []));
         const trayContextMenu = Menu.buildFromTemplate(trayMenuTemplate);
         this.tray.setContextMenu(trayContextMenu);

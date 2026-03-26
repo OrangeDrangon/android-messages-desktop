@@ -38,7 +38,6 @@
     /* Emit */
     "importHelpers": true /* Allow importing helper functions from tslib once per project, instead of including them per-file. */,
     "useDefineForClassFields": true /* Emit ECMAScript-standard-compliant class fields. */,
-    "ignoreDeprecations": "6.0" /* Ignore deprecation warnings for TypeScript 6.0 compatibility. */,
 
     /* Interop Constraints */
     "isolatedModules": true /* Ensure that each file can be safely transpiled without relying on other imports. */,

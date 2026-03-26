@@ -1,0 +1,9 @@
+# Ignore GitHub files from prettier formatting
+.github/
+
+# Other common ignores
+node_modules/
+dist/
+build/
+*.log
+.DS_Store
