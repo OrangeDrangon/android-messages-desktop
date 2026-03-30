@@ -29,10 +29,10 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
       - name: Setup Restyled
-        uses: restyled-io/actions/setup@60cff030e5595e1c2d9e8a9665296570da3a6c49 # v4.4.17
+        uses: restyled-io/actions/setup@eccb82516f66d12b9608e23e7b08c45dc896231e # v4.4.18
       - name: Run Restyled
         id: restyler
-        uses: restyled-io/actions/run@60cff030e5595e1c2d9e8a9665296570da3a6c49 # v4.4.17
+        uses: restyled-io/actions/run@eccb82516f66d12b9608e23e7b08c45dc896231e # v4.4.18
         with:
           fail-on-differences: true
 
@@ -61,9 +61,9 @@ jobs:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.event.pull_request.head.ref }}
       - name: Setup Restyled
-        uses: restyled-io/actions/setup@60cff030e5595e1c2d9e8a9665296570da3a6c49 # v4.4.17
+        uses: restyled-io/actions/setup@eccb82516f66d12b9608e23e7b08c45dc896231e # v4.4.18
       - name: Run Restyled
-        uses: restyled-io/actions/run@60cff030e5595e1c2d9e8a9665296570da3a6c49 # v4.4.17
+        uses: restyled-io/actions/run@eccb82516f66d12b9608e23e7b08c45dc896231e # v4.4.18
         with:
           fail-on-differences: true
 
@@ -73,10 +73,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup Restyled
-        uses: restyled-io/actions/setup@60cff030e5595e1c2d9e8a9665296570da3a6c49 # v4.4.17
+        uses: restyled-io/actions/setup@eccb82516f66d12b9608e23e7b08c45dc896231e # v4.4.18
       - name: Run Restyled
         id: restyler
-        uses: restyled-io/actions/run@60cff030e5595e1c2d9e8a9665296570da3a6c49 # v4.4.17
+        uses: restyled-io/actions/run@eccb82516f66d12b9608e23e7b08c45dc896231e # v4.4.18
       - name: Close Restyled PR
         run: gh --repo "$REPO" pr close "$BRANCH" --delete-branch || true
         env:
