@@ -29,16 +29,16 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
       - name: Setup Restyled
-        uses: restyled-io/actions/setup@15a27a1875c7c7c5b1a32343861f66c5f07baa8b # v4.4.20
+        uses: restyled-io/actions/setup@da77999fc52ee0d74212e9f0391b1b23150a4547 # v4.4.21
       - name: Run Restyled
         id: restyler
-        uses: restyled-io/actions/run@15a27a1875c7c7c5b1a32343861f66c5f07baa8b # v4.4.20
+        uses: restyled-io/actions/run@da77999fc52ee0d74212e9f0391b1b23150a4547 # v4.4.21
         with:
           fail-on-differences: true
 
       - name: Create Restyled PR
         if: ${{ !cancelled() && steps.restyler.outputs.success == 'true' }}
-        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
           base: ${{ steps.restyler.outputs.restyled-base }}
           branch: ${{ steps.restyler.outputs.restyled-head }}
@@ -61,9 +61,9 @@ jobs:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.event.pull_request.head.ref }}
       - name: Setup Restyled
-        uses: restyled-io/actions/setup@15a27a1875c7c7c5b1a32343861f66c5f07baa8b # v4.4.20
+        uses: restyled-io/actions/setup@da77999fc52ee0d74212e9f0391b1b23150a4547 # v4.4.21
       - name: Run Restyled
-        uses: restyled-io/actions/run@15a27a1875c7c7c5b1a32343861f66c5f07baa8b # v4.4.20
+        uses: restyled-io/actions/run@da77999fc52ee0d74212e9f0391b1b23150a4547 # v4.4.21
         with:
           fail-on-differences: true
 
@@ -73,10 +73,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup Restyled
-        uses: restyled-io/actions/setup@15a27a1875c7c7c5b1a32343861f66c5f07baa8b # v4.4.20
+        uses: restyled-io/actions/setup@da77999fc52ee0d74212e9f0391b1b23150a4547 # v4.4.21
       - name: Run Restyled
         id: restyler
-        uses: restyled-io/actions/run@15a27a1875c7c7c5b1a32343861f66c5f07baa8b # v4.4.20
+        uses: restyled-io/actions/run@da77999fc52ee0d74212e9f0391b1b23150a4547 # v4.4.21
       - name: Close Restyled PR
         run: gh --repo "$REPO" pr close "$BRANCH" --delete-branch || true
         env:
