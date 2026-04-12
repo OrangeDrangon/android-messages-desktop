@@ -1,0 +1,28 @@
+name: renovate
+on:
+  schedule:
+    - cron: "43 */4 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    environment: renovate
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Self-hosted Renovate
+        uses: renovatebot/github-action@v46.1.8
+        with:
+          token: ${{ secrets.RENOVATE_TOKEN }}
+          configurationFile: renovate.json
+        env:
+          RENOVATE_REPOSITORIES: ${{ github.repository }}
+          RENOVATE_ONBOARDING: "false"
