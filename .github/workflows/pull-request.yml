@@ -14,24 +14,24 @@ jobs:
           - windows-latest
           - ubuntu-latest
         node-version:
-          - 20
+          - 24
         pnpm-version:
           - 10
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: pnpm
-
       - name: Setup pnpm ${{ matrix.pnpm-version }}
         uses: pnpm/action-setup@v4
         with:
           version: ${{ matrix.pnpm-version }}
           run_install: false
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: pnpm
 
       - name: Install Linux Dependencies
         if: startsWith(matrix.os, 'ubuntu')

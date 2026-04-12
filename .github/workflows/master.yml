@@ -14,7 +14,7 @@ jobs:
           - windows-latest
           - ubuntu-latest
         node-version:
-          - 20
+          - 24
         pnpm-version:
           - 10
 
