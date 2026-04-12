@@ -14,7 +14,9 @@ concurrency:
 jobs:
   renovate:
     runs-on: ubuntu-latest
-    environment: renovate
+    environment: 
+      name: renovate
+      deployment: false
     steps:
       - name: Checkout
         uses: actions/checkout@v6
