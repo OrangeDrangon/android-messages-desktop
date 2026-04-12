@@ -41,7 +41,7 @@ jobs:
           libopenjp2-tools rpm libarchive-tools
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --ignore-scripts=false
 
       - name: Build
         run: pnpm run dist --publish never
