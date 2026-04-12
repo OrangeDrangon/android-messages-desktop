@@ -32,6 +32,7 @@ if (!gotTheLock) {
       if (!mainWindow.isVisible()) {
         mainWindow.show();
       }
+      mainWindow.focus();
     }
   });
 }
@@ -40,6 +41,7 @@ if (IS_MAC) {
   app.on("activate", () => {
     if (mainWindow) {
       mainWindow.show();
+      mainWindow.focus();
       app.dock?.setBadge("");
     }
   });
@@ -51,6 +53,7 @@ app.on("before-quit", () => {
 
 if (gotTheLock) {
   app.on("ready", () => app.setAppUserModelId("pw.kmr.amd"));
+
   app.on("ready", () => {
     trayManager = new TrayManager();
 
@@ -70,7 +73,7 @@ if (gotTheLock) {
       y,
       autoHideMenuBar: autoHideMenuEnabled.value,
       title: "Android Messages",
-      show: false, //don't show window just yet (issue #229)
+      show: false,
       icon: IS_LINUX
         ? path.resolve(RESOURCES_PATH, "icons", "128x128.png")
         : undefined,
@@ -79,6 +82,10 @@ if (gotTheLock) {
         preload: IS_DEV
           ? path.resolve(app.getAppPath(), "bridge.js")
           : path.resolve(app.getAppPath(), "app", "bridge.js"),
+        contextIsolation: true,
+        nodeIntegration: false,
+        sandbox: false,
+        partition: "persist:main",
       },
     });
 
@@ -87,28 +94,6 @@ if (gotTheLock) {
     if (!(settings.trayEnabled.value && settings.startInTrayEnabled.value)) {
       mainWindow.show();
     }
-
-    // Fix the user agent -- Google sends auth requests to YouTube as well, for some reason
-    mainWindow.webContents.session.webRequest.onBeforeSendHeaders(
-      {
-        urls: ["https://*.google.com/*", "https://*.youtube.com/*"],
-      },
-      ({ requestHeaders }, callback) =>
-        callback({
-          requestHeaders: {
-            ...requestHeaders,
-            // Specifically, we are ONLY removing the Electron portion of the agent
-            // Found via https://old.reddit.com/r/electronjs/comments/eiy2sf/google_blocking_log_in_from_electron_apps/fcvuwd9/
-            // Referenced at this link https://github.com/firebase/firebase-js-sdk/issues/2478#issuecomment-571773318
-            // "User-Agent": mainWindow.webContents.userAgent.replace(
-            //   "Electron/" + process.versions.electron,
-            //   ""
-            // ),
-            "User-Agent":
-              "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/2000.36 (KHTML, like Gecko) Chrome/2000.0.0.0 Safari/2000.36",
-          },
-        })
-    );
 
     mainWindow.loadURL("https://messages.google.com/web/");
 
@@ -125,51 +110,97 @@ if (gotTheLock) {
     const shouldExitOnMainWindowClosed = () => {
       if (IS_MAC) {
         return quitViaContext;
-      } else {
-        if (trayEnabled.value) {
-          return quitViaContext;
-        }
-        return true;
       }
+
+      if (trayEnabled.value) {
+        return quitViaContext;
+      }
+
+      return true;
     };
 
     mainWindow.on("close", (event: ElectronEvent) => {
       const { x, y, width, height } = mainWindow.getBounds();
       savedWindowPosition.next({ x, y });
       savedWindowSize.next({ width, height });
+
       if (!shouldExitOnMainWindowClosed()) {
         event.preventDefault();
         mainWindow.hide();
         trayManager?.showMinimizeToTrayWarning();
+
         if (IS_MAC) {
           app.dock?.hide();
         }
       } else {
-        app.quit(); // If we don't explicitly call this, the webview and mainWindow get destroyed but background process still runs.
+        app.quit();
       }
     });
 
     mainWindow.webContents.setWindowOpenHandler((details) => {
-      shell.openExternal(details.url);
+      const url = details.url;
+
+      const isGoogleAuthWindow =
+        url.startsWith("https://accounts.google.com/") ||
+        url.startsWith("https://google.com/") ||
+        url.startsWith("https://www.google.com/") ||
+        url.startsWith("https://messages.google.com/");
+
+      if (isGoogleAuthWindow) {
+        return {
+          action: "allow",
+          overrideBrowserWindowOptions: {
+            width: 500,
+            height: 700,
+            parent: mainWindow,
+            modal: true,
+            autoHideMenuBar: true,
+            titleBarStyle: IS_MAC ? "hiddenInset" : "default",
+            webPreferences: {
+              preload: IS_DEV
+                ? path.resolve(app.getAppPath(), "bridge.js")
+                : path.resolve(app.getAppPath(), "app", "bridge.js"),
+              contextIsolation: true,
+              nodeIntegration: false,
+              sandbox: false,
+              partition: "persist:main",
+            },
+          },
+        };
+      }
+
+      shell.openExternal(url);
       return { action: "deny" };
     });
 
-    mainWindow.webContents.on("context-menu", popupContextMenu);
-
-    // block Google collecting data
-    mainWindow.webContents.session.webRequest.onBeforeRequest(
-      {
-        urls: [
-          "https://messages.google.com/web/jserror?*",
-          "https://play.google.com/log?*",
-          "https://www.google-analytics.com/analytics.js",
-        ],
-      },
-      (details, callback) => {
-        callback({ cancel: true });
+    mainWindow.webContents.on(
+      "did-fail-load",
+      (_event, errorCode, errorDescription, validatedURL) => {
+        console.log("did-fail-load", {
+          errorCode,
+          errorDescription,
+          validatedURL,
+        });
       }
     );
-  }); //onready
+
+    mainWindow.webContents.on(
+      "did-redirect-navigation",
+      (_event, url, isInPlace, isMainFrame) => {
+        console.log("did-redirect-navigation", {
+          url,
+          isInPlace,
+          isMainFrame,
+        });
+      }
+    );
+
+    mainWindow.webContents.on("console-message", (_event, level, message) => {
+      console.log("renderer console:", level, message);
+    });
+
+    mainWindow.webContents.on("context-menu", popupContextMenu);
+  });
 
   ipcMain.on("should-hide-notification-content", (event) => {
     event.returnValue = settings.hideNotificationContentEnabled.value;
@@ -177,6 +208,8 @@ if (gotTheLock) {
 
   ipcMain.on("show-main-window", () => {
     mainWindow.show();
+    mainWindow.focus();
+
     if (IS_MAC) {
       app.dock?.setBadge("");
     }
@@ -185,6 +218,7 @@ if (gotTheLock) {
   ipcMain.on("flash-main-window-if-not-focused", () => {
     if (!mainWindow.isFocused() && taskbarFlashEnabled.value) {
       mainWindow.flashFrame(true);
+
       if (IS_MAC) {
         app.dock?.setBadge("•");
       }
@@ -203,6 +237,7 @@ if (gotTheLock) {
     const bitmap = fs.readFileSync(
       path.resolve(RESOURCES_PATH, "icons", "64x64.png")
     );
+
     return Buffer.from(bitmap).toString("base64");
   });
 }

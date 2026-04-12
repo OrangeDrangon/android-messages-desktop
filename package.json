@@ -3,7 +3,7 @@
   "description": "Messages for web, as a desktop app",
   "version": "5.7.1",
   "author": {
-    "name": "Kyle Rosenberg",
+    "name": "OrangeDrangon",
     "email": "25403517+OrangeDrangon@users.noreply.github.com"
   },
   "license": "MIT",
@@ -18,33 +18,32 @@
   },
   "main": "app/background.js",
   "scripts": {
-    "start": "yarn build:dev && cross-env NODE_ENV=development electron ./app/background.js",
-    "dist": "yarn build && yarn package",
+    "dev": "pnpm run build:dev && cross-env NODE_ENV=development electron ./app/background.js",
+    "dist": "pnpm run build && pnpm run package",
     "build": "webpack --mode=production",
     "build:dev": "webpack --mode=development",
     "icons": "png2icons resources/icons/1024x1024.png resources/icon -all -i",
     "lint": "eslint --fix ./src",
-    "package": "yarn electron-builder --config electron-builder.js"
+    "package": "electron-builder --config electron-builder.js"
   },
   "dependencies": {
     "about-window": "1.15.2",
-    "electron-updater": "6.6.2",
+    "electron-updater": "6.8.3",
     "fs-jetpack": "^5.1.0",
     "rxjs": "^7.8.2",
-    "uuid": "^11.1.0"
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.31.0",
-    "@types/node": "24.0.15",
-    "@types/uuid": "^10.0.0",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "25.6.0",
     "@types/webpack": "^5.28.0",
     "@types/webpack-node-externals": "^3.0.4",
     "@typescript-eslint/eslint-plugin": "^8.37.0",
     "@typescript-eslint/parser": "^8.37.0",
-    "cross-env": "^7.0.2",
-    "electron": "^37.2.3",
+    "cross-env": "^10.1.0",
+    "electron": "^41.2.0",
     "electron-builder": "^26.0.12",
-    "eslint": "^9.31.0",
+    "eslint": "^10.2.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.3",
     "png2icons": "^2.0.1",
@@ -52,10 +51,10 @@
     "source-map-support": "^0.5.21",
     "ts-loader": "^9.5.2",
     "ts-node": "^10.9.1",
-    "typescript": "^5.8.3",
+    "typescript": "^6.0.2",
     "typescript-eslint": "^8.37.0",
     "webpack": "^5.100.2",
-    "webpack-cli": "^6.0.1",
+    "webpack-cli": "^7.0.2",
     "webpack-merge": "^6.0.1",
     "webpack-node-externals": "^3.0.0"
   }

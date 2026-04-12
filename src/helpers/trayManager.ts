@@ -54,26 +54,25 @@ export class TrayManager {
   }
 
   public startIfEnabled(): void {
-    if (!this.tray) {
-      if (this.enabled) {
-        // if the os is windows generate guid otherwise it is undefined
-        const guid = IS_WINDOWS
-          ? uuidv5(
-              `${app.getName()}${
-                // if is dev add an identifier
-                IS_DEV ? "-development" : ""
-                // append the app path incase that changes for some reason
-              }-${app.getAppPath()}`,
-              UUID_NAMESPACE
-            )
-          : undefined;
-        this.tray = new Tray(this.getIconPath(), guid);
-        const trayContextMenu = Menu.buildFromTemplate(trayMenuTemplate);
-        this.tray.setContextMenu(trayContextMenu);
-        this.tray.setToolTip("Android Messages");
-        this.setupEventListeners();
-      }
+    if (this.tray || !this.enabled) {
+      return;
     }
+
+    if (IS_WINDOWS) {
+      const guid = uuidv5(
+        `${app.getName()}${IS_DEV ? "-development" : ""}-${app.getAppPath()}`,
+        UUID_NAMESPACE
+      );
+
+      this.tray = new Tray(this.getIconPath(), guid);
+    } else {
+      this.tray = new Tray(this.getIconPath());
+    }
+
+    const trayContextMenu = Menu.buildFromTemplate(trayMenuTemplate);
+    this.tray.setContextMenu(trayContextMenu);
+    this.tray.setToolTip("Android Messages");
+    this.setupEventListeners();
   }
 
   /**

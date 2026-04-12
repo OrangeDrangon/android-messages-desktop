@@ -1,8 +1,12 @@
-import { Configuration } from "webpack";
+import type { Configuration } from "webpack";
 import nodeExternals from "webpack-node-externals";
 import process from "process";
 import path from "path";
-import merge from "webpack-merge";
+import { fileURLToPath } from "url";
+import { merge } from "webpack-merge";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const base: Configuration = {
   mode: process.env.NODE_ENV === "development" ? "development" : "production",
@@ -15,14 +19,14 @@ const base: Configuration = {
   module: {
     rules: [
       {
-        test: /\.ts$/,
+        test: /\.m?ts$/,
         exclude: /node_modules/,
         use: ["ts-loader"],
       },
     ],
   },
   resolve: {
-    extensions: [".ts", ".js"],
+    extensions: [".mts", ".ts", ".js"],
   },
 };
 
