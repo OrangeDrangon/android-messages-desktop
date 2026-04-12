@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Setup pnpm ${{ matrix.pnpm-version }}
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
         with:
           version: ${{ matrix.pnpm-version }}
           run_install: false
