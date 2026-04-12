@@ -19,7 +19,7 @@ jobs:
           - 10
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Setup pnpm ${{ matrix.pnpm-version }}
         uses: pnpm/action-setup@v4
