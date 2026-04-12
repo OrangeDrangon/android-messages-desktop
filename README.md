@@ -38,8 +38,8 @@ Steps to contribute:
 1. Fork
 2. Clone
 3. Edit
-4. `yarn install` for dependencies
-5. `yarn start` to build and run assuming you have electron installed.
+4. `pnpm install` for dependencies
+5. `pnpm run dev` to build and run assuming you have electron installed.
 6. Open a pull request when you think it is ready or for feedback during the dev process
 
 The easiest way to get a developer environment up and running is using [devenv](https://devenv.sh). It is just node and
