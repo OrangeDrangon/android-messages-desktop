@@ -8,6 +8,12 @@ export default {
     buildResources: "resources",
     output: "dist",
   },
+  publish: [
+    {
+      provider: "github",
+      releaseType: "draft",
+    },
+  ],
   linux: {
     target: ["AppImage", "snap", "deb", "pacman", "rpm", "freebsd", "zip"],
     executableName: "AndroidMessages",
