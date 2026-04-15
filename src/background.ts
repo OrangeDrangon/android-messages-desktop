@@ -155,7 +155,7 @@ if (gotTheLock) {
             parent: mainWindow,
             modal: true,
             autoHideMenuBar: true,
-            titleBarStyle: IS_MAC ? "hiddenInset" : "default",
+            titleBarStyle: "default",
             webPreferences: {
               preload: IS_DEV
                 ? path.resolve(app.getAppPath(), "bridge.js")
