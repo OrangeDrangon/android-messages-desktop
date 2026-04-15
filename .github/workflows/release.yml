@@ -66,9 +66,9 @@ jobs:
         run: pnpm run dist --publish always
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
+
       - name: Upload build
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
-          name: ${{ runner.os }}-${{ env.NODE_VERSION }}
+          name: ${{ matrix.os }}-${{ env.NODE_VERSION }}
           path: ./dist
