@@ -15,13 +15,8 @@ export default {
     },
   ],
   linux: {
-    target: ["AppImage", "snap", "deb", "pacman", "rpm", "freebsd", "zip"],
+    target: ["AppImage", "deb", "pacman", "rpm", "freebsd", "zip"],
     executableName: "AndroidMessages",
-    executableArgs: [
-      "--ozone-platform-hint=auto",
-      "--enable-features=WaylandWindowDecorations",
-      "--gtk-version=3",
-    ],
     category: "Internet",
     desktop: {
       entry: {
