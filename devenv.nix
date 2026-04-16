@@ -14,5 +14,7 @@
 
   git-hooks.hooks = {
     prettier.enable = true;
+    eslint.enable = true;
+    eslint.settings.binPath = "./node_modules/.bin/eslint";
   };
 }
