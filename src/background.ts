@@ -60,12 +60,13 @@ if (gotTheLock) {
     new MenuManager();
 
     if (checkForUpdateOnLaunchEnabled.value && !IS_DEV) {
-      checkForUpdate(true, false);
+      void checkForUpdate(true, false);
     }
 
     const { width, height } = savedWindowSize.value;
     const { x, y } = savedWindowPosition.value ?? {};
 
+    console.log("app.getAppPath()", app.getAppPath());
     mainWindow = new BrowserWindow({
       width,
       height,
@@ -98,9 +99,9 @@ if (gotTheLock) {
     mainWindow.loadURL("https://messages.google.com/web/");
 
     trayManager.startIfEnabled();
-    settings.showIconsInRecentConversationTrayEnabled.subscribe(() =>
-      trayManager.refreshTrayMenu()
-    );
+    settings.showIconsInRecentConversationTrayEnabled.subscribe(() => {
+      trayManager.refreshTrayMenu();
+    });
 
     let quitViaContext = false;
     app.on("before-quit", () => {

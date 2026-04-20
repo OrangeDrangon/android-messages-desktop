@@ -1,0 +1,47 @@
+# Cline Rules for android-messages-desktop Repository
+
+## Repository Overview
+
+android-messages-desktop is a desktop client for Android Messages built with Electron.
+
+## Code Standards and Practices
+
+### Documentation Standards
+
+- Include clear usage examples and setup instructions
+- Document Electron-specific configurations and builds
+- Provide platform-specific installation instructions
+- Use markdown formatting consistently
+
+### Markdown Compliance Requirements
+
+- **ALL markdown files (.md) MUST pass markdownlint validation with zero errors or warnings**
+- Run `markdownlint <filename>` on every markdown file before considering it complete
+- Follow the project's `.markdownlint.json` configuration strictly
+- Address ALL markdownlint issues immediately - no exceptions or workarounds
+- Common requirements include:
+  - Maximum line length of 80 characters (MD013)
+  - Consistent heading styles and hierarchy
+  - Proper list formatting and indentation
+  - Blank lines around headings and code blocks
+  - Consistent link and reference formatting
+  - No trailing whitespace
+  - Files must end with newlines
+  - Proper table formatting when applicable
+- Use `markdownlint --fix <filename>` for auto-fixable issues when available
+- Validate markdown files in CI/CD pipelines where applicable
+
+## Development Guidelines
+
+### When Making Changes
+
+- Preserve existing functionality unless explicitly asked to change it
+- Update documentation when adding new features
+- **Always run markdownlint and fix all issues in markdown files before considering changes complete**
+
+### Electron App Standards
+
+- Follow Electron security best practices
+- Implement proper IPC communication patterns
+- Handle platform-specific functionality (macOS, Windows, Linux)
+- Implement auto-updates and version management

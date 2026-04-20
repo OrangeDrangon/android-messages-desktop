@@ -1,0 +1,75 @@
+# Cline Rules for GitHub Directory
+
+## Global Project Rules (Auto-applied to all GitHub directory changes)
+
+This file defines rules that Cline must follow for ALL changes made to files
+in the GitHub directory (`.github/*`).
+
+### Rule Enforcement Priority
+
+1. **MANDATORY**: All rules in this `.github/.cline-rules` file take precedence
+2. **REFERENCE**: Root `.cline-rules` file contains additional guidelines
+3. **AUTO-APPLY**: These rules are checked before ANY file modification
+
+### Markdown Compliance Requirements (MANDATORY)
+
+- **ALL .md files in .github/ MUST pass markdownlint validation with ZERO
+  errors**
+- Run `markdownlint <filename>` on EVERY markdown file before considering changes complete
+- Follow project's `.markdownlint.json` configuration (currently: 80 char
+  line limit)
+- Address ALL markdownlint issues immediately - no exceptions allowed
+- Use `markdownlint --fix <filename>` for auto-fixable issues when available
+- Validate markdown files in CI/CD pipelines where applicable
+
+### GitHub-Specific Requirements
+
+#### Templates and Workflows
+
+- Ensure issue and pull request templates provide clear, actionable guidelines
+- Include project-specific troubleshooting sections in templates
+- Reference existing project documentation and standards
+
+#### Documentation Standards
+
+- .github/CONTRIBUTING.md must include:
+  - Electron development environment setup
+  - Build and testing procedures for desktop app
+  - Cross-platform compatibility guidelines
+  - Release packaging requirements
+
+#### Automation and CI/CD
+
+- Project workflows must include automated testing stages
+- Code quality checks must be integrated into CI/CD
+- Release automation must be properly configured
+
+### Quality Gates (MANDATORY)
+
+**For ANY change made to `.github/*` files:**
+
+1. ✅ Run markdownlint validation (if .md file)
+2. ✅ Ensure project standards are followed (if applicable)
+3. ✅ Verify contribution guidelines are up-to-date and accurate
+4. ✅ Check that automation maintains project standards
+
+### Error Prevention
+
+- NEVER generate markdown that violates line length or formatting rules
+- ALWAYS cross-reference with existing project practices before making changes
+- ENSURE all links and references are valid and current
+- VALIDATE that new requirements don't conflict with established workflows
+
+### Reference Documentation
+
+See root `.cline-rules` file for additional project-wide standards including:
+
+- Electron development standards
+- Cross-platform requirements
+- Desktop application guidelines
+
+---
+
+**RULE ENFORCEMENT**: Cline MUST read and apply these rules for EVERY GitHub
+directory operation. Failure to comply results in automatic rejection of
+changes.

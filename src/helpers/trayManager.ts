@@ -44,7 +44,9 @@ export class TrayManager {
   public tray: Tray | null = null;
 
   constructor() {
-    trayEnabled.subscribe((val) => this.handleTrayEnabledToggle(val));
+    trayEnabled.subscribe((val) => {
+      this.handleTrayEnabledToggle(val);
+    });
     monochromeIconEnabled.subscribe(() =>
       this.tray?.setImage(this.getIconPath())
     );
@@ -102,8 +104,8 @@ export class TrayManager {
             : undefined;
 
         return {
-          label: name || "Name not Found",
-          sublabel: recentMessage || undefined,
+          label: name ?? "Name not Found",
+          sublabel: recentMessage ?? undefined,
           icon,
           click: () => {
             getMainWindow()?.show();

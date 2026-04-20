@@ -27,7 +27,12 @@ export const settingsMenu: MenuItemConstructorOptions = {
       label: "Auto Hide Menu Bar",
       type: "checkbox",
       checked: autoHideMenuEnabled.value,
-      click: (item: MenuItem, window?: BaseWindow, event?: Electron.KeyboardEvent): void => {
+      click: (
+        item: MenuItem,
+        window?: BaseWindow,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        event?: Electron.KeyboardEvent
+      ): void => {
         autoHideMenuEnabled.next(item.checked);
         window?.setMenuBarVisibility(!autoHideMenuEnabled.value);
         window?.setAutoHideMenuBar(autoHideMenuEnabled.value);
@@ -42,8 +47,9 @@ export const settingsMenu: MenuItemConstructorOptions = {
       label: IS_MAC ? "Enable Menu Bar Icon" : "Enable Tray Icon",
       type: "checkbox",
       checked: trayEnabled.value,
-      click: async (item: MenuItem): Promise<void> =>
-        trayEnabled.next(item.checked),
+      click: async (item: MenuItem): Promise<void> => {
+        trayEnabled.next(item.checked);
+      },
     },
     {
       id: "startInTrayMenuItem",
@@ -51,7 +57,9 @@ export const settingsMenu: MenuItemConstructorOptions = {
       type: "checkbox",
       checked: startInTrayEnabled.value,
       enabled: trayEnabled.value,
-      click: (item: MenuItem): void => startInTrayEnabled.next(item.checked),
+      click: (item: MenuItem): void => {
+        startInTrayEnabled.next(item.checked);
+      },
     },
     {
       id: "monochromeIconEnabledMenuItem",
@@ -59,7 +67,9 @@ export const settingsMenu: MenuItemConstructorOptions = {
       type: "checkbox",
       checked: monochromeIconEnabled.value,
       enabled: trayEnabled.value,
-      click: (item) => monochromeIconEnabled.next(item.checked),
+      click: (item) => {
+        monochromeIconEnabled.next(item.checked);
+      },
     },
     {
       id: "showIconsInRecentConversationTrayEnabledMenuItem",
@@ -67,8 +77,9 @@ export const settingsMenu: MenuItemConstructorOptions = {
       type: "checkbox",
       checked: showIconsInRecentConversationTrayEnabled.value,
       enabled: trayEnabled.value,
-      click: (item) =>
-        showIconsInRecentConversationTrayEnabled.next(item.checked),
+      click: (item) => {
+        showIconsInRecentConversationTrayEnabled.next(item.checked);
+      },
     },
     {
       id: "trayIconRedDotEnabledMenuItem",
@@ -76,7 +87,9 @@ export const settingsMenu: MenuItemConstructorOptions = {
       type: "checkbox",
       checked: trayIconRedDotEnabled.value,
       enabled: trayEnabled.value,
-      click: (item) => trayIconRedDotEnabled.next(item.checked),
+      click: (item) => {
+        trayIconRedDotEnabled.next(item.checked);
+      },
     },
     separator,
     {
@@ -84,14 +97,18 @@ export const settingsMenu: MenuItemConstructorOptions = {
       label: "Hide Notification Content",
       type: "checkbox",
       checked: hideNotificationContentEnabled.value,
-      click: (item) => hideNotificationContentEnabled.next(item.checked),
+      click: (item) => {
+        hideNotificationContentEnabled.next(item.checked);
+      },
     },
     {
       id: "taskbarFlashEnabledMenuItem",
       label: "Taskbar Flash on New Message",
       type: "checkbox",
       checked: taskbarFlashEnabled.value,
-      click: (item) => taskbarFlashEnabled.next(item.checked),
+      click: (item) => {
+        taskbarFlashEnabled.next(item.checked);
+      },
     },
     separator,
     {
@@ -99,7 +116,9 @@ export const settingsMenu: MenuItemConstructorOptions = {
       label: "Check for Update on Launch",
       type: "checkbox",
       checked: checkForUpdateOnLaunchEnabled.value,
-      click: (item) => checkForUpdateOnLaunchEnabled.next(item.checked),
+      click: (item) => {
+        checkForUpdateOnLaunchEnabled.next(item.checked);
+      },
     },
   ],
 };

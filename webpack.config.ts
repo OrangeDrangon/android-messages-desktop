@@ -28,11 +28,12 @@ const base: Configuration = {
   resolve: {
     extensions: [".mts", ".ts", ".js"],
   },
+  watch: false,
 };
 
 const main = merge(base, {
   name: "background",
-  target: "electron-main",
+  target: "electron-renderer",
   entry: "./src/background.ts",
   output: {
     filename: "background.js",

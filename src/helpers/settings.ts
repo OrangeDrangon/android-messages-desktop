@@ -11,13 +11,29 @@ interface json {
   [key: string]: json | primative | jsonArr;
 }
 
+interface WindowSize extends json {
+  width: number;
+  height: number;
+}
+
+interface WindowPosition extends json {
+  x: number;
+  y: number;
+}
+
 // a complete expression of json including root arrays, primatives, and objects
-type validJson = primative | jsonArr | json;
+type validJson =
+  | primative
+  | jsonArr
+  | json
+  | WindowSize
+  | WindowPosition
+  | null;
 
 export type Setting<T extends validJson> = BehaviorSubject<T>;
 
 function getSetting(key: string): validJson | undefined {
-  return (jetpack.read(SETTINGS_FILE(), "json") || {})[key];
+  return jetpack.read(SETTINGS_FILE(), "json")?.[key];
 }
 
 /**
@@ -29,7 +45,7 @@ function getSetting(key: string): validJson | undefined {
  */
 function createSetting<T>(key: string, initial: T): BehaviorSubject<T> {
   const savedVal = getSetting(key);
-  const val = savedVal != null ? savedVal : initial;
+  const val = savedVal ?? initial;
   return new BehaviorSubject(val) as BehaviorSubject<T>;
 }
 
@@ -52,16 +68,6 @@ export interface JsonSettings {
 // wraps json settings in the setting type for export
 export type Settings = {
   [P in keyof JsonSettings]: Setting<JsonSettings[P]>;
-};
-
-type WindowSize = {
-  width: number;
-  height: number;
-};
-
-type WindowPosition = {
-  x: number;
-  y: number;
 };
 
 // default settings for the app

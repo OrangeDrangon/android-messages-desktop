@@ -31,7 +31,7 @@ export function recentThreadObserver() {
     document.body.querySelectorAll("mws-conversation-list-item")
   ).slice(0, RECENT_CONVERSATION_TRAY_COUNT);
 
-  const data: any = conversations.map((conversation, i) => {
+  const data: unknown = conversations.map((conversation, i) => {
     const name = conversation.querySelector(
       "a div.text-content h2.name span"
     )?.textContent;
@@ -48,7 +48,10 @@ export function recentThreadObserver() {
         )
         ?.textContent?.slice(0, 20) + "...";
 
-    const focusFunction = () => void conversation.querySelector("a")?.click();
+    const focusFunction = (): undefined => {
+      const element = conversation.querySelector("a");
+      if (element) element.click();
+    };
     focusFunctions[i] = focusFunction;
 
     return { name, image, recentMessage, i };

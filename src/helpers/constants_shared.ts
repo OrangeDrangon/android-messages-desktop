@@ -1,4 +1,3 @@
-
 /**
  * Initial image AMD loads for icons. Used to check against and ignore when populating tray context menu.
  */
