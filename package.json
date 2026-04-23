@@ -24,7 +24,7 @@
     "build:dev": "webpack --mode=development",
     "icons": "png2icons resources/icons/1024x1024.png resources/icon -all -i",
     "lint": "eslint --fix ./src",
-    "package": "electron-builder --config electron-builder.config.js"
+    "package": "rm -rf .flatpak-builder/ && rm -rf dist && electron-builder --config electron-builder.config.js"
   },
   "dependencies": {
     "about-window": "1.15.2",

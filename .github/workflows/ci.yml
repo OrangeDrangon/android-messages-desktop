@@ -37,6 +37,7 @@ jobs:
     env:
       NODE_VERSION: 24
       PNPM_VERSION: 10
+      FLATPAK_RUNTIME_VERSION: "25.08"
 
     steps:
       - name: Checkout
@@ -62,9 +63,19 @@ jobs:
         run: |
           sudo apt-get update -y
           sudo apt-get install --no-install-recommends -y \
+            flatpak \
+            flatpak-builder \
             libopenjp2-tools \
             rpm \
             libarchive-tools
+
+      - name: Install Flatpak runtimes
+        if: runner.os == 'Linux'
+        run: |
+          flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+          flatpak install --user --noninteractive flathub org.freedesktop.Platform//${{ env.FLATPAK_RUNTIME_VERSION }}
+          flatpak install --user --noninteractive flathub org.freedesktop.Sdk//${{ env.FLATPAK_RUNTIME_VERSION }}
+          flatpak install --user --noninteractive flathub org.electronjs.Electron2.BaseApp//${{ env.FLATPAK_RUNTIME_VERSION }}
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -72,8 +83,19 @@ jobs:
       - name: Build
         run: pnpm run dist --publish never
 
+      - name: Build Flatpak
+        if: runner.os == 'Linux'
+        run: pnpm exec electron-builder --config electron-builder.config.js --linux flatpak --publish never
+
       - name: Upload build
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
           name: ${{ matrix.os }}-${{ env.NODE_VERSION }}
           path: ./dist
+
+      - name: Upload Flatpak
+        if: runner.os == 'Linux'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: flatpak
+          path: dist/*.flatpak          
