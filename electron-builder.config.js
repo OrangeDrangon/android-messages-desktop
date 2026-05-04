@@ -19,11 +19,11 @@ module.exports = {
   linux: {
     target: ["AppImage", "deb", "pacman", "rpm", "freebsd", "zip"],
     executableName: "AndroidMessages",
-    category: "Internet",
+    category: "Network",
     desktop: {
       entry: {
         Name: "Android Messages Desktop",
-        StartupWMClass: "android-messages-desktop",
+        StartupWMClass: "AndroidMessages",
       },
     },
   },
