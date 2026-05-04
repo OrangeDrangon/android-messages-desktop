@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Android Messages
+Comment=Android Messages Desktop client
+Exec=run.sh %U
+Icon=io.github.OrangeDrangon.android_messages_desktop
+Type=Application
+Terminal=false
+Categories=Network;InstantMessaging;
+MimeType=x-scheme-handler/sms;
+StartupWMClass=android-messages-desktop
