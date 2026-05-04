@@ -35,8 +35,8 @@ modules:
       append-path: /run/build/android-messages-desktop/pnpm-local/bin        
     sources:
       - type: archive
-        url: https://github.com/OrangeDrangon/android-messages-desktop/archive/refs/tags/v6.0.1.tar.gz
-        sha256: e2a0146bac15b4a8f35ed12a465371348392f8f4fdb1878651ba9c03a8604703
+        url: https://github.com/OrangeDrangon/android-messages-desktop/archive/refs/tags/v6.0.2.tar.gz
+        sha256: 288a7df8b5de4bf35c1ebe0b4898ac6635ab0018197130b6853c12b02b09ed1a
       - generated-sources.json
       - type: script
         dest-filename: run.sh
