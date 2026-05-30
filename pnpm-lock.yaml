@@ -32,10 +32,10 @@ importers:
         version: 25.6.0
       '@types/webpack':
         specifier: 5.28.5
-        version: 5.28.5(webpack-cli@7.0.2)
+        version: 5.28.5(webpack-cli@7.0.3)
       '@types/webpack-node-externals':
         specifier: 3.0.4
-        version: 3.0.4(webpack-cli@7.0.2)
+        version: 3.0.4(webpack-cli@7.0.3)
       '@typescript-eslint/eslint-plugin':
         specifier: 8.59.0
         version: 8.59.0(@typescript-eslint/parser@8.59.0(eslint@10.2.1(jiti@2.6.1))(typescript@6.0.3))(eslint@10.2.1(jiti@2.6.1))(typescript@6.0.3)
@@ -80,10 +80,10 @@ importers:
         version: 8.59.0(eslint@10.2.1(jiti@2.6.1))(typescript@6.0.3)
       webpack:
         specifier: 5.106.2
-        version: 5.106.2(webpack-cli@7.0.2)
+        version: 5.106.2(webpack-cli@7.0.3)
       webpack-cli:
-        specifier: 7.0.2
-        version: 7.0.2(webpack@5.106.2)
+        specifier: 7.0.3
+        version: 7.0.3(webpack@5.106.2)
       webpack-merge:
         specifier: 6.0.1
         version: 6.0.1
@@ -104,8 +104,8 @@ packages:
     resolution: {integrity: sha512-0cp4PsWQ/9avqTVMCtZ+GirikIA36ikvjtHweU4/j8yLtgObI0+JUPhYFScgwlteveGB1rt3Cm8UhN04XayDig==}
     engines: {node: '>= 8.9.0'}
 
-  '@discoveryjs/json-ext@1.0.0':
-    resolution: {integrity: sha512-dDlz3W405VMFO4w5kIP9DOmELBcvFQGmLoKSdIRstBDubKFYwaNHV1NnlzMCQpXQFGWVALmeMORAuiLx18AvZQ==}
+  '@discoveryjs/json-ext@1.1.0':
+    resolution: {integrity: sha512-Xc3VhU02wqZ1HvHRJUwL09HkZSTvidqY5Ya0NXBSYOxAp+Ln9dcJr9fySI+CkONzP3PekQo9WdzCv0PGER/mOA==}
     engines: {node: '>=14.17.0'}
 
   '@electron/asar@3.4.1':
@@ -1000,10 +1000,6 @@ packages:
 
   fast-uri@3.1.0:
     resolution: {integrity: sha512-iPeeDKJSWf4IEOasVVrknXpaBV0IApz/gp7S2bb7Z4Lljbl2MGJRqInZiUrQwV16cpzw/D3S5j5Julj/gT52AA==}
-
-  fastest-levenshtein@1.0.16:
-    resolution: {integrity: sha512-eRnCtTTtGZFpQCwhJiUOuxPQWRXVKYDn0b2PeHfXL6/Zi53SLAzAHfVhVWK2AryC/WH05kGfxhFIPvTF0SXQzg==}
-    engines: {node: '>= 4.9.1'}
 
   fd-slicer@1.1.0:
     resolution: {integrity: sha512-cE1qsB/VwyQozZ+q1dGxR8LBYNZeofhEdUNGSMbQD3Gw2lAzX9Zb3uIU6Ebc/Fmyjo9AWWfnn0AUCHqtevs/8g==}
@@ -2022,8 +2018,8 @@ packages:
   wcwidth@1.0.1:
     resolution: {integrity: sha512-XHPEwS0q6TaxcvG85+8EYkbiCux2XtWG2mkc47Ng2A77BQu9+DqIOJldST4HgPkuea7dvKSj5VgX3P1d4rW8Tg==}
 
-  webpack-cli@7.0.2:
-    resolution: {integrity: sha512-dB0R4T+C/8YuvM+fabdvil6QE44/ChDXikV5lOOkrUeCkW5hTJv2pGLE3keh+D5hjYw8icBaJkZzpFoaHV4T+g==}
+  webpack-cli@7.0.3:
+    resolution: {integrity: sha512-2E2C6A1e2El7791zQgTH7LPIuwLjRliow9OHS/qlJc9pwhZlCoL/uiwqd/1WSlXT83wJfmfDbkcqHXuXoPJZ3g==}
     engines: {node: '>=20.9.0'}
     hasBin: true
     peerDependencies:
@@ -2133,7 +2129,7 @@ snapshots:
       ajv: 6.14.0
       ajv-keywords: 3.5.2(ajv@6.14.0)
 
-  '@discoveryjs/json-ext@1.0.0': {}
+  '@discoveryjs/json-ext@1.1.0': {}
 
   '@electron/asar@3.4.1':
     dependencies:
@@ -2425,21 +2421,21 @@ snapshots:
   '@types/verror@1.10.11':
     optional: true
 
-  '@types/webpack-node-externals@3.0.4(webpack-cli@7.0.2)':
+  '@types/webpack-node-externals@3.0.4(webpack-cli@7.0.3)':
     dependencies:
       '@types/node': 25.6.0
-      webpack: 5.106.2(webpack-cli@7.0.2)
+      webpack: 5.106.2(webpack-cli@7.0.3)
     transitivePeerDependencies:
       - '@swc/core'
       - esbuild
       - uglify-js
       - webpack-cli
 
-  '@types/webpack@5.28.5(webpack-cli@7.0.2)':
+  '@types/webpack@5.28.5(webpack-cli@7.0.3)':
     dependencies:
       '@types/node': 25.6.0
       tapable: 2.3.2
-      webpack: 5.106.2(webpack-cli@7.0.2)
+      webpack: 5.106.2(webpack-cli@7.0.3)
     transitivePeerDependencies:
       - '@swc/core'
       - esbuild
@@ -3270,8 +3266,6 @@ snapshots:
   fast-levenshtein@2.0.6: {}
 
   fast-uri@3.1.0: {}
-
-  fastest-levenshtein@1.0.16: {}
 
   fd-slicer@1.1.0:
     dependencies:
@@ -4148,7 +4142,7 @@ snapshots:
       jest-worker: 27.5.1
       schema-utils: 4.3.3
       terser: 5.46.1
-      webpack: 5.106.2(webpack-cli@7.0.2)
+      webpack: 5.106.2(webpack-cli@7.0.3)
 
   terser@5.46.1:
     dependencies:
@@ -4194,7 +4188,7 @@ snapshots:
       semver: 7.7.4
       source-map: 0.7.6
       typescript: 6.0.3
-      webpack: 5.106.2(webpack-cli@7.0.2)
+      webpack: 5.106.2(webpack-cli@7.0.3)
 
   ts-node@10.9.2(@types/node@25.6.0)(typescript@6.0.3):
     dependencies:
@@ -4286,17 +4280,16 @@ snapshots:
     dependencies:
       defaults: 1.0.4
 
-  webpack-cli@7.0.2(webpack@5.106.2):
+  webpack-cli@7.0.3(webpack@5.106.2):
     dependencies:
-      '@discoveryjs/json-ext': 1.0.0
+      '@discoveryjs/json-ext': 1.1.0
       commander: 14.0.3
       cross-spawn: 7.0.6
       envinfo: 7.21.0
-      fastest-levenshtein: 1.0.16
       import-local: 3.2.0
       interpret: 3.1.1
       rechoir: 0.8.0
-      webpack: 5.106.2(webpack-cli@7.0.2)
+      webpack: 5.106.2(webpack-cli@7.0.3)
       webpack-merge: 6.0.1
 
   webpack-merge@6.0.1:
@@ -4309,7 +4302,7 @@ snapshots:
 
   webpack-sources@3.3.4: {}
 
-  webpack@5.106.2(webpack-cli@7.0.2):
+  webpack@5.106.2(webpack-cli@7.0.3):
     dependencies:
       '@types/eslint-scope': 3.7.7
       '@types/estree': 1.0.8
@@ -4336,7 +4329,7 @@ snapshots:
       watchpack: 2.5.1
       webpack-sources: 3.3.4
     optionalDependencies:
-      webpack-cli: 7.0.2(webpack@5.106.2)
+      webpack-cli: 7.0.3(webpack@5.106.2)
     transitivePeerDependencies:
       - '@swc/core'
       - esbuild
