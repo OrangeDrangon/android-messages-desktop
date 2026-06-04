@@ -19,6 +19,7 @@ export function createUnreadObserver(): MutationObserver {
       attributeFilter: ["data-e2e-is-unread"],
     }
   );
+  unreadObserver();
   return observer;
 }
 
