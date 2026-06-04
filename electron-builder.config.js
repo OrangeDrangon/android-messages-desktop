@@ -30,6 +30,9 @@ export default {
   },
   mac: {
     category: "public.app-category.social-networking",
+    extendInfo: {
+      NSUserNotificationAlertStyle: "alert",
+    },
     target: { target: "default", arch: "universal" },
   },
   portable: {
