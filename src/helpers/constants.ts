@@ -17,6 +17,13 @@ export const SETTINGS_FILE = (): string => {
   return path.resolve(app.getPath("userData"), `settings.json`);
 };
 
+// Tray
+/**
+ * Logical size (in points) that recent-conversation avatars are resized to in
+ * the tray menu so every row has a uniform, compact height.
+ */
+export const TRAY_AVATAR_SIZE = 28;
+
 // UUID
 /**
  * An arbitrary v4 uuid generated on https://www.uuidgenerator.net/version4

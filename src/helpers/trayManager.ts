@@ -13,6 +13,7 @@ import {
   IS_MAC,
   IS_WINDOWS,
   RESOURCES_PATH,
+  TRAY_AVATAR_SIZE,
   UUID_NAMESPACE,
 } from "./constants";
 import { settings } from "./settings";
@@ -98,7 +99,9 @@ export class TrayManager {
           image != null &&
           image != INITIAL_ICON_IMAGE &&
           showIconsInRecentConversationTrayEnabled.value
-            ? nativeImage.createFromDataURL(image)
+            ? nativeImage
+                .createFromDataURL(image)
+                .resize({ width: TRAY_AVATAR_SIZE, height: TRAY_AVATAR_SIZE })
             : undefined;
 
         return {
