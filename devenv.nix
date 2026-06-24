@@ -2,7 +2,7 @@
 
 {
   packages = [
-    pkgs.gitFull
+    pkgs.git
     pkgs.nixd
   ];
 
