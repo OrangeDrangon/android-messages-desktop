@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.OrangeDrangon.android_messages_desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <name>Android Messages</name>
+  <summary>Android Messages as a cross-platform desktop application</summary>
+  <description>
+    <p>Android Messages Desktop is a wrapper around the official Google Messages web interface.</p>
+  </description>
+  <launchable type="desktop-id">io.github.OrangeDrangon.android_messages_desktop.desktop</launchable>
+  <url type="homepage">https://github.com/chrisknepper/android-messages-desktop</url>
+  <screenshots>
+    <screenshot type="default">
+      <caption>Messaging interface</caption>
+      <image>https://githubusercontent.com</image>
+    </screenshot>
+  </screenshots>
+  <releases>
+    <release version="3.1.0" date="2019-11-27" />
+  </releases>
+  <content_rating type="oars-1.1" />
+</component>
