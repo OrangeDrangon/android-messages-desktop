@@ -17,6 +17,7 @@
     "url": "https://github.com/OrangeDrangon/android-messages-desktop/issues"
   },
   "main": "app/background.js",
+  "desktopName": "pw.kmr.amd",
   "scripts": {
     "dev": "pnpm run build:dev && cross-env NODE_ENV=development electron ./app/background.js",
     "dist": "pnpm run build && pnpm run package",

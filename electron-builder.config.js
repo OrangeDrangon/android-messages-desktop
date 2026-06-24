@@ -21,7 +21,6 @@ export default {
     desktop: {
       entry: {
         Name: "Android Messages Desktop",
-        StartupWMClass: "AndroidMessages",
       },
     },
   },
