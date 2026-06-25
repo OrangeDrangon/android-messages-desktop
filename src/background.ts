@@ -2,7 +2,7 @@ import { app, Event as ElectronEvent, ipcMain, shell } from "electron";
 import { BrowserWindow } from "electron/main";
 import path from "path";
 import process from "process";
-import { checkForUpdate } from "./helpers/autoUpdate";
+import { checkForUpdate, setUpdateWindow } from "./helpers/autoUpdate";
 import { IS_DEV, IS_LINUX, IS_MAC, RESOURCES_PATH } from "./helpers/constants";
 import { MenuManager } from "./helpers/menuManager";
 import { setSettingsFlushEnabled, settings } from "./helpers/settings";
@@ -59,10 +59,6 @@ if (gotTheLock) {
 
     new MenuManager();
 
-    if (checkForUpdateOnLaunchEnabled.value && !IS_DEV) {
-      checkForUpdate(true, false);
-    }
-
     const { width, height } = savedWindowSize.value;
     const { x, y } = savedWindowPosition.value ?? {};
 
@@ -90,6 +86,11 @@ if (gotTheLock) {
     });
 
     process.env.MAIN_WINDOW_ID = mainWindow.id.toString();
+
+    setUpdateWindow(mainWindow);
+    if (checkForUpdateOnLaunchEnabled.value && !IS_DEV) {
+      checkForUpdate(false);
+    }
 
     if (!(settings.trayEnabled.value && settings.startInTrayEnabled.value)) {
       mainWindow.show();
