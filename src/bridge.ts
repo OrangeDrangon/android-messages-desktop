@@ -122,6 +122,20 @@ contextBridge.exposeInMainWorld("interop", {
   should_hide: () => {
     return ipcRenderer.sendSync("should-hide-notification-content");
   },
+  should_auto_copy_otp: () => {
+    return ipcRenderer.sendSync("should-auto-copy-otp");
+  },
+  copy_otp_to_clipboard: (otp: string) => {
+    ipcRenderer.send("copy-otp-to-clipboard", otp);
+  },
+  show_otp_notification: (data: {
+    title: string;
+    body: string;
+    otp: string;
+    hideContent: boolean;
+  }) => {
+    ipcRenderer.send("show-otp-notification", data);
+  },
   get_icon: async () => {
     const data =  await ipcRenderer.invoke("get-icon");
     return `data:image/png;base64,${data}`;
@@ -135,9 +149,67 @@ webFrame.executeJavaScript(`
   });
 `);
 webFrame.executeJavaScript(`window.OldNotification = window.Notification;
+function normalizeOtpCandidate(candidate) {
+  const otp = String(candidate || "").replace(/[\\s-]/g, "");
+  if (!/\\d/.test(otp)) return null;
+  if (!/^[A-Za-z0-9]{4,8}$/.test(otp)) return null;
+  if (/^(?:19|20)\\d{2}$/.test(otp)) return null;
+  if (/^(.)\\1+$/.test(otp)) return null;
+  return otp;
+}
+
+function extractOtpFromText(text) {
+  const value = String(text || "");
+  const keyword = "(?:otp|one[-\\\\s]?time|verification|verify|security|login|sign[-\\\\s]?in|authentication|auth|passcode|pin|code)";
+  const candidate = "([A-Za-z0-9](?:[A-Za-z0-9-]{2,10}[A-Za-z0-9])?)";
+  const explicitPatterns = [
+    new RegExp("(?:^|\\\\n)@[^\\\\s]+\\\\s+#" + candidate + "\\\\s*$", "i"),
+    new RegExp("\\\\b(?:" + keyword + ")\\\\b(?:\\\\s+(?:is|for|=|:|-|to use|is:))*\\\\s+" + candidate + "\\\\b", "i"),
+    new RegExp("\\\\b" + candidate + "\\\\b\\\\s+(?:is|=)\\\\s+(?:your\\\\s+)?(?:" + keyword + ")\\\\b", "i"),
+    new RegExp("\\\\b(?:use|enter|type)\\\\s+" + candidate + "\\\\b.{0,40}\\\\b(?:" + keyword + ")\\\\b", "i"),
+  ];
+  const keywordPattern = new RegExp("\\\\b" + keyword + "\\\\b", "gi");
+  const tokenPattern = /\\b[A-Za-z0-9](?:[A-Za-z0-9-]{2,10}[A-Za-z0-9])?\\b/g;
+  let keywordMatch;
+
+  for (const pattern of explicitPatterns) {
+    const otp = normalizeOtpCandidate(value.match(pattern)?.[1]);
+    if (otp) return otp;
+  }
+
+  while ((keywordMatch = keywordPattern.exec(value)) != null) {
+    const windowStart = Math.max(0, keywordMatch.index - 50);
+    const windowEnd = Math.min(value.length, keywordMatch.index + keywordMatch[0].length + 100);
+    const nearbyText = value.slice(windowStart, windowEnd);
+    const tokens = nearbyText.match(tokenPattern) || [];
+
+    for (const token of tokens) {
+      const otp = normalizeOtpCandidate(token);
+      if (otp) return otp;
+    }
+  }
+
+  return null;
+}
+
 window.Notification = function (title, options) {
   try {
     const hideContent = window.interop.should_hide();
+    const autoCopyOtp = window.interop.should_auto_copy_otp();
+    const otp = extractOtpFromText(options?.body);
+    if (otp) {
+      if (autoCopyOtp) {
+        window.interop.copy_otp_to_clipboard(otp);
+      }
+      window.interop.show_otp_notification({
+        title,
+        body: options?.body || "",
+        otp,
+        hideContent,
+      });
+      window.interop.flash_main();
+      return;
+    }
 
     const notificationOpts = hideContent
       ? {
