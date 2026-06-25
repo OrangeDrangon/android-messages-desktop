@@ -1,10 +1,7 @@
 import { app, MenuItemConstructorOptions } from "electron";
 import { aboutMenuItem } from "./items/about";
 import { separator } from "./items/separator";
-import {
-  checkForUpdatesMenuItem,
-  installUpdatesMenuItem,
-} from "./items/updates";
+import { checkForUpdatesMenuItem } from "./items/updates";
 import { settingsMenu } from "./settingsMenu";
 
 // This is the "Application" menu, which is only used on macOS
@@ -13,7 +10,6 @@ export const appMenuTemplate: MenuItemConstructorOptions = {
   submenu: [
     aboutMenuItem,
     checkForUpdatesMenuItem,
-    installUpdatesMenuItem,
     separator,
     {
       role: "close",

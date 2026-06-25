@@ -44,7 +44,6 @@ export interface JsonSettings {
   checkForUpdateOnLaunchEnabled: boolean;
   monochromeIconEnabled: boolean;
   showIconsInRecentConversationTrayEnabled: boolean;
-  isUpdate: boolean;
   taskbarFlashEnabled: boolean;
   trayIconRedDotEnabled: boolean;
 }
@@ -76,7 +75,6 @@ const defaultSettings: JsonSettings = {
   checkForUpdateOnLaunchEnabled: true,
   monochromeIconEnabled: true,
   showIconsInRecentConversationTrayEnabled: true,
-  isUpdate: false,
   taskbarFlashEnabled: true,
   trayIconRedDotEnabled: true,
 };
