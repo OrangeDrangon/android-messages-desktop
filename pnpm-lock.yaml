@@ -46,8 +46,8 @@ importers:
         specifier: 10.1.0
         version: 10.1.0
       electron:
-        specifier: 41.8.0
-        version: 41.8.0
+        specifier: 41.9.0
+        version: 41.9.0
       electron-builder:
         specifier: 26.15.3
         version: 26.15.3(electron-builder-squirrel-windows@26.15.3)
@@ -318,9 +318,6 @@ packages:
 
   '@types/node@24.12.2':
     resolution: {integrity: sha512-A1sre26ke7HDIuY/M23nd9gfB+nrmhtYyMINbjI1zHJxYteKR6qSMX56FsmjMcDb3SMcjJg5BiRRgOCC/yBD0g==}
-
-  '@types/node@25.9.3':
-    resolution: {integrity: sha512-603BddQMv3pUcr4U2dhujk83N2tTDVr/34wII2B6bJy6g+8WD6yUb11jszNs0gdi4PesVWl7ABt8nYMVpnLUcg==}
 
   '@types/node@25.9.4':
     resolution: {integrity: sha512-dszCsrKb5U7ZsVZBWiHFklTloVl0mSEnWH/iZXfZUlI4rzCUnsvGmgqfuVRHL54ugE7/wRuxEIXRa2iMZ+BG6g==}
@@ -785,8 +782,8 @@ packages:
     resolution: {integrity: sha512-bO3y10YikuUwUuDUQRM4KfwNkKhnpVO7IPdbsrejwN9/AABJzzTQ4GeHwyzNSrVO+tEH3/Np255a3sVZpZDjvg==}
     engines: {node: '>=8.0.0'}
 
-  electron@41.8.0:
-    resolution: {integrity: sha512-mQRqdFxB6/EAyA9pPn00EC1KFytTijOQO52zBvl9HypWBvvibC3P4iSrT4CSVVksolOPKZZm8U4Cfjb5IHxZVA==}
+  electron@41.9.0:
+    resolution: {integrity: sha512-i1tQNY3Zbc8KXvsXYrada3G5F0v87ZKCeWy5M+hlSGECOCtMWGcAjMZePl5j2deqHEA5Int3qzCgF3lcFKK1vQ==}
     engines: {node: '>= 22.12.0'}
     hasBin: true
 
@@ -2175,7 +2172,7 @@ snapshots:
     dependencies:
       '@types/http-cache-semantics': 4.2.0
       '@types/keyv': 3.1.4
-      '@types/node': 25.9.3
+      '@types/node': 25.9.4
       '@types/responselike': 1.0.3
 
   '@types/debug@4.1.13':
@@ -2200,7 +2197,7 @@ snapshots:
 
   '@types/fs-extra@9.0.13':
     dependencies:
-      '@types/node': 25.9.3
+      '@types/node': 25.9.4
 
   '@types/http-cache-semantics@4.2.0': {}
 
@@ -2208,7 +2205,7 @@ snapshots:
 
   '@types/keyv@3.1.4':
     dependencies:
-      '@types/node': 25.9.3
+      '@types/node': 25.9.4
 
   '@types/ms@2.1.0': {}
 
@@ -2216,17 +2213,13 @@ snapshots:
     dependencies:
       undici-types: 7.16.0
 
-  '@types/node@25.9.3':
-    dependencies:
-      undici-types: 7.24.6
-
   '@types/node@25.9.4':
     dependencies:
       undici-types: 7.24.6
 
   '@types/responselike@1.0.3':
     dependencies:
-      '@types/node': 25.9.3
+      '@types/node': 25.9.4
 
   '@types/webpack-node-externals@3.0.4(webpack-cli@7.0.3)':
     dependencies:
@@ -2836,7 +2829,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  electron@41.8.0:
+  electron@41.9.0:
     dependencies:
       '@electron-internal/extract-zip': 1.0.3
       '@electron/get': 5.0.0
