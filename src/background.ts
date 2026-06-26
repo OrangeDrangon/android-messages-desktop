@@ -1,4 +1,10 @@
-import { app, Event as ElectronEvent, ipcMain, shell } from "electron";
+import {
+  app,
+  Event as ElectronEvent,
+  ipcMain,
+  powerMonitor,
+  shell,
+} from "electron";
 import { BrowserWindow } from "electron/main";
 import path from "path";
 import process from "process";
@@ -200,6 +206,26 @@ if (gotTheLock) {
     });
 
     mainWindow.webContents.on("context-menu", popupContextMenu);
+
+    // The Google Messages web app frequently ends up on a blank white screen
+    // after the machine resumes from suspend: its connection to the phone is
+    // dropped and it doesn't recover on its own. Reloading restores it without
+    // the user needing to manually hit Ctrl+R. See issue #505.
+    powerMonitor.on("resume", () => {
+      if (!mainWindow.isDestroyed()) {
+        mainWindow.webContents.reload();
+      }
+    });
+
+    // The OS can also kill the renderer outright while suspended (memory
+    // reclaim), which leaves the same blank screen. Reload to recover unless it
+    // exited cleanly (e.g. during shutdown).
+    mainWindow.webContents.on("render-process-gone", (_event, details) => {
+      console.log("render-process-gone", details);
+      if (details.reason !== "clean-exit" && !mainWindow.isDestroyed()) {
+        mainWindow.webContents.reload();
+      }
+    });
   });
 
   ipcMain.on("should-hide-notification-content", (event) => {
