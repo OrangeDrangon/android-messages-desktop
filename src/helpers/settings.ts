@@ -47,6 +47,7 @@ export interface JsonSettings {
   isUpdate: boolean;
   taskbarFlashEnabled: boolean;
   trayIconRedDotEnabled: boolean;
+  spellCheckEnabled: boolean;
 }
 
 // wraps json settings in the setting type for export
@@ -79,6 +80,7 @@ const defaultSettings: JsonSettings = {
   isUpdate: false,
   taskbarFlashEnabled: true,
   trayIconRedDotEnabled: true,
+  spellCheckEnabled: true,
 };
 
 // create default settings file if it doesnt exist

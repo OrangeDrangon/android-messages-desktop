@@ -17,6 +17,7 @@ const {
   savedWindowPosition,
   checkForUpdateOnLaunchEnabled,
   taskbarFlashEnabled,
+  spellCheckEnabled,
 } = settings;
 
 let mainWindow: BrowserWindow;
@@ -100,6 +101,11 @@ if (gotTheLock) {
     trayManager.startIfEnabled();
     settings.showIconsInRecentConversationTrayEnabled.subscribe(() =>
       trayManager.refreshTrayMenu()
+    );
+
+    // Apply the spell-check preference on launch and whenever it is toggled.
+    spellCheckEnabled.subscribe((enabled) =>
+      mainWindow.webContents.session.setSpellCheckerEnabled(enabled)
     );
 
     let quitViaContext = false;
