@@ -29,6 +29,13 @@ Download your build from the [releases](https://github.com/OrangeDrangon/android
 
 `scoop bucket add extras && scoop install android-messages`
 
+# Portable Mode (Windows)
+
+To run the application in portable mode:
+1. Download the Windows `.zip` version from the releases page and extract it to your desired location.
+2. Create an empty file named `portable.txt` in the same folder as the executable.
+3. Launch the app. A `data` folder will be automatically created to store your app data and settings in the same folder as the executable.
+
 # Contributions
 
 The code is pretty ugly but getting better every day. Feel free to take a look.
