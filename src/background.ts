@@ -1,3 +1,4 @@
+import "./helpers/portable";
 import { app, Event as ElectronEvent, ipcMain, shell } from "electron";
 import { BrowserWindow } from "electron/main";
 import path from "path";
