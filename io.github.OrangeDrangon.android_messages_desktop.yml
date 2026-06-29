@@ -1,0 +1,79 @@
+app-id: io.github.OrangeDrangon.android_messages_desktop
+runtime: org.freedesktop.Platform
+runtime-version: '25.08'
+sdk: org.freedesktop.Sdk
+base: org.electronjs.Electron2.BaseApp
+base-version: '25.08'
+command: run.sh
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.node20
+finish-args:
+  - --share=ipc
+  - --socket=x11
+  - --socket=wayland
+  - --device=dri
+  - --share=network
+  - --filesystem=home
+  - --talk-name=org.freedesktop.Notifications
+  - --env=ELECTRON_TRASH=gio
+
+build-options:
+  append-path: /usr/lib/sdk/node20/bin
+  env:
+    NPM_CONFIG_LOGLEVEL: info
+    
+modules:
+  - name: android-messages-desktop
+    buildsystem: simple
+    build-options:
+      env:
+        XDG_CACHE_HOME: /run/build/android-messages-desktop/flatpak-node/cache
+        npm_config_cache: /run/build/android-messages-desktop/flatpak-node/npm-cache
+        npm_config_offline: 'true'
+        PNPM_HOME: /run/build/android-messages-desktop/flatpak-node/pnpm-home
+        npm_config_prefix: /run/build/android-messages-desktop/pnpm-local
+      append-path: /run/build/android-messages-desktop/pnpm-local/bin        
+    sources:
+      - type: archive
+        url: https://github.com/OrangeDrangon/android-messages-desktop/archive/refs/tags/v6.0.2.tar.gz
+        sha256: 288a7df8b5de4bf35c1ebe0b4898ac6635ab0018197130b6853c12b02b09ed1a
+      - generated-sources.json
+      - type: script
+        dest-filename: run.sh
+        commands:
+          - exec zypak-wrapper /app/main/AndroidMessages"$@"
+      - type: file
+        path: io.github.OrangeDrangon.android_messages_desktop.desktop
+      - type: file
+        path: io.github.OrangeDrangon.android_messages_desktop.metainfo.xml
+      - type: file
+        url: https://registry.npmjs.org/pnpm/-/pnpm-10.33.2.tgz
+        sha256: 7a7bcf13d7f6ceb3946c03978373d99be9fde1cafc3000bdfed4c4f791167610
+        dest-filename: pnpm.tgz  
+      - type: file
+        url: https://registry.npmjs.org/tsx/-/tsx-4.19.0.tgz
+        sha512: 6d5df490cedbb0b64a6483821de30d54c277dbf2ee2732d56a391023fa9ff7627642bd3cb9e2d0bd6d343d46468ae2cf3fbeb4508370ba98148fcaab4823d42a
+        dest: flatpak-node/pnpm-tarballs
+        dest-filename: tsx-4.19.0.tgz   
+      - type: script
+        dest-filename: transpile-config.js
+        commands:
+          - |
+            const ts = require('typescript');
+            const fs = require('fs');
+            const src = fs.readFileSync('webpack.config.ts', 'utf8');
+            const result = ts.transpileModule(src, {compilerOptions: {module: ts.ModuleKind.ESNext, esModuleInterop: true, moduleResolution: ts.ModuleResolutionKind.Bundler}});
+            fs.writeFileSync('webpack.config.mjs', result.outputText);                
+    build-commands:
+      - python3 flatpak-node/populate_pnpm_store.py flatpak-node/pnpm-manifest.json flatpak-node/pnpm-tarballs flatpak-node/pnpm-store
+      - npm install -g ./pnpm.tgz
+      - pnpm config set store-dir $PWD/flatpak-node/pnpm-store
+      - pnpm install --offline --frozen-lockfile
+      - node transpile-config.js
+      - pnpm exec webpack --mode=production --config webpack.config.mjs
+      - pnpm exec electron-builder --linux dir --config electron-builder.config.js --publish never
+      - cp -r dist/linux-unpacked /app/main
+      - install -Dm755 run.sh /app/bin/run.sh
+      - install -Dm644 io.github.OrangeDrangon.android_messages_desktop.desktop /app/share/applications/io.github.OrangeDrangon.android_messages_desktop.desktop
+      - install -Dm644 io.github.OrangeDrangon.android_messages_desktop.metainfo.xml /app/share/metainfo/io.github.OrangeDrangon.android_messages_desktop.metainfo.xml
+      - install -Dm644 resources/icons/512x512.png /app/share/icons/hicolor/512x512/apps/io.github.OrangeDrangon.android_messages_desktop.png
