@@ -25,7 +25,7 @@ export default {
     },
   },
   win: {
-    target: ["nsis", "portable"],
+    target: ["nsis", "portable", "zip"],
   },
   mac: {
     category: "public.app-category.social-networking",
