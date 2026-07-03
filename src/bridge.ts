@@ -20,15 +20,42 @@ declare global {
 const preload_init = () => {
 
     if (IS_MAC) {
-      const titlebarStyle = `#amd-titlebar {
+      const titlebarStyle = `:root {
+        --amd-titlebar-height: 28px;
+      }
+
+      body {
+        overflow: hidden;
+      }
+
+      mw-app {
+        display: block;
+        height: calc(100vh - var(--amd-titlebar-height));
+        overflow: hidden;
+        transform: translateY(var(--amd-titlebar-height));
+      }
+
+      #amd-titlebar {
         -webkit-app-region: drag;
         position: fixed;
-        width: 100%;
-        height: 64px;
+        height: var(--amd-titlebar-height);
         top: 0;
         left: 0;
+        right: 0;
         background: none;
         pointer-events: none;
+        z-index: 2147483647;
+      }
+
+      button,
+      a,
+      input,
+      textarea,
+      select,
+      [role="button"],
+      [role="link"],
+      [tabindex] {
+        -webkit-app-region: no-drag;
       }`;
 
       document.body.appendChild(

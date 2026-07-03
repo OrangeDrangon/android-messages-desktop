@@ -23,7 +23,6 @@ module.exports = {
     desktop: {
       entry: {
         Name: "Android Messages Desktop",
-        StartupWMClass: "AndroidMessages",
       },
     },
   },

@@ -1,5 +1,8 @@
 import { ipcRenderer } from "electron";
-import { RECENT_CONVERSATION_TRAY_COUNT } from "./constants_preload";
+import {
+  RECENT_CONVERSATION_SNIPPET_LENGTH,
+  RECENT_CONVERSATION_TRAY_COUNT,
+} from "./constants_preload";
 
 function unreadObserver() {
   if (document.querySelector(".unread") != null) {
@@ -19,6 +22,7 @@ export function createUnreadObserver(): MutationObserver {
       attributeFilter: ["data-e2e-is-unread"],
     }
   );
+  unreadObserver();
   return observer;
 }
 
@@ -41,12 +45,16 @@ export function recentThreadObserver() {
 
     const image = canvas?.toDataURL();
 
+    const snippet = conversation
+      .querySelector(
+        "a div.text-content div.snippet-text mws-conversation-snippet span"
+      )
+      ?.textContent?.trim();
+
     const recentMessage =
-      conversation
-        .querySelector(
-          "a div.text-content div.snippet-text mws-conversation-snippet span"
-        )
-        ?.textContent?.slice(0, 20) + "...";
+      snippet && snippet.length > RECENT_CONVERSATION_SNIPPET_LENGTH
+        ? `${snippet.slice(0, RECENT_CONVERSATION_SNIPPET_LENGTH).trimEnd()}…`
+        : snippet;
 
     const focusFunction = () => void conversation.querySelector("a")?.click();
     focusFunctions[i] = focusFunction;
