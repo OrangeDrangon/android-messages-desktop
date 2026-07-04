@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.OrangeDrangon.android-messages-desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <name>Android Messages</name>
+  <summary>Android Messages as a cross-platform desktop application</summary>
+  <description>
+    <p>Android Messages Desktop is a wrapper around the official Google Messages web interface.</p>
+    <p>Run Android Messages as a desktop app, a la iMessage. For those of us that prefer not to have a browser tab always open for this sort of thing.</p>
+    <p>Not affiliated with Google in any way. Android is a trademark of Google LLC.</p>
+  </description>
+  <launchable type="desktop-id">io.github.OrangeDrangon.android-messages-desktop.desktop</launchable>
+  <developer id="github.com.OrangeDrangon">
+    <name>OrangeDrangon</name>
+  </developer>  
+  <screenshots>
+    <screenshot type="default">
+      <caption>Welcome screen</caption>
+      <image type="source">https://raw.githubusercontent.com/OrangeDrangon/android-messages-desktop/refs/heads/master/assets/android-messages-init-1.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Sign-in or scan QR</caption>
+      <image type="source">https://raw.githubusercontent.com/OrangeDrangon/android-messages-desktop/refs/heads/master/assets/android-messages-init-2.png</image>
+    </screenshot>    
+  </screenshots>
+  <url type="homepage">https://github.com/OrangeDrangon/android-messages-desktop</url>
+  <url type="bugtracker">https://github.com/OrangeDrangon/android-messages-desktop/issues</url>  
+<categories>
+  <category>Chat</category>
+  <category>InstantMessaging</category>
+  <category>Telephony</category>
+</categories>  
+  <releases>
+    <release version="6.0.3" date="2026-06-23" />
+  </releases>
+  <content_rating type="oars-1.1" />
+</component>
