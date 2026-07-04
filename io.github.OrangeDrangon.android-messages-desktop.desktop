@@ -2,7 +2,7 @@
 Name=Android Messages
 Comment=Android Messages Desktop client
 Exec=run.sh %U
-Icon=io.github.OrangeDrangon.android_messages_desktop
+Icon=io.github.OrangeDrangon.android-messages-desktop
 Type=Application
 Terminal=false
 Categories=Network;InstantMessaging;
