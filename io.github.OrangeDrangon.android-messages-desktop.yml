@@ -1,4 +1,7 @@
-app-id: io.github.OrangeDrangon.android_messages_desktop
+app-id: io.github.OrangeDrangon.android-messages-desktop
+x-updater-data:
+  type: github
+  repo: OrangeDrangon/android-messages-desktop
 runtime: org.freedesktop.Platform
 runtime-version: &runtime '25.08'
 sdk: org.freedesktop.Sdk
@@ -9,8 +12,8 @@ separate-locales: false
 
 finish-args:
   - --share=ipc
-  - --socket=x11
   - --socket=wayland
+  - --socket=fallback-x11  
   - --socket=pulseaudio
   - --share=network
   - --device=dri
@@ -25,9 +28,9 @@ modules:
       - cp -r squashfs-root/* /app/main/
       - if [ -f /app/main/AppRun ]; then rm /app/main/AppRun; fi
       - install -Dm755 run.sh /app/bin/run.sh
-      - install -Dm644 io.github.OrangeDrangon.android_messages_desktop.desktop /app/share/applications/io.github.OrangeDrangon.android_messages_desktop.desktop
-      - install -Dm644 io.github.OrangeDrangon.android_messages_desktop.metainfo.xml /app/share/metainfo/io.github.OrangeDrangon.android_messages_desktop.metainfo.xml      
-      - install -Dm644 app-icon.png /app/share/icons/hicolor/512x512/apps/io.github.OrangeDrangon.android_messages_desktop.png    
+      - install -Dm644 io.github.OrangeDrangon.android-messages-desktop.desktop /app/share/applications/io.github.OrangeDrangon.android-messages-desktop.desktop
+      - install -Dm644 io.github.OrangeDrangon.android-messages-desktop.metainfo.xml /app/share/metainfo/io.github.OrangeDrangon.android-messages-desktop.metainfo.xml       
+      - install -Dm644 squashfs-root/usr/share/icons/hicolor/512x512/apps/AndroidMessages.png /app/share/icons/hicolor/512x512/apps/io.github.OrangeDrangon.android-messages-desktop.png
     sources:
       - type: file
         url: https://github.com/OrangeDrangon/android-messages-desktop/releases/download/v6.0.3/Android-Messages-v6.0.3-linux-x86_64.AppImage
@@ -44,9 +47,6 @@ modules:
         commands:
           - exec zypak-wrapper /app/main/AndroidMessages --no-sandbox "$@"
       - type: file
-        path: io.github.OrangeDrangon.android_messages_desktop.desktop
+        path: io.github.OrangeDrangon.android-messages-desktop.desktop
       - type: file
-        path: io.github.OrangeDrangon.android_messages_desktop.metainfo.xml    
-      - type: file
-        path: resources/icons/512x512.png
-        dest-filename: app-icon.png                     
+        path: io.github.OrangeDrangon.android-messages-desktop.metainfo.xml                       
