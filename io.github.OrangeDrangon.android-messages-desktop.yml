@@ -1,0 +1,52 @@
+app-id: io.github.OrangeDrangon.android-messages-desktop
+x-updater-data:
+  type: github
+  repo: OrangeDrangon/android-messages-desktop
+runtime: org.freedesktop.Platform
+runtime-version: &runtime '25.08'
+sdk: org.freedesktop.Sdk
+base: org.electronjs.Electron2.BaseApp
+base-version: *runtime
+command: run.sh
+separate-locales: false
+
+finish-args:
+  - --share=ipc
+  - --socket=wayland
+  - --socket=fallback-x11  
+  - --socket=pulseaudio
+  - --share=network
+  - --device=dri
+    
+modules:
+  - name: android-messages-desktop
+    buildsystem: simple
+    build-commands:
+      - chmod +x android-messages.AppImage
+      - ./android-messages.AppImage --appimage-extract
+      - mkdir -p /app/main
+      - cp -r squashfs-root/* /app/main/
+      - if [ -f /app/main/AppRun ]; then rm /app/main/AppRun; fi
+      - install -Dm755 run.sh /app/bin/run.sh
+      - install -Dm644 io.github.OrangeDrangon.android-messages-desktop.desktop /app/share/applications/io.github.OrangeDrangon.android-messages-desktop.desktop
+      - install -Dm644 io.github.OrangeDrangon.android-messages-desktop.metainfo.xml /app/share/metainfo/io.github.OrangeDrangon.android-messages-desktop.metainfo.xml       
+      - install -Dm644 squashfs-root/usr/share/icons/hicolor/512x512/apps/AndroidMessages.png /app/share/icons/hicolor/512x512/apps/io.github.OrangeDrangon.android-messages-desktop.png
+    sources:
+      - type: file
+        url: https://github.com/OrangeDrangon/android-messages-desktop/releases/download/v6.0.3/Android-Messages-v6.0.3-linux-x86_64.AppImage
+        sha256: 7c8967b29f190423f1eeb19d4c9950a48a381cd1ba93e0cab2a7e031fc06880f
+        dest-filename: android-messages.AppImage  
+        x-checker-data:
+          type: github_release
+          user: OrangeDrangon
+          project: android-messages-desktop
+          stable-only: true
+          url-template: https://github.com         
+      - type: script
+        dest-filename: run.sh
+        commands:
+          - exec zypak-wrapper /app/main/AndroidMessages --no-sandbox "$@"
+      - type: file
+        path: io.github.OrangeDrangon.android-messages-desktop.desktop
+      - type: file
+        path: io.github.OrangeDrangon.android-messages-desktop.metainfo.xml                       
