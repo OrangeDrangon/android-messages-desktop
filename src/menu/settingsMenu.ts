@@ -14,6 +14,7 @@ const {
   showIconsInRecentConversationTrayEnabled,
   trayIconRedDotEnabled,
   taskbarFlashEnabled,
+  autoCopyOtpEnabled,
 } = settings;
 
 export const settingsMenu: MenuItemConstructorOptions = {
@@ -92,6 +93,13 @@ export const settingsMenu: MenuItemConstructorOptions = {
       type: "checkbox",
       checked: taskbarFlashEnabled.value,
       click: (item) => taskbarFlashEnabled.next(item.checked),
+    },
+    {
+      id: "autoCopyOtpEnabledMenuItem",
+      label: "Automatically Copy One-Time Codes",
+      type: "checkbox",
+      checked: autoCopyOtpEnabled.value,
+      click: (item) => autoCopyOtpEnabled.next(item.checked),
     },
     separator,
     {

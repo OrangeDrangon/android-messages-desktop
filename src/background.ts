@@ -1,4 +1,11 @@
-import { app, Event as ElectronEvent, ipcMain, shell } from "electron";
+import {
+  app,
+  clipboard,
+  Event as ElectronEvent,
+  ipcMain,
+  Notification,
+  shell,
+} from "electron";
 import { BrowserWindow } from "electron/main";
 import path from "path";
 import process from "process";
@@ -205,6 +212,46 @@ if (gotTheLock) {
   ipcMain.on("should-hide-notification-content", (event) => {
     event.returnValue = settings.hideNotificationContentEnabled.value;
   });
+
+  ipcMain.on("should-auto-copy-otp", (event) => {
+    event.returnValue = settings.autoCopyOtpEnabled.value;
+  });
+
+  ipcMain.on("copy-otp-to-clipboard", (_event, otp: string) => {
+    clipboard.writeText(otp);
+  });
+
+  ipcMain.on(
+    "show-otp-notification",
+    (
+      _event,
+      {
+        title,
+        body,
+        otp,
+        hideContent,
+      }: { title: string; body: string; otp: string; hideContent: boolean }
+    ) => {
+      const notification = new Notification({
+        title: hideContent ? "New Message" : title,
+        body: hideContent ? "Click to open" : body,
+        icon: path.resolve(RESOURCES_PATH, "icons", "64x64.png"),
+        actions: [{ type: "button", text: "Copy OTP" }],
+        closeButtonText: "Close",
+      });
+
+      notification.on("click", () => {
+        mainWindow.show();
+        mainWindow.focus();
+      });
+
+      notification.on("action", () => {
+        clipboard.writeText(otp);
+      });
+
+      notification.show();
+    }
+  );
 
   ipcMain.on("show-main-window", () => {
     mainWindow.show();
