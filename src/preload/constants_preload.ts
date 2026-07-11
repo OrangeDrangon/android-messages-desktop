@@ -8,4 +8,4 @@ export const RECENT_CONVERSATION_TRAY_COUNT = 3;
 // truncated with an ellipsis.
 export const RECENT_CONVERSATION_SNIPPET_LENGTH = 30;
 
-export {INITIAL_ICON_IMAGE} from "../helpers/constants_shared";
+export { INITIAL_ICON_IMAGE } from "../helpers/constants_shared";
