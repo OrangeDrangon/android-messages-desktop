@@ -14,6 +14,7 @@ const {
   showIconsInRecentConversationTrayEnabled,
   trayIconRedDotEnabled,
   taskbarFlashEnabled,
+  spellCheckEnabled,
 } = settings;
 
 export const settingsMenu: MenuItemConstructorOptions = {
@@ -92,6 +93,13 @@ export const settingsMenu: MenuItemConstructorOptions = {
       type: "checkbox",
       checked: taskbarFlashEnabled.value,
       click: (item) => taskbarFlashEnabled.next(item.checked),
+    },
+    {
+      id: "spellCheckEnabledMenuItem",
+      label: "Enable Spell Checking",
+      type: "checkbox",
+      checked: spellCheckEnabled.value,
+      click: (item) => spellCheckEnabled.next(item.checked),
     },
     separator,
     {
