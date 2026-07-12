@@ -1,3 +1,4 @@
+import "./helpers/portable";
 import {
   app,
   Event as ElectronEvent,

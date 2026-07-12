@@ -30,4 +30,4 @@ export const TRAY_AVATAR_SIZE = 28;
  */
 export const UUID_NAMESPACE = "ddf09da3-3df8-4417-ae3b-62d3ed4bfb72";
 
-export {INITIAL_ICON_IMAGE} from "./constants_shared";
+export { INITIAL_ICON_IMAGE } from "./constants_shared";

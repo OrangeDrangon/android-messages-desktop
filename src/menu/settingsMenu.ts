@@ -28,7 +28,7 @@ export const settingsMenu: MenuItemConstructorOptions = {
       label: "Auto Hide Menu Bar",
       type: "checkbox",
       checked: autoHideMenuEnabled.value,
-      click: (item: MenuItem, window?: BaseWindow, event?: Electron.KeyboardEvent): void => {
+      click: (item: MenuItem, window?: BaseWindow): void => {
         autoHideMenuEnabled.next(item.checked);
         window?.setMenuBarVisibility(!autoHideMenuEnabled.value);
         window?.setAutoHideMenuBar(autoHideMenuEnabled.value);
