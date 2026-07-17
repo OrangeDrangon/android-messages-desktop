@@ -41,7 +41,7 @@
     "@types/webpack-node-externals": "3.0.4",
     "@typescript-eslint/eslint-plugin": "8.63.0",
     "@typescript-eslint/parser": "8.63.0",
-    "electron": "41.10.1",
+    "electron": "41.10.2",
     "electron-builder": "26.15.3",
     "esbuild": "0.28.1",
     "esbuild-loader": "4.5.0",
