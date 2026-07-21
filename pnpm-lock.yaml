@@ -43,8 +43,8 @@ importers:
         specifier: 8.63.0
         version: 8.63.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2)
       electron:
-        specifier: 41.10.1
-        version: 41.10.1
+        specifier: 43.1.1
+        version: 43.1.1
       electron-builder:
         specifier: 26.15.3
         version: 26.15.3(electron-builder-squirrel-windows@26.15.3)
@@ -1004,8 +1004,8 @@ packages:
     resolution: {integrity: sha512-bO3y10YikuUwUuDUQRM4KfwNkKhnpVO7IPdbsrejwN9/AABJzzTQ4GeHwyzNSrVO+tEH3/Np255a3sVZpZDjvg==}
     engines: {node: '>=8.0.0'}
 
-  electron@41.10.1:
-    resolution: {integrity: sha512-8BGbTyMWNCXZ2nErXqchO31CJsHlzD5joOiWbNerBi1EnGLXkiMEF3yUUN+T16duz3XYwLTcxOq38MMcWf0sQA==}
+  electron@43.1.1:
+    resolution: {integrity: sha512-I5c5vfuVvaXpWx3IZdwvXgxQW44+e7OP1wXGVQkogLeSFSkUZ6sLCcWV05AdEcs65AO5tAIJJwbp7ixw+LdarA==}
     engines: {node: '>= 22.12.0'}
     hasBin: true
 
@@ -3142,7 +3142,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  electron@41.10.1:
+  electron@43.1.1:
     dependencies:
       '@electron-internal/extract-zip': 1.0.4
       '@electron/get': 5.0.0
