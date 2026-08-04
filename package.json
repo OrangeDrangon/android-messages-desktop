@@ -52,7 +52,7 @@
     "typescript": "7.0.2",
     "typescript-eslint": "8.65.0",
     "webpack": "5.106.2",
-    "webpack-cli": "7.2.1",
+    "webpack-cli": "7.2.2",
     "webpack-merge": "6.0.1",
     "webpack-node-externals": "3.0.0"
   }
