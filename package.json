@@ -43,7 +43,7 @@
     "@typescript-eslint/parser": "8.65.0",
     "electron": "41.10.4",
     "electron-builder": "26.15.3",
-    "esbuild": "0.28.1",
+    "esbuild": "0.28.2",
     "esbuild-loader": "4.5.0",
     "eslint": "10.8.0",
     "eslint-config-prettier": "10.1.8",
