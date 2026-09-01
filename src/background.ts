@@ -90,6 +90,7 @@ if (gotTheLock) {
         nodeIntegration: false,
         sandbox: false,
         partition: "persist:main",
+        backgroundThrottling: false,
       },
     });
 
@@ -187,6 +188,38 @@ if (gotTheLock) {
       return { action: "deny" };
     });
 
+    let reloadTimeout: NodeJS.Timeout | null = null;
+    let pendingResume = false;
+    let hasFailedLoad = false;
+    let isNetworkOffline = false;
+
+    const reloadMainWindow = (delayMs = 0) => {
+      if (reloadTimeout) {
+        clearTimeout(reloadTimeout);
+      }
+      reloadTimeout = setTimeout(() => {
+        reloadTimeout = null;
+        if (!mainWindow || mainWindow.isDestroyed()) {
+          return;
+        }
+        const currentUrl = mainWindow.webContents.getURL();
+        if (
+          !currentUrl ||
+          currentUrl.startsWith("chrome-error://") ||
+          currentUrl === "about:blank"
+        ) {
+          mainWindow.loadURL("https://messages.google.com/web/");
+        } else {
+          mainWindow.webContents.reload();
+        }
+      }, delayMs);
+    };
+
+    mainWindow.webContents.on("did-finish-load", () => {
+      pendingResume = false;
+      hasFailedLoad = false;
+    });
+
     mainWindow.webContents.on(
       "did-fail-load",
       (_event, errorCode, errorDescription, validatedURL) => {
@@ -195,6 +228,11 @@ if (gotTheLock) {
           errorDescription,
           validatedURL,
         });
+        // -3 is ERR_ABORTED (navigation superseded/cancelled). For all other network failures, retry.
+        if (errorCode !== -3 && !mainWindow.isDestroyed()) {
+          hasFailedLoad = true;
+          reloadMainWindow(3000);
+        }
       }
     );
 
@@ -215,13 +253,13 @@ if (gotTheLock) {
 
     mainWindow.webContents.on("context-menu", popupContextMenu);
 
-    // The Google Messages web app frequently ends up on a blank white screen
-    // after the machine resumes from suspend: its connection to the phone is
-    // dropped and it doesn't recover on its own. Reloading restores it without
-    // the user needing to manually hit Ctrl+R. See issue #505.
+    // The Google Messages web app frequently ends up on a blank white screen or
+    // loses its connection to the phone after the machine resumes from suspend (#505, #605).
+    // Allow a short delay for network interfaces (Wi-Fi/DHCP) to re-associate, and reload.
     powerMonitor.on("resume", () => {
       if (!mainWindow.isDestroyed()) {
-        mainWindow.webContents.reload();
+        pendingResume = true;
+        reloadMainWindow(2500);
       }
     });
 
@@ -231,8 +269,20 @@ if (gotTheLock) {
     mainWindow.webContents.on("render-process-gone", (_event, details) => {
       console.log("render-process-gone", details);
       if (details.reason !== "clean-exit" && !mainWindow.isDestroyed()) {
-        mainWindow.webContents.reload();
+        reloadMainWindow(1000);
       }
+    });
+
+    ipcMain.on("network-online", () => {
+      const wasOffline = isNetworkOffline;
+      isNetworkOffline = false;
+      if (pendingResume || hasFailedLoad || wasOffline) {
+        reloadMainWindow(1000);
+      }
+    });
+
+    ipcMain.on("network-offline", () => {
+      isNetworkOffline = true;
     });
   });
 
