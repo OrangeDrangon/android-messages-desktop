@@ -4,6 +4,8 @@
   packages = [
     pkgs.git
     pkgs.nixd
+    pkgs.electron_41
+    pkgs.p7zip
   ];
 
   languages.nix.enable = true;
@@ -17,4 +19,7 @@
     eslint.enable = true;
     eslint.settings.binPath = "./node_modules/.bin/eslint";
   };
+
+  env.ELECTRON_OVERRIDE_DIST_PATH = "${pkgs.electron_41}/bin/";
+  env.ELECTRON_BUILDER_7ZIP_PATH = "${pkgs.p7zip}/bin/7za";
 }
