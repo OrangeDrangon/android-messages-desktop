@@ -11,28 +11,32 @@
     <p>Not affiliated with Google in any way. Android is a trademark of Google LLC.</p>
   </description>
   <launchable type="desktop-id">io.github.OrangeDrangon.android-messages-desktop.desktop</launchable>
-  <developer id="github.com.OrangeDrangon">
+  <developer id="io.github.orangedrangon">
     <name>OrangeDrangon</name>
   </developer>  
   <screenshots>
     <screenshot type="default">
       <caption>Welcome screen</caption>
-      <image type="source">https://raw.githubusercontent.com/OrangeDrangon/android-messages-desktop/refs/heads/master/assets/android-messages-init-1.png</image>
+      <image type="source">https://raw.githubusercontent.com/kmokma/android-messages-desktop/master/assets/android-messages-init-1.png</image>
     </screenshot>
     <screenshot>
       <caption>Sign-in or scan QR</caption>
-      <image type="source">https://raw.githubusercontent.com/OrangeDrangon/android-messages-desktop/refs/heads/master/assets/android-messages-init-2.png</image>
+      <image type="source">https://raw.githubusercontent.com/kmokma/android-messages-desktop/master/assets/android-messages-init-2.png</image>
     </screenshot>    
   </screenshots>
   <url type="homepage">https://github.com/OrangeDrangon/android-messages-desktop</url>
   <url type="bugtracker">https://github.com/OrangeDrangon/android-messages-desktop/issues</url>  
-<categories>
-  <category>Chat</category>
-  <category>InstantMessaging</category>
-  <category>Telephony</category>
-</categories>  
   <releases>
-    <release version="6.0.3" date="2026-06-23" />
+    <release version="6.1.1" date="2026-09-02">
+      <description>
+        <p>Fix connection loss and reload failures after system suspend, dependency updates, and maintenance.</p>
+      </description>
+    </release>
+    <release version="6.1.0" date="2026-08-20">
+      <description>
+        <p>Release v6.1.0.</p>
+      </description>
+    </release>
   </releases>
   <content_rating type="oars-1.1" />
 </component>
