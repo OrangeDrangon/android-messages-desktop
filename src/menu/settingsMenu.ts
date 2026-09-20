@@ -2,6 +2,7 @@ import { BaseWindow, MenuItem, MenuItemConstructorOptions } from "electron";
 import { IS_MAC } from "../helpers/constants";
 import { settings } from "../helpers/settings";
 import { separator } from "./items/separator";
+import { stylesheetThemeMenu } from "./items/stylesheetTheme";
 
 // bring the settings into scope
 const {
@@ -20,6 +21,8 @@ const {
 export const settingsMenu: MenuItemConstructorOptions = {
   label: IS_MAC ? "&Preferences" : "&Settings",
   submenu: [
+    stylesheetThemeMenu,
+    separator,
     {
       // This option doesn't apply to Mac, so this hides it but keeps the order of menu items
       // to make updating based on array indices easier.

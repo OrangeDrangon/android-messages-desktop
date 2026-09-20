@@ -19,6 +19,8 @@
   "main": "app/background.js",
   "desktopName": "pw.kmr.amd",
   "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "test:electron": "esbuild test/stylesheetTheme.electron.ts --bundle --platform=node --external:electron --outfile=app/theme-smoke.cjs && electron app/theme-smoke.cjs",
     "dev": "pnpm run build:dev && NODE_ENV=development electron --enable-source-maps ./app/background.js",
     "dist": "pnpm run build && pnpm run package",
     "build": "webpack --mode=production",
