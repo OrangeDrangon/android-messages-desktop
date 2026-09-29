@@ -1,6 +1,10 @@
 import { contextBridge, ipcRenderer, webFrame } from "electron";
 
-import { INITIAL_ICON_IMAGE, IS_MAC } from "./preload/constants_preload";
+import {
+  INITIAL_ICON_IMAGE,
+  IS_MAC,
+  IS_MESSAGES_ORIGIN,
+} from "./preload/constants_preload";
 import {
   createRecentThreadObserver,
   createUnreadObserver,
@@ -114,29 +118,30 @@ ipcRenderer.on("focus-conversation", (event, i) => {
   focusFunctions[i]();
 });
 
-contextBridge.exposeInMainWorld("interop", {
-  show_main_window: () => {
-    ipcRenderer.send("show-main-window");
-  },
-  flash_main: () => {
-    ipcRenderer.send("flash-main-window-if-not-focused");
-  },
-  should_hide: () => {
-    return ipcRenderer.sendSync("should-hide-notification-content");
-  },
-  get_icon: async () => {
-    const data = await ipcRenderer.invoke("get-icon");
-    return `data:image/png;base64,${data}`;
-  },
-  preload_init,
-});
-webFrame.executeJavaScript(`
+if (IS_MESSAGES_ORIGIN) {
+  contextBridge.exposeInMainWorld("interop", {
+    show_main_window: () => {
+      ipcRenderer.send("show-main-window");
+    },
+    flash_main: () => {
+      ipcRenderer.send("flash-main-window-if-not-focused");
+    },
+    should_hide: () => {
+      return ipcRenderer.sendSync("should-hide-notification-content");
+    },
+    get_icon: async () => {
+      const data = await ipcRenderer.invoke("get-icon");
+      return `data:image/png;base64,${data}`;
+    },
+    preload_init,
+  });
+  webFrame.executeJavaScript(`
   window.addEventListener("load", async () => {
     window.interop.preload_init();
     window.icon_data_uri = await window.interop.get_icon();
   });
 `);
-webFrame.executeJavaScript(`window.OldNotification = window.Notification;
+  webFrame.executeJavaScript(`window.OldNotification = window.Notification;
 window.Notification = function (title, options) {
   try {
     const hideContent = window.interop.should_hide();
@@ -168,7 +173,8 @@ window.Notification = function (title, options) {
 window.Notification.permission = "granted";
 window.Notification.requestPermission = async () => "granted";
 `);
-contextBridge.exposeInMainWorld("module", { exports: null });
+  contextBridge.exposeInMainWorld("module", { exports: null });
+}
 
 window.addEventListener("online", () => {
   ipcRenderer.send("network-online");
