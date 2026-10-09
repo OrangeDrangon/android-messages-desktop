@@ -32,9 +32,38 @@ Download your build from the [releases](https://github.com/OrangeDrangon/android
 # Portable Mode (Windows)
 
 To run the application in portable mode:
+
 1. Download the Windows `.zip` version from the releases page and extract it to your desired location.
 2. Create an empty file named `portable.txt` in the same folder as the executable.
 3. Launch the app. A `data` folder will be automatically created to store your app data and settings in the same folder as the executable.
+
+# Stylesheet themes
+
+Open **Settings → Stylesheet Theme → Choose Stylesheet…** (under **Preferences**
+on macOS) to apply a local `.css` file. The app remembers its location and applies
+it again after page reloads and restarts. After editing the file, choose **Reload
+Stylesheet** to apply your changes. **Remove Stylesheet** restores the default
+appearance without deleting your file.
+
+For example, save this as `theme.css` to change the font:
+
+```css
+body,
+button,
+input,
+textarea {
+  font-family: Georgia, serif !important;
+}
+```
+
+Themes apply to the main Google Messages page. Google sign-in windows and native
+menus keep their usual appearance. Use `!important` when overriding the site's
+styles. Selectors may need updating when Google changes the web app.
+
+Keep the CSS file at its selected location, or choose it again after moving it
+(including when moving a portable installation). Use a self-contained stylesheet;
+relative asset URLs resolve against the web page, not the CSS file's folder. Only
+load themes you trust: CSS can hide controls and request external resources.
 
 # Contributions
 
@@ -48,6 +77,10 @@ Steps to contribute:
 4. `pnpm install` for dependencies
 5. `pnpm run dev` to build and run assuming you have electron installed.
 6. Open a pull request when you think it is ready or for feedback during the dev process
+
+Run `pnpm test` for stylesheet lifecycle tests. Run `pnpm run test:electron` in a
+desktop session to verify CSS application and removal in Electron using a local
+test page (no Google account or network connection is needed).
 
 The easiest way to get a developer environment up and running is using [devenv](https://devenv.sh). It is just node and
 yarn though so any install of those should work at the end of the day.
