@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "about-window": "1.15.2",
-    "electron-updater": "6.8.9",
+    "electron-updater": "6.8.11",
     "fs-jetpack": "^5.1.0",
     "rxjs": "^7.8.2",
     "uuid": "^14.0.1"
@@ -39,10 +39,10 @@
     "@types/node": "25.9.9",
     "@types/webpack": "5.28.5",
     "@types/webpack-node-externals": "3.0.4",
-    "@typescript-eslint/eslint-plugin": "8.72.0",
-    "@typescript-eslint/parser": "8.72.0",
+    "@typescript-eslint/eslint-plugin": "8.72.1",
+    "@typescript-eslint/parser": "8.72.1",
     "electron": "41.10.7",
-    "electron-builder": "26.15.3",
+    "electron-builder": "26.18.0",
     "esbuild": "0.28.2",
     "esbuild-loader": "4.5.0",
     "eslint": "10.13.0",
@@ -50,8 +50,8 @@
     "png2icons": "2.0.1",
     "prettier": "3.9.10",
     "typescript": "7.0.2",
-    "typescript-eslint": "8.72.0",
-    "webpack": "5.112.0",
+    "typescript-eslint": "8.72.1",
+    "webpack": "5.112.2",
     "webpack-cli": "7.2.3",
     "webpack-merge": "6.0.1",
     "webpack-node-externals": "3.0.0"
