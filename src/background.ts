@@ -1,15 +1,10 @@
 import "./helpers/portable";
-import {
-  app,
-  Event as ElectronEvent,
-  ipcMain,
-  powerMonitor,
-  shell,
-} from "electron";
+import { app, Event as ElectronEvent, ipcMain, shell } from "electron";
 import { BrowserWindow } from "electron/main";
 import path from "path";
 import process from "process";
 import { checkForUpdate, setUpdateWindow } from "./helpers/autoUpdate";
+import { setupConnectionRecovery } from "./helpers/connectionRecovery";
 import { IS_DEV, IS_LINUX, IS_MAC, RESOURCES_PATH } from "./helpers/constants";
 import { MenuManager } from "./helpers/menuManager";
 import { setSettingsFlushEnabled, settings } from "./helpers/settings";
@@ -188,38 +183,6 @@ if (gotTheLock) {
       return { action: "deny" };
     });
 
-    let reloadTimeout: NodeJS.Timeout | null = null;
-    let pendingResume = false;
-    let hasFailedLoad = false;
-    let isNetworkOffline = false;
-
-    const reloadMainWindow = (delayMs = 0) => {
-      if (reloadTimeout) {
-        clearTimeout(reloadTimeout);
-      }
-      reloadTimeout = setTimeout(() => {
-        reloadTimeout = null;
-        if (!mainWindow || mainWindow.isDestroyed()) {
-          return;
-        }
-        const currentUrl = mainWindow.webContents.getURL();
-        if (
-          !currentUrl ||
-          currentUrl.startsWith("chrome-error://") ||
-          currentUrl === "about:blank"
-        ) {
-          mainWindow.loadURL("https://messages.google.com/web/");
-        } else {
-          mainWindow.webContents.reload();
-        }
-      }, delayMs);
-    };
-
-    mainWindow.webContents.on("did-finish-load", () => {
-      pendingResume = false;
-      hasFailedLoad = false;
-    });
-
     mainWindow.webContents.on(
       "did-fail-load",
       (_event, errorCode, errorDescription, validatedURL) => {
@@ -228,11 +191,6 @@ if (gotTheLock) {
           errorDescription,
           validatedURL,
         });
-        // -3 is ERR_ABORTED (navigation superseded/cancelled). For all other network failures, retry.
-        if (errorCode !== -3 && !mainWindow.isDestroyed()) {
-          hasFailedLoad = true;
-          reloadMainWindow(3000);
-        }
       }
     );
 
@@ -253,37 +211,9 @@ if (gotTheLock) {
 
     mainWindow.webContents.on("context-menu", popupContextMenu);
 
-    // The Google Messages web app frequently ends up on a blank white screen or
-    // loses its connection to the phone after the machine resumes from suspend (#505, #605).
-    // Allow a short delay for network interfaces (Wi-Fi/DHCP) to re-associate, and reload.
-    powerMonitor.on("resume", () => {
-      if (!mainWindow.isDestroyed()) {
-        pendingResume = true;
-        reloadMainWindow(2500);
-      }
-    });
-
-    // The OS can also kill the renderer outright while suspended (memory
-    // reclaim), which leaves the same blank screen. Reload to recover unless it
-    // exited cleanly (e.g. during shutdown).
-    mainWindow.webContents.on("render-process-gone", (_event, details) => {
-      console.log("render-process-gone", details);
-      if (details.reason !== "clean-exit" && !mainWindow.isDestroyed()) {
-        reloadMainWindow(1000);
-      }
-    });
-
-    ipcMain.on("network-online", () => {
-      const wasOffline = isNetworkOffline;
-      isNetworkOffline = false;
-      if (pendingResume || hasFailedLoad || wasOffline) {
-        reloadMainWindow(1000);
-      }
-    });
-
-    ipcMain.on("network-offline", () => {
-      isNetworkOffline = true;
-    });
+    // Recovers the web app after suspend/resume, network drops and renderer
+    // crashes (#505, #605). See helpers/connectionRecovery.ts.
+    setupConnectionRecovery(mainWindow);
   });
 
   ipcMain.on("should-hide-notification-content", (event) => {
