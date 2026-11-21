@@ -63,6 +63,14 @@ if (gotTheLock) {
   app.on("ready", () => app.setAppUserModelId("pw.kmr.amd"));
 
   app.on("ready", () => {
+    // Google's sign-in rejects a User-Agent carrying the Electron token with
+    // "This browser or app may not be secure". Drop it and our own token rather
+    // than hard-coding a replacement, so the platform and Chromium version stay
+    // whatever Chromium reported.
+    app.userAgentFallback = app.userAgentFallback
+      .replace(` Electron/${process.versions.electron}`, "")
+      .replace(` ${app.name.replace(/ /g, "")}/${app.getVersion()}`, "");
+
     trayManager = new TrayManager();
 
     new MenuManager();
