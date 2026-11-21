@@ -1,6 +1,7 @@
 import "./helpers/portable";
 import {
   app,
+  dialog,
   Event as ElectronEvent,
   ipcMain,
   powerMonitor,
@@ -16,6 +17,7 @@ import { setSettingsFlushEnabled, settings } from "./helpers/settings";
 import { Conversation, TrayManager } from "./helpers/trayManager";
 import { popupContextMenu } from "./menu/contextMenu";
 import fs from "fs";
+import { attachStylesheetTheme } from "./helpers/stylesheetTheme";
 
 const {
   autoHideMenuEnabled,
@@ -104,6 +106,12 @@ if (gotTheLock) {
     if (!(settings.trayEnabled.value && settings.startInTrayEnabled.value)) {
       mainWindow.show();
     }
+
+    attachStylesheetTheme(
+      mainWindow.webContents,
+      settings.customStylesheetPath,
+      (error) => dialog.showErrorBox("Unable to load stylesheet", String(error))
+    );
 
     mainWindow.loadURL("https://messages.google.com/web/");
 
